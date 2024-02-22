@@ -17,10 +17,25 @@ body {
 
 header {
     text-align: center;
-    padding: 20px;
+    padding-top: 20px;
     background-color: #333;
     color: white;
     width: 100%;
+}
+
+.social-links {
+    background-color: #333;
+    text-align: center;
+    width: 100%;
+}
+
+.social-button {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
 }
 
 #threejs-container {
