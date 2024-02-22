@@ -7,42 +7,119 @@
     <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
-    <header>
-        <h1>Jack Dylan Sanders</h1>
-        <p>Developer and Researcher </p>
-    </header>
+    <div id="site">
+        <header>
+            <h1>Jack Dylan Sanders</h1>
+            <p>Developer and Researcher </p>
+        </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
 
-    <div id="content">
-        <h2>Education</h2>
-        <ul>
-            <li>
-                <h3>University Name</h3>
-                <p>Degree in Computer Science</p>
-                <p>Graduation Year: 20XX</p>
-            </li>
-            <!-- Add more education entries as needed -->
-        </ul>
+        <div id="content">
+            <div id="education">
+                <h2>Education</h2>
+                <ul id="list-list">
+                    <li id="list-item">
+                        <h3>The Univeristy of Birmingham</h3>
+                        <p>Experimental Particle Physics PhD</p>
+                        <p>Graduation Year: 2025</p>
+                    </li>
+                    <li id="list-item">
+                        <h3>The Univeristy of Birmingham</h3>
+                        <p>Physics MSci</p>
+                        <p>Graduation Year: 2021</p>
+                    </li>
+                    <!-- Add more education entries as needed -->
+                </ul>
+            </div>
+            <div id="publications">
+                <h2>Publications</h2>
+                <ul class="pub-list">
+                    <li class="pub-item JINST">
+                        <div class="JINST_title">
+                            <h3 >A new hydrogen-filled Cherenkov detector for Kaon tagging at the NA62 experiment at CERN </h3>
+                        </div>
+                        <div class="info-pub">
+                            <p>Published 2024 To JINST. Main Author</p>
+                            <p>ARXIV: <a href="https://arxiv.org/abs/2401.09876" target="_blank">2401.09876</a></p>   
+                        </div>
+                        <div class="abstract JINST_ab">
+                            <p>The precision measurement of K+→π+νν at the NA62 experiment requires a kaon identification detector to have a time resolution better than 100ps, at least 95% kaon 
+                                identification efficiency, and a pion misidentification probability of less than 10−4. Since the start of NA62 data taking in 2016, kaon identification has been performed 
+                                by a differential Cherenkov with achromatic ring focus (CEDAR) detector with a nitrogen gas radiator. A new CEDAR using hydrogen (CEDAR-H) as a radiator gas has been developed 
+                                to reduce the material in the beamline, reducing the beam particle scattering within the detector. CEDAR-H was validated during a two-week test beam at CERN in 2022 and was 
+                                approved by the NA62 collaboration for use in data taking from 2023. The test beam results, installation and commissioning in the NA62 beamline are reported. 
+                            </p>
+                        </div>
+                    </li>
+                    <li class="pub-item JINST">
+                        <div class="JINST_title">
+                            <h3>Development of a new CEDAR for kaon identification at the NA62 experiment at CERN </h3>
+                        </div>
+                        <div class="info-pub">
+                            <p>Published 2024 To JINST. Corresponding Author</p>
+                            <p>ARXIV: <a href="https://arxiv.org/abs/2312.17188" target="_blank">2312.17188</a></p>
+                        </div>
+                        <div class="abstract JINST_ab">
+                            <p>
+                                The NA62 experiment at CERN utilises a differential Cherenkov counter with achromatic ring focus (CEDAR) for tagging kaons within an unseparated monochromatic beam of charged 
+                                hadrons. The CEDAR-H detector was developed to minimise the amount of material in the path of the beam by using hydrogen gas as the radiator medium. The detector was shown to 
+                                satisfy the kaon tagging requirements in a test-beam before installation and commissioning at the experiment. The CEDAR-H performance was measured using NA62 data collected in 
+                                2023. 
+                            </p>
+                        </div>
+                    </li>
+                    <li class="pub-item NIM">
+                        <div class="NIM_title">
+                            <h3>Neutron spectroscopy with a high-pressure nitrogen-filled spherical proportional counter</h3>
+                        </div>
+                        <div class="info-pub">
+                            <p>Published 2023 To NIM. Author</p>
+                            <p>ARXIV: <a href="https://arxiv.org/abs/2206.04331" target="_blank">2206.04331</a></p>
+                        </div>
+                        <div class="abstract NIM_ab">
+                            <p>
+                                The spherical proportional counter is a large volume gaseous detector which finds application in several fields, including direct Dark Matter searches. When the detector is filled 
+                                with nitrogen it becomes an effective neutron spectrometer thanks to the 14N(n,)11B and 14N(n,p)14C reactions. Nitrogen, however, is a challenging operating gas for proportional 
+                                counters and requires a high electric field strength to gas pressure ratio. Benefiting from the latest advances in spherical proportional counter instrumentation and simulation 
+                                techniques, we report first neutron measurements at operating pressures of up to 1.8 bar. This achievement enhances the prospects of the spherical proportional counter to act as 
+                                a neutron spectrometer appropriate for challenging environments, including underground laboratories, and industrial and medical settings.
+                            </p>
+                        </div>
+                    </li>
+                    <!-- Add more education entries as needed -->
+                </ul>
+            </div>
+            <h2>Work Experience</h2>
+            <ul id="list-list">
+                <li id="list-item">
+                    <h3>NEWS-G</h3>
+                    <p>Summer StudentShip</p>
+                    <p>Duration: Summer 2021</p>
+                    <p>Analysing a detailed simulation of the interactions of neutrons with the Spherical detector and comparing this with the
+                        experimental data produced in my masters project
+                    </p>
+                </li>
+                <li id="list-item">
+                    <h3>ARUP</h3>
+                    <p>Vacation Placement</p>
+                    <p>Duration: Summer 2017,2018,2019</p>
+                    <p>
+                        Workig within the Highways and Bridges team in Cardiff I worked over mutiple summers on several large scale infrastructure projects.
+                        Such as the A40 project in Pembrookshire and the M4/A470 study in Cardiff
+                    </p>
+                </li>
+                <!-- Add more work entries as needed -->
+            </ul>
+        </div>
 
-        <h2>Work Experience</h2>
-        <ul>
-            <li>
-                <h3>Company Name</h3>
-                <p>Position: Web Developer</p>
-                <p>Duration: January 20XX - Present</p>
-                <p>Description of responsibilities and achievements.</p>
-            </li>
-            <!-- Add more work entries as needed -->
-        </ul>
+        <!--<div id="threejs-container"></div>-->
+        <script defer type="module" src="../static/js/index.js"></script> 
     </div>
-
-    <div id="threejs-container"></div>
-    <script defer type="module" src="../static/js/index.js"></script> 
 </body>
