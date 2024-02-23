@@ -212,3 +212,36 @@ nav a {
 .edu-desc {
     padding: 0 10px 0 10px;
 }
+
+.welcome-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.img-jack {
+    width: 30%;
+}
+
+.welcome-text {
+    margin: 20px;
+    text-align: center;
+    width: calc(100% - 30% - 40px);
+    font-size: 18px;
+}
+
+.affiliations {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.aff-img {
+    width: 15%;
+    height: 10%;
+}
+
+.code-icon {
+    width:50px;
+    margin: 10px;
+}
