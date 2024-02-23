@@ -88,8 +88,9 @@ ul {
 }
 
 #list-item {
-    margin: 0 10px 10px 0; 
+    margin: 10px; 
     padding: 10px;
+    border: 2px solid #33333341;
 }
 
 li {
@@ -202,4 +203,12 @@ nav a {
 
 .info-pub {
     padding: 10px;
+}
+
+.edu-info {
+    padding: 0 10px 0 10px;
+}
+
+.edu-desc {
+    padding: 0 10px 0 10px;
 }
