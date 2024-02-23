@@ -27,7 +27,7 @@
         </nav>
         <div id="content">
             <div class="tile-container">
-                <a onclick="openModal('Project1', 'Project Description')" class="project-tile">
+                <a onclick="openModal('This Site!')" class="project-tile">
                     <!-- Project content goes here -->
                     <h2>This Site!</h2>
                     <p>I have tried to make a simple, well designed digital CV with projects that I have created over the years.</p>
@@ -41,7 +41,7 @@
                     </div>
                 </a>
 
-                <a onclick="openModal('Project2', 'Project Description')" class="project-tile">
+                <a onclick="openModal('PlaceGuesser')" class="project-tile">
                     <!-- Project content goes here -->
                     <h2>PlaceGuesser</h2>
                     <p>This is a game I created based off the popular GeoGuesser game.</p>
@@ -59,7 +59,7 @@
                     </div>
                 </a>
         
-                <a onclick="openModal('Project3', 'Project Description')" class="project-tile">
+                <a onclick="openModal('Project3')" class="project-tile">
                     <!-- Project content goes here -->
                     <h2>Embeded Pico Projects</h2>
                     <p>A group of projects working with the RaspberryPi Pico, such as home automation and monitoring.</p>
@@ -77,7 +77,7 @@
                     <div id="modal" class="modal">
                         <span class="close-btn" onclick="closeModal()">&times;</span>
                         <h2 id="modal-title"></h2>
-                        <p id="modal-description"></p>
+                        <div class="model-content" id="model-content"></div>
                     </div>
                 </div>
             </div>

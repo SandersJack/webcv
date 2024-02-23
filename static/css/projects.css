@@ -73,8 +73,8 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
 }
 
 .modal.active {
@@ -87,4 +87,34 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+}
+
+.model-content {
+    max-height:calc(100% - 40px - 35px);
+    overflow: auto;
+    padding: 10px;
+}
+
+.pg-info {
+    font-size: 20px;
+}
+
+.pg-one {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.pg-home-img {
+    width: 60%;
+}
+
+.pg-home-text {
+    display: flex;
+    padding: 10px;
+    width: 40%;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    font-size: 20px;
 }
