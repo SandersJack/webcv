@@ -24,7 +24,7 @@ jobs:
       - name: Print Container Logs
         run: docker ps
 
-      - name: Test Flask app
+      - name: Test Static Site
         run: |
           website_url="http://localhost:8080"
       
