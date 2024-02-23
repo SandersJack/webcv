@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: dockerfile
     ports:
-      - "8080:8080"
+      - "8080:80"
     volumes:
       - ./templates:/usr/share/nginx/html
       - ./static:/usr/share/nginx/html/static
