@@ -1,0 +1,47 @@
+name: Docker Compose Test
+
+on:
+  push:
+    branches:
+        - develop
+        - feature/*
+        - bugfix/*
+
+jobs:
+  compose-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Compose
+        run: docker-compose -f docker-compose-CI.yml up -d --build
+
+      - name: Wait for the app to start
+        run: sleep 10
+
+      - name: Print Container Logs
+        run: docker ps
+
+      - name: Test Flask app
+        run: |
+          website_url="http://localhost:8080"
+      
+          # Check if the website is reachable using curl
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" "$website_url")
+      
+          # Print the status code
+          echo "HTTP Status Code: $status_code"
+      
+          # Check if the status code is 200 (OK)
+          if [ "$status_code" -eq 200 ]; then
+            echo "Website is reachable."
+          else
+            echo "Website is not reachable."
+            exit 1
+          fi
+
+
+      - name: Tear down Docker Compose
+        run: docker-compose -f docker-compose-CI.yml down
