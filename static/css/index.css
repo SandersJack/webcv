@@ -23,6 +23,14 @@ header {
     width: 100%;
 }
 
+footer {
+    background-color: #333;
+    color: white;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+}
+
 .social-links {
     background-color: #333;
     text-align: center;
@@ -58,6 +66,7 @@ header {
     width: 75%;
     background-color: white;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 h2 {
