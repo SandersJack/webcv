@@ -17,7 +17,16 @@ function fetchProjectContent(projectTitle) {
     // Define HTML content for each project
 
     const project1 = `
-        <p>This is the content for Project 1.</p>
+        <div class="site-info">
+            <p>
+                This site is to show off my personal achivements and personal projects. I've tried to keep it at as simple as possible to make easy to 
+                navigate and maybe show off my design skils (if any).
+            </p>
+            <p>
+                The site is static and is constructed using HTML, CSS and JavaScript. It is hosted locally and is run in a light docker container runnig
+                a nginx server. The docker container sits behind a revers proxy which serves all of my web based conatiners on the server. 
+            </p>
+        </div>
     `
 
     const project2 = `
