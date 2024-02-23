@@ -6,16 +6,20 @@ body {
     background: #4ac29a; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #4ac29a, #bdfff3); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4ac29a, #bdfff3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 #site {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex: 1;
 }
 
 header {
+    top: 0;
     text-align: center;
     padding-top: 20px;
     background-color: #333;
@@ -216,10 +220,12 @@ nav a {
 .welcome-content {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .img-jack {
     width: 30%;
+    height: 50%;
 }
 
 .welcome-text {
