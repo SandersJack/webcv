@@ -5,8 +5,25 @@ services:
     build:
       context: .
       dockerfile: dockerfile
-    ports:
-      - "8080:80"
+    #ports:
+    #  - "8080:80"
     volumes:
       - ./templates:/usr/share/nginx/html
       - ./static:/usr/share/nginx/html/static
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.placeguesser.rule=Host(`portfolio.jack-sanders.uk`, `portfolio.local.jack-sanders.uk`)"
+      - "traefik.http.middlewares.placeguesser-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.placeguesser-secure.entrypoints=https"
+      - "traefik.http.routers.placeguesser-secure.rule=Host(`portfolio.jack-sanders.uk`, `portfolio.local.jack-sanders.uk`)"
+      - "traefik.http.routers.placeguesser-secure.tls=true"
+      - "traefik.http.routers.placeguesser-secure.service=placeguesser"
+      - "traefik.http.services.placeguesser.loadbalancer.server.port=80"
+      - "traefik.docker.network=proxy"
+
+
+networks: 
+  proxy:
+    external: true

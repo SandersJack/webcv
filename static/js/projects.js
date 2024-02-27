@@ -80,7 +80,7 @@ function fetchProjectContent(projectTitle) {
     const projectContents = {
         'This Site!': project1,
         'PlaceGuesser': project2,
-        // Add more projects as needed
+        
     };
 
     // Get the modal content container
