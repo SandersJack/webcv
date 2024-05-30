@@ -9,6 +9,21 @@ function openModal(title, description) {
 }
 
 function closeModal() {
+
+    const projectTileElements = document.querySelectorAll('.own-project');
+    projectTileElements.forEach((element) => {
+        element.style.animation = 'gradientAnimation 3s ease infinite';
+    });
+
+    const work_projectTileElements = document.querySelectorAll('.work-project');
+    work_projectTileElements.forEach((element) => {
+        element.style.animation = 'gradientAnimation 3s ease infinite';
+    });
+
+    const modalOverlay = document.getElementById('modal');
+    modalOverlay.classList.remove('work-info');
+    modalOverlay.classList.remove('own-info');
+
     document.getElementById('modal-overlay').classList.remove('active');
     document.getElementById('modal').classList.remove('active');
 }
@@ -81,14 +96,46 @@ function fetchProjectContent(projectTitle) {
 
     `;
 
+    const workproject1 = `
+
+    `;
+    const workproject2 = `
+
+    `;
+    const workproject3 = `
+
+    `;
+
     const projectContents = {
+        'Flexible Framework': workproject1,
+        'Slim MC': workproject2,
+        'My Analysis': workproject3,
         'This Site!': project1,
         'PlaceGuesser': project2,   
         'Pico': project3
     };
 
+    const projectTileElements = document.querySelectorAll('.own-project');
+    projectTileElements.forEach((element) => {
+        element.style.animation = 'none';
+    });
+
+    const work_projectTileElements = document.querySelectorAll('.work-project');
+    work_projectTileElements.forEach((element) => {
+        element.style.animation = 'none';
+    });
+
+
     // Get the modal content container  
     const modalContent = document.getElementById('model-content');
+    const modalOverlay = document.getElementById('modal');
+
+    if (projectTitle === 'Flexible Framework' || projectTitle === 'Slim MC' || projectTitle === 'My Analysis') {
+        modalOverlay.classList.add('work-info');
+    } else {
+        modalOverlay.classList.add('own-info');
+    }
+    
 
     // Set the HTML content based on the selected project
     modalContent.innerHTML = projectContents[projectTitle];

@@ -17,6 +17,48 @@
     text-decoration: none;
 }
 
+.work-project{
+    background: linear-gradient(135deg, #ff7f50 25%, #ffa07a 50%, #ff6347 75%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    color: #fff;
+}
+
+.work-info {
+    background: linear-gradient(135deg, #ff7f50 25%, #ffa07a 50%, #ff6347 75%);
+}
+
+.own-project{
+    background: linear-gradient(135deg, #1e90ff 25%, #87cefa 50%, #4682b4 75%);
+    background-size: 200% 200%;
+    animation: gradientAnimation 5s ease infinite;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    color: #fff;
+}
+
+.own-info {
+    background: linear-gradient(135deg, #1e90ff 25%, #87cefa 50%, #4682b4 75%);
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.custom-icon {
+    width: 20px;
+    height: 20px;
+    fill: #fff; 
+    font-size: 20px;
+}
+
+.custom-icon {
+    vertical-align: top;
+}
+
+
 .project-tile:hover {
     transform: scale(1.05);
 }
