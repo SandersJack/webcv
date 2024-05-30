@@ -77,13 +77,17 @@ function fetchProjectContent(projectTitle) {
 
     `;
 
+    const project3 = `
+
+    `;
+
     const projectContents = {
         'This Site!': project1,
-        'PlaceGuesser': project2,
-        // Add more projects as needed
+        'PlaceGuesser': project2,   
+        'Pico': project3
     };
 
-    // Get the modal content container
+    // Get the modal content container  
     const modalContent = document.getElementById('model-content');
 
     // Set the HTML content based on the selected project
