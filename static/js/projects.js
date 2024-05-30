@@ -93,7 +93,23 @@ function fetchProjectContent(projectTitle) {
     `;
 
     const project3 = `
-
+    <div class="pg-one">
+        <img class="pg-home-img" src="../static/imgs/tempMonitor.png">
+        <div class="pg-home-text">
+            <p>
+                This project was created orginaly to monitor the temperature of my room and to see how it changed over time. The project was created using a
+                raspberry pi and a DHT22 mositure and temperature sensor. The sensor was soldered wires connecting to the GPIO pins on the pico. The data is then 
+                sent over UDP to a server which stores the data in a SQLlite database.
+            </p>
+            <p>
+                The code for the pico is written in C and uses the pico-sdk to access the GPIO pins and to send the data over UDP. The server is written in python
+            </p>
+            <p>
+                The data is then distributed to a dashboard shown in the image. The dashboard is created using HTML, CSS and python and served using docker. The 
+                data is also sent to a local home assistant server which a temperture can be sellected and the room kept at that temperture.
+            </p>
+        </div>
+    </div>
     `;
 
     const workproject1 = `
@@ -112,7 +128,7 @@ function fetchProjectContent(projectTitle) {
         'My Analysis': workproject3,
         'This Site!': project1,
         'PlaceGuesser': project2,   
-        'Pico': project3
+        'Pico Projects': project3
     };
 
     const projectTileElements = document.querySelectorAll('.own-project');
