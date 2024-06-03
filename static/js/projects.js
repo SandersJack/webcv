@@ -34,12 +34,12 @@ function fetchProjectContent(projectTitle) {
     const project1 = `
         <div class="site-info">
             <p>
-                This site is to show off my personal achievements and personal projects. I've tried to keep it at as simple as possible, to make it easy to 
-                navigate and maybe show off some of my design skils.
+                This site is to show off my achievements and personal projects. I've tried to keep it as simple as possible to make it easy to 
+                navigate and show off some of my design skills.
             </p>
             <p>
-                The site is static and is constructed using HTML, CSS and JavaScript. It is hosted locally and is run in a light docker container runing
-                a nginx server. The docker container sits behind a reverse proxy which serves all of my web based conatiners on the server. 
+                The site is static and is constructed using HTML, CSS and JavaScript. It is hosted locally and runs in a light docker container running
+                an Nginx server. The docker container sits behind a reverse proxy, which serves all of my web-based containers on the server. 
             </p>
             <p>
                 The code for the site can be found here: <a href="https://github.com/SandersJack/webcv" target="_blank"><i class="fa fa-github"   ></i></a>
@@ -64,25 +64,25 @@ function fetchProjectContent(projectTitle) {
         <img class="pg-home-img" src="../static/imgs/placeguesser_home.png">
         <div class="pg-home-text">
             <p>
-                The project really tested my skills as a developer as it involved the combination of a number of different technologies to get it to work. 
-                The base of the project is written in python and uses the flask web module to setup routes and to look after the login system. A SQLlite database 
-                is used to store data such as User data and scores. The site is constructed using HTML, CSS and JS, with a live leader board on the home page updated by 
+                The project tested my skills as a developer as it involved combining several different technologies to get it to work. 
+                The project's base is written in Python, and the Flask web module is used to set up routes and look after the login system. An SQLite database 
+                is used to store data such as User data and scores. The site is constructed using HTML, CSS and JS, with a live leaderboard on the home page updated by 
                 the server.
             </p>
             <p>
-                The entire project is self hosted on my own server and runs in a docker container, which used to allow seamless development over different systems. 
-                The container sits behind a reverse proxy which serves all the web containers I have running on the server.
+                The entire project is self-hosted on my server and runs in a docker container, which is used to allow seamless development over different systems. 
+                The container sits behind a reverse proxy, which serves all the web containers I have running on the server.
             </p>
         </div>
     </div>
     <div class="pg-one">
         <div class="pg-home-text">
             <p>
-                The entire project is based around having to guess the location on a map of a radomly provided street view location. This involved accessing the
-                GoogleMaps API for both the street view and the 2D map for placeing markers to guess the location. 
+                The entire project is based on guessing the location on a map of a randomly provided street view location. This involved accessing the
+                GoogleMaps API is used for both street views, and the 2D map is used to place markers to guess the location.  
             </p>
             <p>
-                The game can either be played in single player mode or multiplayer mode. In multiplayer mode it is possible to send a link to friend and play in the same 
+                The game can either be played in single-player mode or multiplayer mode. In multiplayer mode, it is possible to send a link to a friend and play in the same 
                 game with realtime data sharing between the clients and the server using SOCKET-IO.
             </p>
         </div>
@@ -97,26 +97,68 @@ function fetchProjectContent(projectTitle) {
         <img class="pg-home-img" src="../static/imgs/tempMonitor.png">
         <div class="pg-home-text">
             <p>
-                This project was created orginaly to monitor the temperature of my room and to see how it changed over time. The project was created using a
-                raspberry pi and a DHT22 mositure and temperature sensor. The sensor was soldered wires connecting to the GPIO pins on the pico. The data is then 
-                sent over UDP to a server which stores the data in a SQLlite database.
+                This project was created initially to monitor the temperature of my room and see how it changed over time. The project was created using a
+                Raspberry Pi and a DHT22 moisture and temperature sensor. The sensor was soldered wires connecting to the GPIO pins on the pico. The data is then 
+                sent over UDP to a server, which stores the data in an SQLite database.
             </p>
             <p>
-                The code for the pico is written in C and uses the pico-sdk to access the GPIO pins and to send the data over UDP. The server is written in python
+                The code for the pico is written in C and uses the pico-SDK to access the GPIO pins and send the data over UDP. The server is written in Python
             </p>
             <p>
-                The data is then distributed to a dashboard shown in the image. The dashboard is created using HTML, CSS and python and served using docker. The 
-                data is also sent to a local home assistant server which a temperture can be sellected and the room kept at that temperture.
+                The data is then distributed to a dashboard, as shown in the image. The dashboard is created using HTML, CSS, and Python and is served using Docker. The 
+                data is also sent to a local home assistant server, where a temperature can be selected, and the room is kept at that temperature.
             </p>
         </div>
     </div>
     `;
 
     const workproject1 = `
-
+    <div class="pg-one">
+        <div class="pg-home-text">
+            <p>
+                This was the first project when I started my PhD at NA62. The project was to create a flexible framework to allow for the development and design of
+                new detectors within the Monte Carlo Simulation
+            </p>
+            <p>
+                Before the project, the framework was extremely hard-coded, with only the current NA62 detector setup allowed. Work was done to generalise a lot of the classes 
+                allowing a .dat file to define the detector setup and allow detectors to be placed in any position and orientation.
+            </p>
+        </div>
+        <div class="pg-home-text">
+            <p>
+                Due to many changes to the code base, the simulation and reconstruction had to be validated. The detector validation was extensive, with 
+                detectors being checked through Geantinos to create impacts with detector volumes and to check if any differences were present. The output of the simulation
+                was also checked against the old simulation to make sure the changes had not affected the output.
+            </p>
+            <p>
+                This feature has been extensivly used at NA62 for the development of new detectors and was integral to the HIKE proposal.
+            </p>
+        </div>
+        <div class="project-logo-container">
+            <img class="project-logo" src="../static/imgs/NA62-logo.jpg">
+            <img class="project-logo" src="../static/imgs/HIKE-logo.png">
+        </div>
+    </div>
     `;
     const workproject2 = `
-
+    <div class="pg-one">
+    <div class="pg-home-text">
+        <p>
+            This was another large project I undertook at NA62 with the goal of compressing the output of the Monte Carlo simulation. Due to the large amount of simulations required 
+            for the NA62 Analysis, a lot of storage is taken up, around ~ 1PB. As NA62 is a small experiment, we are limited in storage space, with most of the space taken up by collected data.
+            So, compressing the output of the simulation was proposed. 
+        </p>
+    </div>
+    <div class="pg-home-text">
+        <p>
+            This was done by using smaller data types, such as doubles to floats and ints to shorts when possible, and implementing custom compression algorithms to reduce the data size. 
+            As of June 2024, the compression implemented resulted in a three times reduction in file size.
+        </p>
+    </div>
+    <div class="project-logo-container">
+            <img class="project-logo" src="../static/imgs/NA62-logo.jpg">
+    </div>
+</div>
     `;
     const workproject3 = `
 

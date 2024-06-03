@@ -47,6 +47,18 @@
     100% { background-position: 0% 50%; }
 }
 
+.project-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-logo {
+    width: 50%;
+    padding: 10px;
+}
+
 .custom-icon {
     width: 20px;
     height: 20px;
