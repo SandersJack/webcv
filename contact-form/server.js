@@ -10,6 +10,7 @@ const config = require('./config');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
 app.use(cors());
 
 app.post('/send_email', (req, res) => {
@@ -41,6 +42,6 @@ app.post('/send_email', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(3333, () => {
+    console.log('Server is running on port 3333');
 });

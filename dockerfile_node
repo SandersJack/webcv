@@ -1,11 +1,19 @@
-FROM node:14
+FROM ubuntu:latest
 
+# Install necessary packages (including ping utility)
+RUN apt-get update && apt-get install -y iputils-ping
+
+# Set the working directory
 WORKDIR /usr/src/app
 
+# Copy your application files
 COPY contact-form/package*.json ./
 COPY contact-form/server.js ./
-COPY contact-form/config ./config.js
+COPY contact-form/config.js ./
 
+# Install Node.js and dependencies
+RUN apt-get install -y nodejs npm
 RUN npm install
 
+# Run your Node.js application
 CMD ["node", "server.js"]

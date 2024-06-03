@@ -54,7 +54,7 @@
         event.preventDefault();
         const status = document.getElementById('status');
         const formData = new FormData(this);
-        fetch('http://localhost:3000/send_email', {
+        fetch('https://contact.local.jack-sanders.uk/send_email', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(formData)),
             headers: {
