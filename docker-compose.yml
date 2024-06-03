@@ -5,13 +5,12 @@ services:
     build:
       context: .
       dockerfile: dockerfile
-    #ports:
-    #  - "8080:80"
     volumes:
       - ./templates:/usr/share/nginx/html
       - ./static:/usr/share/nginx/html/static
     networks:
       - proxy
+      - cv_network
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.webcv.rule=Host(`portfolio.jack-sanders.uk`, `portfolio.local.jack-sanders.uk`)"
@@ -23,7 +22,18 @@ services:
       - "traefik.http.services.webcv.loadbalancer.server.port=80"
       - "traefik.docker.network=proxy"
 
+  node:
+    buil:
+      context: .
+      dockerfile: dockerfile_node
+    ports:
+      - "3000:3000"
 
+    networks:
+      - cv_network
+    
 networks: 
+  cv_network:
+
   proxy:
     external: true

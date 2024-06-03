@@ -1,0 +1,11 @@
+FROM node:14
+
+WORKDIR /usr/src/app
+
+COPY contact-form/package*.json ./
+COPY contact-form/server.js ./
+COPY contact-form/config ./config.js
+
+RUN npm install
+
+CMD ["node", "server.js"]

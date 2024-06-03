@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jack Sanders</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/contact.css">
+    <script src="https://kit.fontawesome.com/c13a122361.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="site">
+        <header>
+            <h1>Jack Dylan Sanders</h1>
+            <p>Developer and Researcher </p>
+        </header>
+        <div class="social-links">
+            <a href="https://github.com/SandersJack" target="_blank" class="social-button"><i class="fa fa-github" style="font-size:36px"></i></a>
+            <a href="https://www.linkedin.com/in/jackdsanders/" target="_blank" class="social-button"><i class="fa fa-linkedin" aria-hidden="true" style="font-size:36px"></i></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div class="container">
+                <div class="text-center">
+                    <h1 class="mt-5">Contact Me</h1>
+                </div>
+                <form id="contact-form" action="/send_email" method="post" class="mt-4">
+                    <div class="form">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+                <div id="status" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const status = document.getElementById('status');
+        const formData = new FormData(this);
+        fetch('http://localhost:3000/send_email', {
+            method: 'POST',
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.text())
+          .then(text => {
+              status.innerHTML = text;
+              status.className = 'alert alert-success';
+          }).catch(error => {
+              status.innerHTML = 'Failed to send email. Please try again later.';
+              status.className = 'alert alert-danger';
+          });
+    });
+</script>
+</body>
+</html>
