@@ -23,7 +23,7 @@ services:
       - "traefik.docker.network=proxy"
 
   node:
-    buil:
+    build:
       context: .
       dockerfile: dockerfile_node
     ports:
