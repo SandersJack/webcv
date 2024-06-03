@@ -54,6 +54,44 @@
     justify-content: center;
 }
 
+.project-tile-legend {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    transition: transform 0.5s ease;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.own-project-legend {
+    background: linear-gradient(135deg, #1e90ff 25%, #87cefa 50%, #4682b4 75%);
+    background-size: 200% 200%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    color: #fff;
+}
+
+.work-project-legend{
+    background: linear-gradient(135deg, #ff7f50 25%, #ffa07a 50%, #ff6347 75%);
+    background-size: 200% 200%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    color: #fff;
+}
+
+
+.tile-legend-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+
+}
+
 .project-logo {
     width: 50%;
     padding: 10px;
