@@ -2,4 +2,4 @@
 FROM nginx:alpine
 
 # Command to run the Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
