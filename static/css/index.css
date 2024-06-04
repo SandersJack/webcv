@@ -251,3 +251,38 @@ nav a {
     width:50px;
     margin: 10px;
 }
+
+.read-more {
+    display: none;
+}
+
+
+@media (max-width: 670px) {
+    .welcome-content {
+        flex-direction: column;
+    }
+
+    .welcome-text {
+        width: 100%;
+    }
+
+    .img-jack {
+        width: 50%;
+    }
+    
+    .read-more {
+        display: block;
+    }
+
+    .more {
+        display: none;
+    }
+
+    .pub-item:hover {
+        transform: none;
+    }
+
+    .pub-item:hover .abstract {
+        display: none;
+    }
+}
