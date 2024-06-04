@@ -214,3 +214,39 @@
 .site-info {
     font-size: 20px;
 }
+
+
+@media (max-width: 600px) {
+    #small-info {
+        display: none;
+    }
+
+    .tile-container {
+        flex-direction: column;
+    }
+
+    .project-tile {
+        width: 100%;
+    }
+
+    .project-tile-legend {
+        width: calc(50% - 20px);
+    }
+
+    .pg-one { 
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .project-tile-legend {
+        font-size: 3vw;
+    }
+
+    .pg-home-text {
+        width: 100%;
+    }
+
+    .pg-home-img {
+        width: 100%;
+    }
+}
