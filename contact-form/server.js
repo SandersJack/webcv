@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const app = express();
+const rateLimit = require("express-rate-limit");
 
 const config = require('./config');
 
@@ -10,11 +11,21 @@ const config = require('./config');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.set('trust proxy', 1);
 
-app.use(cors());
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5 
+});
 
-app.post('/send_email', (req, res) => {
-    const { name, email, message } = req.body;
+app.use(limiter);
+
+app.use(cors({
+    origin: ['https://portfolio.local.jack-sanders.uk', 'https://portfolio.jack-sanders.uk']
+}));
+
+app.post('/send_email', limiter, (req, res) => {
+    let { name, email, message } = req.body;
 
     const transporter = nodemailer.createTransport({
         service: 'gmail', 
@@ -23,6 +34,8 @@ app.post('/send_email', (req, res) => {
             pass: config.emailPassword
         }
     });
+
+    message += " From Email: " + email;
 
     const mailOptions = {
         from: email,

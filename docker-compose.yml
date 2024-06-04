@@ -30,10 +30,10 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.contact.rule=Host(`contact.local.jack-sanders.uk`)"
+      - "traefik.http.routers.contact.rule=Host(`contact.local.jack-sanders.uk`, `contact.jack-sanders.uk`)"
       - "traefik.http.middlewares.contact-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.contact-secure.entrypoints=https"
-      - "traefik.http.routers.contact-secure.rule=Host(`contact.local.jack-sanders.uk`)"
+      - "traefik.http.routers.contact-secure.rule=Host(`contact.local.jack-sanders.uk`, `contact.jack-sanders.uk`)"
       - "traefik.http.routers.contact-secure.tls=true"
       - "traefik.http.routers.contact-secure.service=contact"
       - "traefik.http.services.contact.loadbalancer.server.port=3333"
