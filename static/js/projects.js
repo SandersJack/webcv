@@ -157,6 +157,20 @@ function fetchProjectContent(projectTitle) {
     </div>
     `;
 
+    const projectCrypto = `
+        <div class="pg-one">
+            <div>
+                <p>
+                    I have been working on a project to monitor the price of cryptocurrencies. The project is still in its early stages, but the goal is to monitor the price of
+                    BNB and action trades based on the price. The project is written in Python and uses the Binance API to get the price of BNB and to place trades.
+                </p>
+                <p>
+                    At the moment the bot using simple moving averages to determine when to buy and sell and takes into account fees when deciding to sell. 
+                </p>
+            </div>
+        </div>
+    `;
+
     const workproject1 = `
     <div class="pg-one">
         <div class="pg-home-text">
@@ -220,7 +234,8 @@ function fetchProjectContent(projectTitle) {
         'Pico Projects': project3, 
         'Energy Grid Dashboard': projectEnergy,
         'Orbit Simulation': projectOrbits,
-        'World Climate Dashboard': projectClimate
+        'World Climate Dashboard': projectClimate, 
+        'Crypto Trading Bot': projectCrypto
     };
 
     const projectTileElements = document.querySelectorAll('.own-project');
