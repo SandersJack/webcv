@@ -1,0 +1,7 @@
+FROM nginx:alpine
+
+RUN apk update && apk add inotify-tools
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+CMD ["sh", "-c", "inotifywait -m -e modify,create,delete /usr/share/nginx/html /usr/share/nginx/html/static /etc/nginx/nginx.conf | while read; do nginx -s reload; done & nginx -g 'daemon off;'"]
