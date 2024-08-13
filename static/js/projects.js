@@ -112,6 +112,51 @@ function fetchProjectContent(projectTitle) {
     </div>
     `;
 
+    const projectEnergy = `
+    <div class="pg-one">
+        <div class="pg-home-text">
+            <p>
+                This project was created to monitor the energy production of the UK. I wanted to see how the energy production changed over time and how the
+                different types of energy production changed over time. This was made hard due to the fact that the data was not easily accessible and was not in a
+                format that was easy to use.
+            </p>
+            <p>
+                The data is collected from the Nation Grid API for most of the data, and the rest is collected from the Elexon API. The data is then stored in an SQLite database
+                and is accessed by a Python server. The server is then accessed by the client, which is created using HTML, CSS, and JavaScript. 
+            </p>
+            <p>
+                The data is then displayed on the dashboard, as shown in the image. The dashboard shows the instantanous energy production of the UK and over the last 24 hours and the last 7 days.
+                The site is hosted on my server and is served using Docker and can be accessed at <a href="https://ukenergy.jack-sanders.uk">https://ukenergy.jack-sanders.uk</a>
+            </p>
+        </div>
+        <img class="pg-home-img" src="../static/imgs/ukenergy.png">
+    </div>
+    `;
+
+    const projectOrbits = `
+    <div class="pg-one">
+        <div class="pg-home-text">
+            <p>
+                A project to show off my skills in C++ programming. The project includes a simulation of the solar with the ability to add and remove planets and add satellites in orbit around the planets.
+                It was created using my knowledge of Orbital mechanics. 
+            </p>
+            <p>
+                The project includes a quick python check, with a static website using the Three.js to visualise the output of the simulation, shown in the figure to the right.
+            </p>
+            <p>
+                The source code for the project can be found here: <a href="https://github.com/SandersJack/OrbitSim">https://github.com/SandersJack/OrbitSim</a>
+            </p>
+        </div>
+        <img class="pg-home-img" src="../static/imgs/orbits.png">
+    </div>
+    `;
+
+    const projectClimate = `
+    <div class="pg-one">
+        <h3>WORK IN PROGRESS</h3>
+    </div>
+    `;
+
     const workproject1 = `
     <div class="pg-one">
         <div class="pg-home-text">
@@ -161,7 +206,9 @@ function fetchProjectContent(projectTitle) {
 </div>
     `;
     const workproject3 = `
-
+    <div class="pg-one">
+        <h3>WORK IN PROGRESS</h3>
+    </div>
     `;
 
     const projectContents = {
@@ -170,7 +217,10 @@ function fetchProjectContent(projectTitle) {
         'My Analysis': workproject3,
         'This Site!': project1,
         'PlaceGuesser': project2,   
-        'Pico Projects': project3
+        'Pico Projects': project3, 
+        'Energy Grid Dashboard': projectEnergy,
+        'Orbit Simulation': projectOrbits,
+        'World Climate Dashboard': projectClimate
     };
 
     const projectTileElements = document.querySelectorAll('.own-project');
