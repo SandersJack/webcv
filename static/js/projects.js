@@ -153,7 +153,19 @@ function fetchProjectContent(projectTitle) {
 
     const projectClimate = `
     <div class="pg-one">
-        <h3>WORK IN PROGRESS</h3>
+        <img class="pg-home-img" src="../static/imgs/climate.png">
+        <div class="pg-home-text">
+            <p>
+                This porject was created to display the data provided by the ERA5 dataset. The data collected is all temperature data from 1940 to the present day. The data is collected from the
+                Copernicus Climate Change Service and is stored in a set of parquet files inorder to improve performace.
+            </p>
+            <p>
+                The data is accessed by a Python server serving a dash dashboard. The dashboard allows the user to select a location on the map and see the temperature data for that location across time.
+            </p>
+            <p>
+                The site is hosted on my server and is served using Docker and can be accessed at <a href="https://climate.jack-sanders.uk">https://climate.jack-sanders.uk</a>
+            </p>
+        </div>
     </div>
     `;
 
