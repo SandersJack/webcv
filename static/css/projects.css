@@ -18,27 +18,23 @@
 }
 
 .work-project{
-    background: linear-gradient(135deg, #ff7f50 25%, #ffa07a 50%, #ff6347 75%);
-    background-size: 200% 200%;
-    animation: gradientAnimation 5s ease infinite;
+    background-color: #EF9C66;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     color: #fff;
 }
 
 .work-info {
-    background: linear-gradient(135deg, #ff7f50 25%, #ffa07a 50%, #ff6347 75%);
+    background-color: #EF9C66;
 }
 
 .own-project{
-    background: linear-gradient(135deg, #1e90ff 25%, #87cefa 50%, #4682b4 75%);
-    background-size: 200% 200%;
-    animation: gradientAnimation 5s ease infinite;
+    background-color: #78ABA8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     color: #fff;
 }
 
 .own-info {
-    background: linear-gradient(135deg, #1e90ff 25%, #87cefa 50%, #4682b4 75%);
+    background-color: #78ABA8;
 }
 
 @keyframes gradientAnimation {
@@ -70,15 +66,13 @@
 }
 
 .own-project-legend {
-    background: linear-gradient(135deg, #1e90ff 25%, #87cefa 50%, #4682b4 75%);
-    background-size: 200% 200%;
+    background-color: #78ABA8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     color: #fff;
 }
 
 .work-project-legend{
-    background: linear-gradient(135deg, #ff7f50 25%, #ffa07a 50%, #ff6347 75%);
-    background-size: 200% 200%;
+    background-color: #EF9C66;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
     color: #fff;
 }
@@ -160,7 +154,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     opacity: 0;
