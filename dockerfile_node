@@ -1,19 +1,20 @@
-FROM ubuntu:latest
+# Use official Node.js LTS image
+FROM node:20-slim
 
-# Install necessary packages (including ping utility)
-RUN apt-get update && apt-get install -y iputils-ping
-
-# Set the working directory
+# Set working directory
 WORKDIR /usr/src/app
 
-# Copy your application files
+# Copy only package files first for better caching
 COPY contact-form/package*.json ./
-COPY contact-form/server.js ./
-COPY contact-form/config.js ./
 
-# Install Node.js and dependencies
-RUN apt-get install -y nodejs npm
-RUN npm install
+# Install dependencies
+RUN npm install --production
 
-# Run your Node.js application
+# Copy application source code
+COPY contact-form/ ./
+
+# Expose the port your app listens on
+EXPOSE 3333
+
+# Start the app
 CMD ["node", "server.js"]
