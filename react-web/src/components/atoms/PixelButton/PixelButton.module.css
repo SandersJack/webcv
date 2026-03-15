@@ -1,0 +1,55 @@
+.btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  image-rendering: pixelated;
+  transition: transform 0.05s;
+  white-space: nowrap;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.primary {
+  background: var(--accent-red);
+  color: var(--text-primary);
+  box-shadow:
+    0 4px 0 0 #9a1f38,
+    4px 0 0 0 #9a1f38,
+    4px 4px 0 0 #9a1f38,
+    -4px 0 0 0 rgba(255,255,255,0.15),
+    0 -4px 0 0 rgba(255,255,255,0.15);
+}
+
+.secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow:
+    0 4px 0 0 #0a0f1e,
+    4px 0 0 0 #0a0f1e,
+    4px 4px 0 0 #0a0f1e,
+    -4px 0 0 0 rgba(255,255,255,0.1),
+    0 -4px 0 0 rgba(255,255,255,0.1);
+}
+
+.btn:hover {
+  filter: brightness(1.2);
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 0 0 0 transparent,
+    4px 0 0 0 #9a1f38,
+    4px 0px 0 0 #9a1f38,
+    -4px 0 0 0 rgba(255,255,255,0.15),
+    0 0px 0 0 rgba(255,255,255,0.15);
+}
+
+.sm { font-size: 0.4rem; padding: 6px 8px; }
+.md { font-size: 0.55rem; padding: 8px 12px; }
+.lg { font-size: 0.7rem; padding: 10px 16px; }

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-tertiary: #0f3460;
+  --accent-red: #e94560;
+  --accent-yellow: #f5a623;
+  --accent-green: #7ed321;
+  --accent-blue: #4a90e2;
+  --accent-purple: #9b59b6;
+  --accent-orange: #e74c3c;
+  --text-primary: #eaeaea;
+  --text-dim: #8888aa;
+  --shaft-bg: #0d0d1a;
+  --elevator-bg: #c8a96e;
+  --elevator-door: #8b6914;
+  --floor-height: 100vh;
+
+  --floor-colors-0: #f5a623;
+  --floor-colors-1: #7ed321;
+  --floor-colors-2: #4a90e2;
+  --floor-colors-3: #9b59b6;
+  --floor-colors-4: #e74c3c;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-red);
+  box-shadow: inset 0 0 0 2px var(--bg-primary);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+/* Pixel blink animation */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes flicker {
+  0%, 95% { opacity: 1; }
+  96%, 100% { opacity: 0.8; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}

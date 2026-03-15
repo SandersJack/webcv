@@ -1,0 +1,12 @@
+.pixelText {
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.8;
+  image-rendering: pixelated;
+}
+
+.xs { font-size: 0.4rem; }
+.sm { font-size: 0.55rem; }
+.md { font-size: 0.75rem; }
+.lg { font-size: 1rem; }
+.xl { font-size: 1.4rem; }
+.xxl { font-size: 2rem; }

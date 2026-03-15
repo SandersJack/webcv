@@ -1,0 +1,39 @@
+.border {
+  position: relative;
+  padding: 4px;
+}
+
+.default {
+  box-shadow:
+    0 0 0 4px var(--accent-red),
+    0 0 0 8px var(--bg-primary),
+    0 0 0 12px var(--accent-red);
+}
+
+.yellow {
+  box-shadow:
+    0 0 0 4px var(--accent-yellow),
+    0 0 0 8px var(--bg-primary),
+    0 0 0 12px var(--accent-yellow);
+}
+
+.blue {
+  box-shadow:
+    0 0 0 4px var(--accent-blue),
+    0 0 0 8px var(--bg-primary),
+    0 0 0 12px var(--accent-blue);
+}
+
+.green {
+  box-shadow:
+    0 0 0 4px var(--accent-green),
+    0 0 0 8px var(--bg-primary),
+    0 0 0 12px var(--accent-green);
+}
+
+.purple {
+  box-shadow:
+    0 0 0 4px var(--accent-purple),
+    0 0 0 8px var(--bg-primary),
+    0 0 0 12px var(--accent-purple);
+}
