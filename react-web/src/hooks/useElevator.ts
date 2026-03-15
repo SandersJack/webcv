@@ -2,11 +2,19 @@ import { useState, useCallback } from 'react';
 
 export const FLOOR_COUNT = 5;
 
-export const useElevator = (initialFloor = 0) => {
+export interface UseElevatorReturn {
+  currentFloor: number;
+  direction: number;
+  goToFloor: (floor: number) => void;
+  goUp: () => void;
+  goDown: () => void;
+}
+
+export const useElevator = (initialFloor = 0): UseElevatorReturn => {
   const [currentFloor, setCurrentFloor] = useState(initialFloor);
   const [direction, setDirection] = useState(1); // 1 = going up, -1 = going down
 
-  const goToFloor = useCallback((floor) => {
+  const goToFloor = useCallback((floor: number) => {
     if (floor < 0 || floor >= FLOOR_COUNT) return;
     setDirection(floor > currentFloor ? 1 : -1);
     setCurrentFloor(floor);

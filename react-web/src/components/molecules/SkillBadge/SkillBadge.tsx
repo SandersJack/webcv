@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import styles from './SkillBadge.module.css';
 
-export const SkillBadge = ({ name, level = 0, color = 'var(--accent-blue)' }) => {
+interface SkillBadgeProps {
+  name: string;
+  level: number;
+  color?: string;
+}
+
+export const SkillBadge = ({ name, level = 0, color = 'var(--accent-blue)' }: SkillBadgeProps) => {
   const [animatedLevel, setAnimatedLevel] = useState(0);
 
   useEffect(() => {

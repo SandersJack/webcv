@@ -2,15 +2,21 @@ import { useState } from 'react';
 import { PixelButton } from '../../atoms/PixelButton';
 import styles from './ContactFloor.module.css';
 
+interface FormState {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export const ContactFloor = () => {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // In a real app you'd send this somewhere
     setSent(true);

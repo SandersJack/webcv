@@ -1,19 +1,127 @@
-.layout {
-  display: flex;
+.scene {
+  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: var(--bg-primary);
 }
 
-.content {
+/* ── Street ── */
+.street {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.kerb {
+  height: 8px;
+  background: #aaaaaa;
+  border-top: 2px solid #cccccc;
+  border-bottom: 2px solid #888888;
+}
+
+.road {
   flex: 1;
-  height: 100vh;
-  overflow: hidden;
+  background: #3a3a3a;
   position: relative;
+  overflow: hidden;
 }
 
-.floorWrapper {
+.roadDashes {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(
+    to right,
+    #f5d020 0px,
+    #f5d020 60px,
+    transparent 60px,
+    transparent 100px
+  );
+}
+
+/* ── Tower view: centered narrow tower sitting on the street ── */
+.towerView {
   position: absolute;
   inset: 0;
+  bottom: 56px; /* sit flush on top of the street */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 10;
+}
+
+.buildingWrapper {
+  position: relative;
+  /* width is determined by TowerShaft itself */
+}
+
+/* ── Zoomed floor view ── */
+.zoomedView {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.zoomedHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.18);
+  flex-shrink: 0;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.25);
+}
+
+.backButton {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #1a0e08;
+  background: rgba(255, 255, 255, 0.55);
+  border: 3px solid #3a2a1a;
+  padding: 6px 10px;
+  cursor: pointer;
+  image-rendering: pixelated;
+  box-shadow:
+    inset 2px 2px 0 0 rgba(255, 255, 255, 0.6),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.2);
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.floorTitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #1a0e08;
+  letter-spacing: 0.05em;
+}
+
+.zoomedContent {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+.zoomedContent::-webkit-scrollbar {
+  width: 8px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.zoomedContent::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
 }

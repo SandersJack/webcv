@@ -1,6 +1,13 @@
 import styles from './ProjectCard.module.css';
 
-export const ProjectCard = ({ title, description, tags = [], link }) => {
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  tags?: string[];
+  link?: string | null;
+}
+
+export const ProjectCard = ({ title, description, tags = [], link }: ProjectCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.title}>{title}</div>

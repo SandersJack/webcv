@@ -1,52 +1,88 @@
-.floorLabel {
+/* Room interior — flex: 1 so it fills between floorNumOuter and shaftStrip */
+.room {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 6px 2px;
   cursor: pointer;
   position: relative;
-  transition: background 0.1s;
-  border-bottom: 2px solid rgba(255,255,255,0.05);
+  overflow: hidden;
+  border-left: 3px solid #3a2a1a;
+  border-top: 0;
+  border-bottom: 0;
+  transition: filter 0.1s;
+  /* separator lines between floors */
+  box-shadow:
+    inset 0 -3px 0 0 #3a2a1a,
+    inset 0 3px 0 0 #3a2a1a;
 }
 
-.floorLabel:hover {
-  background: rgba(255,255,255,0.05);
+.room:hover {
+  filter: brightness(1.08);
 }
 
+/* Per-floor background colors — Tiny Tower bright palette */
+.floorBg0 { background: #4ecdc4; }
+.floorBg1 { background: #f7dc6f; }
+.floorBg2 { background: #85c1e9; }
+.floorBg3 { background: #f0a500; }
+.floorBg4 { background: #a29bfe; }
+
+/* Active: slight brightness + inset ring */
 .active {
-  background: rgba(233, 69, 96, 0.15);
+  filter: brightness(1.12);
 }
 
-.number {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.55rem;
-  color: var(--text-primary);
-  line-height: 1;
-  margin-bottom: 4px;
+.activeOverlay {
+  position: absolute;
+  inset: 0;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  pointer-events: none;
 }
 
-.name {
+/* Top label bar */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 5px 2px;
+  background: rgba(0, 0, 0, 0.18);
+  flex-shrink: 0;
+}
+
+.roomName {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.3rem;
-  color: var(--text-dim);
-  text-align: center;
-  line-height: 1.4;
+  color: #1a0e08;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70px;
 }
 
-.active .name {
-  color: var(--accent-red);
+.stars {
+  font-size: 0.35rem;
+  color: #f0a500;
+  line-height: 1;
+  letter-spacing: -1px;
 }
 
-.indicator {
-  width: 6px;
-  height: 6px;
-  background: transparent;
-  margin-top: 4px;
+/* Pixel art area — fills remaining room height */
+.artArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
 }
 
-.active .indicator {
-  background: var(--accent-red);
-  box-shadow: 0 0 6px var(--accent-red);
+/* Floor separator plate */
+.floorPlate {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #3a2a1a;
 }

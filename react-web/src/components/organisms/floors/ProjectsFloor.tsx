@@ -1,7 +1,14 @@
 import { ProjectCard } from '../../molecules/ProjectCard';
 import styles from './ProjectsFloor.module.css';
 
-const PROJECTS = [
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  link: string | null;
+}
+
+const PROJECTS: Project[] = [
   {
     title: 'NA62 K+ Analysis',
     description: 'Ultra-rare kaon decay search at CERN NA62. C++/ROOT analysis framework processing 10B+ events to measure BR(K+→π+νν̄).',

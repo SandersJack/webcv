@@ -1,17 +1,22 @@
 import { motion } from 'framer-motion';
 import styles from './ElevatorCar.module.css';
 
-export const ElevatorCar = ({ currentFloor, totalFloors, floorNames }) => {
-  // Each floor label area in the shaft is floorSlotHeight px tall
-  // The shaft height is 100vh, but floor buttons take up sections
-  // We position based on percentage from bottom
+interface ElevatorCarProps {
+  currentFloor: number;
+  totalFloors: number;
+}
+
+export const ElevatorCar = ({ currentFloor, totalFloors }: ElevatorCarProps) => {
+  // Floor 0 is at the bottom of the building, highest floor at top.
+  // The floorsContainer renders floors in reverse (high floor at top → low floor at bottom).
+  // floorIndex=0 means current floor is the highest (top), floorIndex=totalFloors-1 means floor 0 (bottom).
   const floorIndex = totalFloors - 1 - currentFloor;
-  const slotHeight = 100 / totalFloors; // percentage
+  const slotHeight = 100 / totalFloors; // percentage of rail height
   const targetY = `${floorIndex * slotHeight + slotHeight / 2}%`;
 
   return (
     <motion.div
-      className={styles.shaft}
+      className={styles.carWrapper}
       animate={{ top: targetY }}
       transition={{
         type: 'spring',
@@ -25,10 +30,7 @@ export const ElevatorCar = ({ currentFloor, totalFloors, floorNames }) => {
       <div className={styles.floorDisplay}>
         {currentFloor}
       </div>
-      <div className={styles.car}>
-        <div className={styles.leftDoor} />
-        <div className={styles.rightDoor} />
-      </div>
+      <div className={styles.car} />
     </motion.div>
   );
 };

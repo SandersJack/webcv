@@ -1,7 +1,13 @@
 import { SkillBadge } from '../../molecules/SkillBadge';
 import styles from './SkillsFloor.module.css';
 
-const SKILLS = {
+interface Skill {
+  name: string;
+  level: number;
+  color: string;
+}
+
+const SKILLS: Record<string, Skill[]> = {
   'Research & Physics': [
     { name: 'Data Analysis', level: 95, color: 'var(--accent-blue)' },
     { name: 'ROOT / CERN', level: 90, color: 'var(--accent-blue)' },

@@ -1,7 +1,11 @@
 import { PixelButton } from '../../atoms/PixelButton';
 import styles from './LobbyFloor.module.css';
 
-export const LobbyFloor = ({ onNavigate }) => {
+interface LobbyFloorProps {
+  onNavigate?: (floor: number) => void;
+}
+
+export const LobbyFloor = ({ onNavigate }: LobbyFloorProps) => {
   return (
     <div className={styles.floor}>
       <div className={styles.pixelDeco + ' ' + styles.pixelDecoTL}>[]</div>
