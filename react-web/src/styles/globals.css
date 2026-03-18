@@ -39,6 +39,8 @@ html {
   scroll-behavior: smooth;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -46,12 +48,15 @@ body {
   background: var(--sky-blue);
   color: var(--text-primary);
   overflow: hidden;
+  overscroll-behavior: none;
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
 }
 
 #root {
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
   overflow: hidden;
 }

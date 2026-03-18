@@ -6,31 +6,52 @@ interface ElevatorCarProps {
   totalFloors: number;
 }
 
+const FLOOR_H = 56; // must match TowerShaft
+
 export const ElevatorCar = ({ currentFloor, totalFloors }: ElevatorCarProps) => {
-  // Floor 0 is at the bottom of the building, highest floor at top.
-  // The floorsContainer renders floors in reverse (high floor at top → low floor at bottom).
-  // floorIndex=0 means current floor is the highest (top), floorIndex=totalFloors-1 means floor 0 (bottom).
-  const floorIndex = totalFloors - 1 - currentFloor;
-  const slotHeight = 100 / totalFloors; // percentage of rail height
-  const targetY = `${floorIndex * slotHeight + slotHeight / 2}%`;
+  // Rail height = totalFloors * FLOOR_H (px)
+  // Floor 0 is at the bottom; floor (totalFloors-1) is at the top.
+  // Target Y from top of rail to centre of the car's floor slot:
+  const floorIndex = totalFloors - 1 - currentFloor; // 0 = top floor, N-1 = lobby
+  const centreY    = floorIndex * FLOOR_H + FLOOR_H / 2; // px from top of rail
 
   return (
     <motion.div
       className={styles.carWrapper}
-      animate={{ top: targetY }}
+      animate={{ top: centreY }}
+      initial={{ top: centreY }}
       transition={{
         type: 'spring',
-        stiffness: 60,
-        damping: 18,
-        mass: 1.2,
+        stiffness: 55,
+        damping: 16,
+        mass: 1.4,
       }}
-      style={{ top: targetY }}
     >
+      {/* Cable stretches from carWrapper's vertical centre up to the top of the rail */}
       <div className={styles.cable} />
-      <div className={styles.floorDisplay}>
-        {currentFloor}
+
+      {/* Floor indicator tag */}
+      <div className={styles.floorTag}>{currentFloor}</div>
+
+      {/* Elevator car body */}
+      <div className={styles.car}>
+        {/* Roof cap */}
+        <div className={styles.carRoof} />
+        {/* Door panel */}
+        <div className={styles.doorPanel}>
+          <div className={styles.doorLeft}>
+            <div className={styles.handle} />
+          </div>
+          <div className={styles.doorRight}>
+            <div className={styles.handle} />
+          </div>
+        </div>
+        {/* Base sill */}
+        <div className={styles.carSill} />
       </div>
-      <div className={styles.car} />
+
+      {/* Indicator light pulses when at current floor */}
+      <div className={styles.indicator} />
     </motion.div>
   );
 };

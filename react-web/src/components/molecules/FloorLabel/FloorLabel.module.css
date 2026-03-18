@@ -39,41 +39,44 @@
   pointer-events: none;
 }
 
-/* Top label bar */
+/* Top label bar — absolute overlay so art fills full room height */
 .topBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3px 5px 2px;
-  background: rgba(0, 0, 0, 0.18);
-  flex-shrink: 0;
+  padding: 2px 5px;
+  background: rgba(0, 0, 0, 0.28);
+  pointer-events: none;
 }
 
 .roomName {
   font-family: 'Press Start 2P', monospace;
-  font-size: 0.3rem;
-  color: #1a0e08;
+  font-size: 0.28rem;
+  color: #fff;
   line-height: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 70px;
+  max-width: 80px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
 }
 
 .stars {
-  font-size: 0.35rem;
-  color: #f0a500;
+  font-size: 0.3rem;
+  color: #ffd060;
   line-height: 1;
   letter-spacing: -1px;
 }
 
-/* Pixel art area — fills remaining room height */
+/* Pixel art area — fills the FULL room */
 .artArea {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 0;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
 
