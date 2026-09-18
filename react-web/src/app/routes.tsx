@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { AboutPage } from '../features/about/AboutPage'
@@ -9,7 +10,11 @@ import { PhysicsPage } from '../features/physics/PhysicsPage'
 import { ProjectDetailPage } from '../features/projects/ProjectDetailPage'
 import { ProjectsPage } from '../features/projects/ProjectsPage'
 import { WaterPoloPage } from '../features/waterPolo/WaterPoloPage'
-import { WorldPreviewPage } from '../world/WorldPreviewPage'
+
+// Dev-only asset preview: lazy so three.js stays out of the main bundle.
+const WorldPreviewPage = lazy(() =>
+  import('../world/WorldPreviewPage').then((m) => ({ default: m.WorldPreviewPage })),
+)
 
 /**
  * Primary routes (plan §3 — information architecture).
@@ -26,7 +31,14 @@ export function AppRoutes() {
       <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/world-preview" element={<WorldPreviewPage />} />
+      <Route
+        path="/world-preview"
+        element={
+          <Suspense fallback={null}>
+            <WorldPreviewPage />
+          </Suspense>
+        }
+      />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
