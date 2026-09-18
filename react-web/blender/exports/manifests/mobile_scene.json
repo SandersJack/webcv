@@ -1,0 +1,49 @@
+{
+  "id": "mobile_scene",
+  "scene": "mobile",
+  "sourceFile": "blender/mobile/mobile_scene.blend",
+  "glbFile": "blender/exports/models/mobile_scene.glb",
+  "previewFile": "blender/exports/previews/mobile_desktop.png",
+  "previewFileMobile": "blender/exports/previews/mobile_mobile.png",
+  "version": "0.1.0",
+  "gridUnit": 1.0,
+  "dimensions": [
+    4.0,
+    4.0,
+    2.976
+  ],
+  "triangleCount": 456,
+  "materialCount": 6,
+  "loadingPriority": "next",
+  "interactiveIds": [
+    "INT_mobile_phone"
+  ],
+  "description": "Low-poly voxel smartphone standing on an exhibit plinth: a stepped dark device with a replaceable glass screen, abstract app interface cards emerging from the display, and a small network of nodes whose cables carry glowing packets into the phone. Represents connected mobile experiences.",
+  "interactiveDescriptions": {
+    "INT_mobile_phone": "The smartphone hero. Selecting it opens the mobile development case-study content and the live interactive demonstration."
+  },
+  "publicityLevel": "public",
+  "fileSizeBytes": 24712,
+  "exportedObjects": [
+    "FX_packet_00",
+    "FX_packet_01",
+    "FX_packet_02",
+    "HERO_mobile_phone",
+    "INT_mobile_phone",
+    "PIVOT_mobile_phone",
+    "PROP_mobile_phone_screen",
+    "PROP_mobile_stand",
+    "PROP_network_cable_00",
+    "PROP_network_cable_01",
+    "PROP_network_cable_02",
+    "PROP_network_node_00",
+    "PROP_network_node_01",
+    "PROP_network_node_02",
+    "PROP_plinth",
+    "PROP_ui_accent",
+    "PROP_ui_card_00",
+    "PROP_ui_card_01",
+    "PROP_ui_card_02",
+    "PROP_ui_dot"
+  ]
+}

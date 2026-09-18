@@ -57,6 +57,11 @@ export const routeMetadata: RouteMetadata[] = [
     description:
       'Get in touch with Jack Sanders: email, GitHub, LinkedIn, and a validated contact form.',
   },
+  {
+    pattern: '/world-preview',
+    title: 'Asset preview',
+    description: 'Development preview of Blender-exported 3D assets.',
+  },
 ]
 
 export const notFoundMetadata = {
