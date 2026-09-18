@@ -9,6 +9,7 @@ import { PhysicsPage } from '../features/physics/PhysicsPage'
 import { ProjectDetailPage } from '../features/projects/ProjectDetailPage'
 import { ProjectsPage } from '../features/projects/ProjectsPage'
 import { WaterPoloPage } from '../features/waterPolo/WaterPoloPage'
+import { WorldPreviewPage } from '../world/WorldPreviewPage'
 
 /**
  * Primary routes (plan §3 — information architecture).
@@ -25,6 +26,7 @@ export function AppRoutes() {
       <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/world-preview" element={<WorldPreviewPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )

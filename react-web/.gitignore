@@ -19,6 +19,9 @@ vite.config.d.ts
 *.blend1
 __pycache__/
 
+# Test tooling output
+.playwright-mcp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
