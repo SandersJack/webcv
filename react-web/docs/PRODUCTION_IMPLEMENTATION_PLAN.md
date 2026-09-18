@@ -11,6 +11,7 @@
 - **Deployment:** `react-web` replaces the existing vanilla WebCV site at `portfolio.jack-sanders.uk`. Migrate the existing Docker/nginx deployment to serve the React build, update CI to build the new stack, and retire the vanilla templates only after the new site is verified in production.
 - **Contact form:** reuse the existing Express contact-form service (`contact-form/`, port 3333). Keep its validation, spam protection, and rate limiting, and update its CORS allowlist to the production domain.
 - **Mobile demonstration:** the live interactive piece on the mobile development page is the physics trajectory simulation embedded in a device frame. Build it once so it serves both the physics and mobile development stories.
+- **Navigation order (2026-09-18):** mobile development leads the navigation and home page paths, ahead of physics and water polo, reflecting Jack's professional role at BT/EE. The continuous-world journey mapping in section 5 is unaffected: scene progress order remains detector, physics, mobile, projects, water.
 
 ## 1. Product direction
 

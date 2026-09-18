@@ -2,8 +2,8 @@ import { useRef, useState, type KeyboardEvent } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
 const navItems = [
-  { to: '/physics', label: 'Physics' },
   { to: '/mobile-development', label: 'Mobile development' },
+  { to: '/physics', label: 'Physics' },
   { to: '/water-polo', label: 'Water polo' },
   { to: '/projects', label: 'Projects' },
   { to: '/about', label: 'About' },
