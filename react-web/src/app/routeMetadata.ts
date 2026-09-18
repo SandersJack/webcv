@@ -26,7 +26,7 @@ export const routeMetadata: RouteMetadata[] = [
     pattern: '/mobile-development',
     title: 'Mobile development',
     description:
-      'How Jack Sanders turns real user and system needs into reliable mobile and connected software experiences.',
+      'Mobile development at BT/EE and beyond: Jack Sanders builds reliable consumer app experiences across Flutter, React Native, Swift, and Kotlin.',
   },
   {
     pattern: '/water-polo',

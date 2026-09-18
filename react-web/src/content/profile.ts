@@ -45,6 +45,10 @@ export const profile = {
     'HTML',
     'CSS',
     'JavaScript',
+    'Flutter',
+    'React Native',
+    'Swift',
+    'Kotlin',
     'Docker',
     'SQL',
     'REST APIs',
@@ -69,6 +73,13 @@ export const education: Experience[] = [
 ]
 
 export const workExperience: Experience[] = [
+  {
+    organisation: 'BT/EE',
+    role: 'Mobile Developer',
+    period: '2025–present',
+    description:
+      'Mobile developer on a large consumer app, working across Flutter and React Native with native iOS and Android development in Swift and Kotlin.',
+  },
   {
     organisation: 'University of Birmingham',
     role: 'Postgraduate Teaching Assistant',
