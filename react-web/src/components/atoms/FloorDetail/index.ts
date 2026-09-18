@@ -1,1 +1,0 @@
-export { FloorDetail } from './FloorDetail';
