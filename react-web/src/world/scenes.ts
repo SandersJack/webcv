@@ -28,7 +28,7 @@ export const worldScenes: Record<WorldSceneId, WorldScene> = {
     glbUrl: '/models/detector_scene.glb',
     posterUrl: '/models/posters/detector_scene.png',
     description:
-      'Low-poly voxel model of a particle physics detector on an exhibit plinth: a segmented beam pipe passes through three faceted detector rings, a tracking station with straw tubes, photon detector blocks with cyan hit markers, and a stepped calorimeter wall. A glowing signature particle and curved track show the particle path. Stations can slide apart along the beam axis in a disassembly animation.',
+      'Low-poly voxel model of the NA62 detector at CERN on an exhibit plinth, laid out in beam order: the KTAG kaon tagger and Gigatracker plates feed a long green decay vacuum tank lined with amber LAV veto rings and four gold STRAW tracking chambers straddling the dark MNP33 dipole magnet, followed by the long stepped RICH cylinder, the CHOD disk, the fat blue octagonal LKr calorimeter, and the MUV muon-veto slabs behind their iron wall. A glowing signature kaon and cyan hit markers trace the particle path; stations slide apart along the beam axis in a disassembly animation.',
     animationMode: 'pingpong',
   },
   mobile_scene: {
@@ -36,7 +36,7 @@ export const worldScenes: Record<WorldSceneId, WorldScene> = {
     glbUrl: '/models/mobile_scene.glb',
     posterUrl: '/models/posters/mobile_scene.png',
     description:
-      'Low-poly voxel smartphone standing on an exhibit plinth: a stepped dark device with a replaceable glass screen, abstract app interface cards emerging from the display, and a small network of nodes whose cables carry glowing packets into the phone. Represents connected mobile experiences.',
+      'Low-poly voxel smartphone standing on an exhibit plinth, its replaceable glass screen showing a grid of app tiles including EE and BT: the phone is the hub of a small connected world, with a home hub router and two IoT plant sensors whose cyan signal arcs carry glowing packets into the phone. Represents connected mobile experiences.',
     animationMode: 'loop',
   },
   waterpolo_scene: {

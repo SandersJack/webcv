@@ -21,7 +21,7 @@ def main() -> None:
         "glbFile": "blender/exports/models/detector_scene.glb",
         "previewFile": "blender/exports/previews/detector_desktop.png",
         "previewFileMobile": "blender/exports/previews/detector_mobile.png",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "gridUnit": 1.0,
         "dimensions": dims,
         "triangleCount": tris,
@@ -34,18 +34,20 @@ def main() -> None:
             "INT_detector_signature_particle",
         ],
         "description": (
-            "Low-poly voxel model of a particle physics detector on an exhibit plinth: "
-            "a segmented beam pipe passes through three faceted detector rings, a "
-            "tracking station with straw tubes, photon detector blocks with cyan hit "
-            "markers, and a stepped calorimeter wall. A glowing signature particle and "
-            "curved track show the particle path. Stations can slide apart along the "
-            "beam axis in a disassembly animation."
+            "Low-poly voxel model of the NA62 detector at CERN on an exhibit plinth, "
+            "laid out in beam order: the KTAG kaon tagger and Gigatracker plates feed "
+            "a long green decay vacuum tank lined with amber LAV veto rings and four gold "
+            "STRAW tracking chambers straddling the dark MNP33 dipole magnet, followed "
+            "by the long stepped RICH cylinder, the CHOD disk, the fat blue octagonal LKr "
+            "calorimeter, and the MUV muon-veto slabs behind their iron wall. A glowing "
+            "signature kaon and cyan hit markers trace the particle path; stations "
+            "slide apart along the beam axis in a disassembly animation."
         ),
         "interactiveDescriptions": {
-            "INT_detector_beam_pipe": "Segmented beam pipe carrying the particle through the detector.",
-            "INT_detector_tracker": "Tracking station: layered plates and straw tubes record the particle's position.",
-            "INT_detector_photon": "Photon detector blocks; cyan markers show detected light.",
-            "INT_detector_signature_particle": "The signature particle entering the detector; starts the journey.",
+            "INT_detector_beam_pipe": "Segmented beam pipe carrying the kaon beam through the detector.",
+            "INT_detector_tracker": "STRAW chambers: gold straw tubes track the decay products around the MNP33 magnet.",
+            "INT_detector_photon": "LKr liquid-krypton calorimeter measuring photon and electron energy.",
+            "INT_detector_signature_particle": "The signature kaon entering the detector; starts the journey.",
         },
         "publicityLevel": "public",
         "fileSizeBytes": os.path.getsize(GLB_PATH),

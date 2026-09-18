@@ -10,19 +10,31 @@ DETECTOR_BLEND = os.path.join(C.BLENDER_ROOT, "detector", "detector_scene.blend"
 DESKTOP_RES = (1600, 900)
 MOBILE_RES = (430, 932)
 
-BEAM_Z = 1.65
-PLINTH_TOP_Z = 0.45
+BEAM_Z = 2.4
+BASE_TOP_Z = 0.45
 EXPLODE_FRAME = 60
 
-RING_XS = (-1.6, -0.2, 1.2)
-TRACKER_X = -0.9
-PHOTON_X = 0.5
-CALORIMETER_X = 1.6
+KTAG_X = -5.0
+GTK_X = -4.2
+LAV_XS = (-2.95, -1.8, -0.6)
+STRAW_XS = (-3.35, -2.6, -1.05, -0.15)
+MAGNET_X = -1.75
+CHOD_X = 3.55
+LKR_X = 4.35
+MUV1_X = 5.25
+MUV2_X = 5.95
+WALL_X = 6.6
+MUV3_X = 7.15
 
 
-def local_cylinder(name, radius, depth, location, rotation=(0.0, 0.0, 0.0), vertices=8):
+def local_cylinder(name, radius, depth, location, rotation=(0.0, math.pi / 2, 0.0), vertices=12, open_ended=False):
     bpy.ops.mesh.primitive_cylinder_add(
-        vertices=vertices, radius=radius, depth=depth, location=location, rotation=rotation
+        vertices=vertices,
+        radius=radius,
+        depth=depth,
+        end_fill_type="NOTHING" if open_ended else "TRIFAN",
+        location=location,
+        rotation=rotation,
     )
     obj = bpy.context.active_object
     obj.name = name
@@ -38,110 +50,189 @@ def explode_keyframe(obj, dx, dz=0.0):
     obj.location.z -= dz
 
 
-def build_beam_pipe(fx):
+def build_base(base):
+    slab = C.add_box("base_slab", (14.4, 5.4, 0.3), location=(0.7, 0.0, 0.0))
+    step = C.add_box("base_step", (13.6, 4.6, BASE_TOP_Z - 0.3), location=(0.7, 0.0, 0.3))
+    plinth = C.join_objects([slab, step], "PROP_plinth")
+    C.assign_material(plinth, "MAT_dark_metal")
+    C.link_only(plinth, base)
+
+    floor = C.add_box("ENV_floor", (60.0, 60.0, 0.2), location=(0.0, 0.0, -0.2))
+    C.assign_material(floor, "MAT_dark_metal")
+    C.link_only(floor, base)
+
+
+def build_beam_pipe(hero):
     segments = [
-        local_cylinder(f"seg_{i}", 0.09, 1.0, (x, 0.0, BEAM_Z), rotation=(0.0, math.pi / 2, 0.0))
-        for i, x in enumerate((-1.3, 0.0, 1.3))
+        local_cylinder(f"seg_{i}", 0.09, 1.75, (x, 0.0, BEAM_Z), vertices=8)
+        for i, x in enumerate((-4.75, -3.0, -1.25, 0.5, 2.25, 4.0, 5.75))
     ]
     pipe = C.join_objects(segments, "HERO_beam_pipe")
-    bpy.ops.object.transform_apply(rotation=True)
     C.assign_material(pipe, "MAT_light_metal")
-    C.link_only(pipe, fx)
+    C.link_only(pipe, hero)
     return pipe
 
 
-def build_rings(props):
-    rings = []
-    for i, x in enumerate(RING_XS):
-        ring = C.dup(
-            C.kit_obj("Ring_12"),
-            f"PROP_detector_ring_{i:02d}",
-            loc=(x, 0.0, BEAM_Z),
-            rot=(0.0, math.pi / 2, 0.0),
-            coll=props,
+def build_ktag(hero):
+    body = local_cylinder("ktag_body", 0.3, 0.7, (KTAG_X, 0.0, BEAM_Z))
+    parts = [body]
+    for i, (dy, dz) in enumerate(((-0.28, 0.0), (0.28, 0.0), (0.0, -0.28), (0.0, 0.28))):
+        parts.append(
+            C.add_box(f"ktag_pmt_{i}", (0.18, 0.16, 0.16), location=(KTAG_X - 0.32, dy, BEAM_Z + dz), base_origin=False)
         )
-        support = C.dup(
-            C.kit_obj("Support_strut"), f"PROP_ring_support_{i:02d}", loc=(x, 0.0, PLINTH_TOP_Z), coll=props
-        )
-        bpy.context.view_layer.update()  # dup() sets location directly; refresh before inverse
-        support.parent = ring
-        support.matrix_parent_inverse = ring.matrix_world.inverted()
-        rings.append(ring)
-    return rings
+    ktag = C.join_objects(parts, "PROP_na62_ktag")
+    C.assign_material(ktag, "MAT_light_metal")
+    C.link_only(ktag, hero)
+    return ktag
 
 
-def build_tracker(hero):
-    posts = [
-        C.add_box(f"post_{i}", (0.12, 0.12, 1.8), location=(TRACKER_X, y, PLINTH_TOP_Z))
-        for i, y in enumerate((-0.6, 0.6))
-    ]
-    crossbar = C.add_box("crossbar", (0.1, 1.32, 0.12), location=(TRACKER_X, 0.0, 2.25))
+def build_gtk(hero):
     plates = [
-        C.add_box(f"plate_{i}", (0.06, 1.0, 1.0), location=(TRACKER_X + dx, 0.0, BEAM_Z), base_origin=False)
-        for i, dx in enumerate((-0.12, 0.0, 0.12))
+        C.add_box(f"gtk_plate_{i}", (0.05, 0.35, 0.35), location=(GTK_X + i * 0.16, 0.0, BEAM_Z), base_origin=False)
+        for i in range(3)
     ]
-    frame = C.join_objects(posts + [crossbar], "frame")
-    C.assign_material(frame, "MAT_dark_metal")
-    for plate in plates:
-        C.assign_material(plate, "MAT_science_blue")
-    station = C.join_objects([frame] + plates, "PROP_tracker_station")
-    C.link_only(station, hero)
+    gtk = C.join_objects(plates, "PROP_na62_gtk")
+    C.assign_material(gtk, "MAT_science_blue")
+    C.link_only(gtk, hero)
+    return gtk
+
+
+def build_decay_tank(hero):
+    segments = [
+        local_cylinder("tank_0", 0.95, 0.55, (-3.6, 0.0, BEAM_Z), open_ended=True),
+        local_cylinder("tank_1", 1.2, 0.55, (-2.1, 0.0, BEAM_Z), open_ended=True),
+        local_cylinder("tank_2", 1.4, 0.55, (-0.55, 0.0, BEAM_Z), open_ended=True),
+    ]
+    tank = C.join_objects(segments, "PROP_na62_decay_tank")
+    C.assign_material(tank, "MAT_na62_green")
+    C.link_only(tank, hero)
+    return tank
+
+
+def build_lav_rings(hero):
+    rings = []
+    for i, x in enumerate(LAV_XS):
+        bpy.ops.mesh.primitive_torus_add(
+            major_segments=12,
+            minor_segments=4,
+            major_radius=1.1 + i * 0.18,
+            minor_radius=0.09,
+            location=(x, 0.0, BEAM_Z),
+            rotation=(0.0, math.pi / 2, 0.0),
+        )
+        ring = bpy.context.active_object
+        ring.name = f"lav_{i}"
+        C.shade_flat(ring)
+        rings.append(ring)
+    lav = C.join_objects(rings, "PROP_na62_lav_rings")
+    C.assign_material(lav, "MAT_safety_yellow")
+    C.link_only(lav, hero)
+    return lav
+
+
+def build_straw_chamber(index, x, hero):
+    half = 1.05
+    frame_parts = [
+        C.add_box(f"frame_{index}_top", (0.12, 2.2, 0.12), location=(x, 0.0, BEAM_Z + half), base_origin=False),
+        C.add_box(f"frame_{index}_bottom", (0.12, 2.2, 0.12), location=(x, 0.0, BEAM_Z - half), base_origin=False),
+        C.add_box(f"frame_{index}_l", (0.12, 0.12, 2.2), location=(x, -half, BEAM_Z), base_origin=False),
+        C.add_box(f"frame_{index}_r", (0.12, 0.12, 2.2), location=(x, half, BEAM_Z), base_origin=False),
+    ]
+    frame = C.join_objects(frame_parts, f"straw_frame_{index}")
+    C.assign_material(frame, "MAT_light_metal")
 
     straws = [
-        local_cylinder(f"straw_{i}", 0.045, 1.1, (TRACKER_X - 0.28, y, BEAM_Z))
-        for i, y in enumerate([-0.45, -0.3, -0.15, 0.0, 0.15, 0.3, 0.45])
+        local_cylinder(
+            f"straw_{index}_{j}",
+            0.028,
+            2.0,
+            (x, -0.8 + j * 0.27, BEAM_Z),
+            rotation=(math.pi / 2, 0.0, 0.0),
+            vertices=6,
+        )
+        for j in range(7)
     ]
-    straw_obj = C.join_objects(straws, "PROP_straw_tracker")
-    C.assign_material(straw_obj, "MAT_light_metal")
-    C.link_only(straw_obj, hero)
-    return C.make_anchor("detector_tracker", (TRACKER_X, 0.0, BEAM_Z), [station, straw_obj], hero)
+    straw_obj = C.join_objects(straws, f"straw_grid_{index}")
+    C.assign_material(straw_obj, "MAT_straw_gold")
+
+    chamber = C.join_objects([frame, straw_obj], f"PROP_na62_straw_chamber_{index}")
+    C.link_only(chamber, hero)
+    return chamber
 
 
-def build_photon_blocks(hero):
-    blocks = [
-        C.add_box(f"block_{i}", (0.45, 0.8, 1.1), location=(PHOTON_X, y, BEAM_Z - 0.55))
-        for i, y in enumerate((-0.85, 0.85))
+def build_magnet(hero):
+    yoke = C.add_box("magnet_yoke", (0.9, 2.3, 2.3), location=(MAGNET_X, 0.0, BEAM_Z), base_origin=False)
+    magnet = C.join_objects([yoke], "PROP_na62_magnet")
+    C.assign_material(magnet, "MAT_dark_metal")
+    C.link_only(magnet, hero)
+    return magnet
+
+
+def build_rich(hero):
+    sections = [
+        local_cylinder("rich_0", 1.7, 0.8, (0.95, 0.0, BEAM_Z)),
+        local_cylinder("rich_1", 1.85, 0.8, (1.75, 0.0, BEAM_Z)),
+        local_cylinder("rich_2", 2.0, 0.8, (2.55, 0.0, BEAM_Z)),
     ]
-    blocks_obj = C.join_objects(blocks, "PROP_photon_blocks")
-    C.assign_material(blocks_obj, "MAT_light_metal")
-    C.link_only(blocks_obj, hero)
+    mirror = local_cylinder("rich_mirror", 1.9, 0.12, (3.05, 0.0, BEAM_Z))
+    C.assign_material(mirror, "MAT_dark_metal")
+    rich = C.join_objects(sections + [mirror], "PROP_na62_rich")
+    C.assign_material(rich, "MAT_light_metal")
+    C.link_only(rich, hero)
+    return rich
 
-    hits = [
-        C.add_box(f"hit_{i}", (0.14, 0.14, 0.14), location=(PHOTON_X, y, z), base_origin=False)
-        for i, (y, z) in enumerate(((-0.42, 1.3), (0.42, 1.65), (-0.42, 2.0)))
+
+def build_chod(hero):
+    disk = local_cylinder("chod_disk", 1.07, 0.08, (CHOD_X, 0.0, BEAM_Z), vertices=12)
+    chod = C.join_objects([disk], "PROP_na62_chod")
+    C.assign_material(chod, "MAT_off_white")
+    C.link_only(chod, hero)
+    return chod
+
+
+def build_lkr(hero):
+    cryostat = local_cylinder("lkr_cryostat", 1.28, 1.1, (LKR_X, 0.0, BEAM_Z), vertices=8)
+    lkr = C.join_objects([cryostat], "PROP_na62_lkr")
+    C.assign_material(lkr, "MAT_science_blue")
+    C.link_only(lkr, hero)
+    return lkr
+
+
+def build_muon_system(hero):
+    muv1 = C.add_box("muv1", (0.75, 2.6, 2.6), location=(MUV1_X, 0.0, BEAM_Z), base_origin=False)
+    muv2 = C.add_box("muv2", (0.65, 2.6, 2.6), location=(MUV2_X, 0.0, BEAM_Z), base_origin=False)
+    wall = C.add_box("iron_wall", (0.7, 2.6, 2.6), location=(WALL_X, 0.0, BEAM_Z), base_origin=False)
+    slabs = C.join_objects([muv1, muv2, wall], "PROP_na62_muv_slabs")
+    C.assign_material(slabs, "MAT_dark_metal")
+    C.link_only(slabs, hero)
+
+    tiles = [
+        C.add_box(f"muv3_tile_{i}", (0.08, 1.3, 1.3), location=(MUV3_X, dy, BEAM_Z + dz), base_origin=False)
+        for i, (dy, dz) in enumerate(((-0.65, -0.65), (-0.65, 0.65), (0.65, -0.65), (0.65, 0.65)))
     ]
-    hits_obj = C.join_objects(hits, "FX_photon_hits")
-    C.assign_material(hits_obj, "MAT_cyan_emissive")
-    C.link_only(hits_obj, hero)
-    return C.make_anchor("detector_photon", (PHOTON_X, 0.0, BEAM_Z), [blocks_obj, hits_obj], hero)
-
-
-def build_calorimeter(props):
-    blocks = []
-    for row, z in enumerate((0.85, 1.3, 1.75, 2.2)):
-        for col, y in enumerate((-0.675, -0.225, 0.225, 0.675)):
-            blocks.append(
-                C.add_box(
-                    f"cal_{row}_{col}", (0.3, 0.4, 0.4), location=(CALORIMETER_X + 0.08 * row, y, z)
-                )
-            )
-    wall = C.join_objects(blocks, "PROP_calorimeter")
-    C.assign_material(wall, "MAT_light_metal")
-    C.link_only(wall, props)
-    return wall
+    muv3 = C.join_objects(tiles, "PROP_na62_muv3")
+    C.assign_material(muv3, "MAT_off_white")
+    C.link_only(muv3, hero)
+    return slabs, muv3
 
 
 def build_support_frame(props):
     rails = [
-        C.add_box(f"rail_{i}", (3.8, 0.1, 0.1), location=(0.0, y, PLINTH_TOP_Z + 0.05))
-        for i, y in enumerate((-0.8, 0.8))
+        C.add_box(f"rail_{i}", (13.2, 0.12, 0.12), location=(0.7, y, BASE_TOP_Z + 0.05))
+        for i, y in enumerate((-1.9, 1.9))
     ]
     feet = [
-        C.add_box(f"foot_{i}", (0.4, 0.4, 0.1), location=(x, y, PLINTH_TOP_Z))
-        for i, (x, y) in enumerate(((-1.6, -0.8), (-1.6, 0.8), (1.6, -0.8), (1.6, 0.8)))
+        C.add_box(f"foot_{i}", (0.5, 0.5, 0.14), location=(x, y, BASE_TOP_Z))
+        for i, (x, y) in enumerate(
+            ((-5.0, -1.9), (-5.0, 1.9), (-1.7, -1.9), (-1.7, 1.9), (1.8, -1.9), (1.8, 1.9), (5.9, -1.9), (5.9, 1.9))
+        )
     ]
-    frame = C.join_objects(rails + feet, "PROP_support_frame")
-    C.assign_material(frame, "MAT_dark_metal")
+    legs = []
+    for i, x in enumerate((-5.0, -3.6, -2.1, -0.55, 1.0, 2.6, 4.35, 5.9)):
+        for j, y in enumerate((-1.55, 1.55)):
+            legs.append(C.add_box(f"leg_{i}_{j}", (0.14, 0.14, BEAM_Z - 1.1 - BASE_TOP_Z), location=(x, y, BASE_TOP_Z + 0.1)))
+    frame = C.join_objects(rails + feet + legs, "PROP_support_frame")
+    C.assign_material(frame, "MAT_na62_green")
     C.link_only(frame, props)
     return frame
 
@@ -150,13 +241,13 @@ def build_particle_path(fx):
     track = C.dup(
         C.kit_obj("FX_particle_trail"),
         "FX_particle_track",
-        loc=(0.0, 0.0, BEAM_Z - 0.3),
-        scale=(0.95, 0.5, 0.4),
+        loc=(-1.2, 0.0, BEAM_Z - 0.35),
+        scale=(2.2, 0.5, 0.4),
         coll=fx,
     )
     markers = [
         C.add_box(f"hit_{i}", (0.12, 0.12, 0.12), location=(x, 0.0, BEAM_Z), base_origin=False)
-        for i, x in enumerate((-1.6, -0.9, -0.2, 0.5, 1.2))
+        for i, x in enumerate((-3.35, -2.6, -1.05, -0.15, 1.75, 4.35))
     ]
     markers_obj = C.join_objects(markers, "FX_hit_markers")
     C.assign_material(markers_obj, "MAT_cyan_emissive")
@@ -179,29 +270,35 @@ def main() -> None:
     props = C.make_collection("COLL_props", stage)
     fx = C.make_collection("COLL_fx", stage)
 
-    C.dup(C.kit_obj("Plinth_exhibit"), "PROP_plinth", coll=base)
-    floor = C.add_box("ENV_floor", (40.0, 40.0, 0.2), location=(0.0, 0.0, -0.2))
-    C.assign_material(floor, "MAT_dark_metal")
-    C.link_only(floor, base)
+    build_base(base)
 
     pipe = build_beam_pipe(hero)
-    rings = build_rings(props)
-    tracker_root = build_tracker(hero)
-    photon_root = build_photon_blocks(hero)
-    calorimeter = build_calorimeter(props)
+    ktag = build_ktag(hero)
+    gtk = build_gtk(hero)
+    tank = build_decay_tank(hero)
+    lav = build_lav_rings(hero)
+    straws = [build_straw_chamber(i, x, hero) for i, x in enumerate(STRAW_XS)]
+    magnet = build_magnet(hero)
+    rich = build_rich(hero)
+    chod = build_chod(hero)
+    lkr = build_lkr(hero)
+    slabs, muv3 = build_muon_system(hero)
     build_support_frame(props)
     build_particle_path(fx)
 
     particle = C.dup(C.kit_obj("FX_signature_particle"), "FX_signature_particle", coll=fx)
-    particle.location = (-1.9, 0.0, BEAM_Z)
-    C.make_anchor("detector_signature_particle", (-1.9, 0.0, BEAM_Z), [particle], fx)
-    C.make_anchor("detector_beam_pipe", (0.0, 0.0, BEAM_Z), [pipe], hero)
+    particle.location = (KTAG_X - 0.6, 0.0, BEAM_Z)
+    C.make_anchor("detector_signature_particle", (KTAG_X - 0.6, 0.0, BEAM_Z), [particle], fx)
+    C.make_anchor("detector_beam_pipe", (0.7, 0.0, BEAM_Z), [pipe], hero)
+    C.make_anchor("detector_tracker", (STRAW_XS[1], 0.0, BEAM_Z), [straws[1]], hero)
+    C.make_anchor("detector_photon", (LKR_X, 0.0, BEAM_Z), [lkr], hero)
 
-    for ring in rings:
-        explode_keyframe(ring, ring.location.x * 0.6, dz=0.35)
-    explode_keyframe(tracker_root, TRACKER_X * 0.6)
-    explode_keyframe(photon_root, PHOTON_X * 0.6)
-    explode_keyframe(calorimeter, CALORIMETER_X * 0.6)
+    station_xs = (
+        [(ktag, KTAG_X), (gtk, GTK_X), (tank, -2.1), (lav, -2.2), (magnet, MAGNET_X), (rich, 1.8), (chod, CHOD_X), (lkr, LKR_X), (slabs, 5.6), (muv3, MUV3_X)]
+        + [(chamber, x) for chamber, x in zip(straws, STRAW_XS)]
+    )
+    for station, sx in station_xs:
+        explode_keyframe(station, (sx - 0.7) * 0.35, dz=0.3 if station in (lav, tank) else 0.0)
     scene.frame_start = 1
     scene.frame_end = EXPLODE_FRAME
     scene.frame_set(1)
@@ -214,9 +311,9 @@ def main() -> None:
     scene.render.film_transparent = False
     scene.render.resolution_percentage = 100
 
-    for tag, res, ortho_prop in (("desktop", DESKTOP_RES, "ortho_desktop"), ("mobile", MOBILE_RES, "ortho_mobile")):
+    for tag, res, scale in (("desktop", DESKTOP_RES, 18.0), ("mobile", MOBILE_RES, 21.0)):
         scene.render.resolution_x, scene.render.resolution_y = res
-        cam.data.ortho_scale = cam[ortho_prop]
+        cam.data.ortho_scale = scale
         scene.render.filepath = os.path.join(C.PREVIEWS_DIR, f"detector_{tag}.png")
         bpy.ops.render.render(write_still=True)
         print(f"rendered {scene.render.filepath}")

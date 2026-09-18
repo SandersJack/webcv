@@ -239,6 +239,48 @@ Every interactive object needs:
 - Track and hit markers remain readable after components move apart.
 - Fragments can transition into the physics scene without a hard cut.
 
+### Iteration: faithful NA62 model (sprint 5.5)
+
+**Purpose:** Replace the generic ring detector with a recognisable model of the real NA62 detector at CERN — the full sub-detector inventory in beam order with real relative proportions. Dimensions below are from the JINST 2017 detector paper (arXiv:1703.08501) and the NA62 public documentation.
+
+#### Real layout (beam order, Z from the T10 target)
+
+| Station | Z (m) | Length | Transverse | Distinctive shape |
+|---|---|---|---|---|
+| CEDAR/KTAG kaon tagger | 70-75 | ~7 m | Ø ~0.6 m | Small cylinder, PMT light boxes at upstream end |
+| GTK Gigatracker | 95-102 | 3 stations | 61 x 27 mm each | Tiny silicon plates (voxel: one plate group) |
+| Decay vacuum tank | 102-219 | 117 m | Ø 1.9 -> 2.8 m | Long stepped cylinder, holds LAV + STRAW |
+| LAV photon vetoes | inside tank | ~0.3 m each | Ø 2.2-3.1 m | Amber lead-glass rings |
+| STRAW chambers x4 | ~167-207 | 10/10/15 m gaps | 2.15 x 2.15 m | Thin square frames, gold straws |
+| MNP33 dipole magnet | 197 | 1.2 m | 2.3 x 2.3 m | Rectangular iron yoke between STRAW 2 and 3 |
+| RICH | 220-237 | 17 m | Ø 3.4-4.0 m | Long stepped cylinder — dominant silhouette |
+| CHOD hodoscope | ~238 | 30 mm | Ø 2.14 m | Thin annular scintillator disk |
+| LKr calorimeter | 240-241 | 1.25 m | Ø ~2.56 m octagon | Short fat octagonal cryostat |
+| MUV1 + MUV2 | ~244-245 | ~0.8 m each | ~2.6 x 2.6 m | Two square iron/scintillator slabs |
+| Iron wall + MUV3 | ~246-247 | 0.8 m + 0.05 m | ~2.6 x 2.6 m | Thick block, then thin tile plane |
+
+#### Voxel mapping
+
+The real apparatus is ~250 m long against 2-4 m transverse, so the gaps compress and the station proportions stay real relative to each other. Grid unit stays 1.0; the scene runs ~12 units along the beam (vs 7.9 for the pool).
+
+- `na62_ktag`: Ø 0.6 x 0.7 cylinder with a small PMT box cluster at the upstream face.
+- `na62_gtk`: three thin plates grouped close on the beam pipe.
+- `na62_decay_tank`: 3.5-long stepped cylinder (Ø 2.0 -> 2.8) built as shell segments with gaps so the interior stations stay visible.
+- `na62_lav_ring` x3: amber (`MAT_safety_yellow`) rings around the tank.
+- `na62_straw_chamber` x4: 2.15-square frames with gold straw grids — one new material `MAT_straw_gold` (brass ~ (0.65, 0.5, 0.15)); second palette addition after `MAT_marker_red`/`MAT_water_surface`.
+- `na62_magnet`: dark iron block between STRAW 2 and 3 (real position).
+- `na62_rich`: 2.5-long stepped cylinder Ø 3.4 -> 4.0 — the dominant object.
+- `na62_chod`: thin disk; `na62_lkr`: fat octagonal prism; `na62_muv1`/`na62_muv2`: two slabs; `na62_iron_wall` + `na62_muv3`: block + thin tile plane.
+- Support frame and plinth vocabulary unchanged; `FX_particle_track` runs the full beam line, with the cyan hit markers in the decay region where the kaon decays.
+
+#### Animation, interaction, export
+
+- Disassembly animation preserved: stations slide apart along the beam axis (ping-pong in the web canvas already handles it).
+- `INT_detector_beam_pipe`, `INT_detector_tracker`, `INT_detector_photon`, `INT_detector_signature_particle` and their pivots are preserved unchanged — no web registry edits.
+- Export id stays `detector_scene`, manifest version bumps to 0.2.0; the new manifest `description` must be copied verbatim into `src/world/scenes.ts` (the registry test enforces the match).
+- Budget guidance for this hero rises to 12k triangles / 250 KB (still trivial for the web; recorded in the manifest per §14).
+
+
 ## 7. Physics mini-scenes
 
 **Purpose:** Turn the research story into understandable visual experiments.
@@ -290,6 +332,34 @@ Use a low-resolution stepped terrain made from instanced blocks. It should read 
 - Packets represented by the signature sphere or small emissive cubes flowing into the phone.
 
 Keep node count low enough that individual connections are visible. The network explains connected experiences; it must not overshadow the phone.
+
+### Iteration: connectivity hero (sprint 5.5)
+
+**Purpose:** The phone becomes the hub of a small connected world — WiFi infrastructure and IoT devices (plant sensors, borrowing the PlantPulse vocabulary from §9) reporting into an app. This supersedes the abstract network-node context above for the hero scene.
+
+Layout:
+
+```text
+   [wifi router]  ~~~ signal arcs ~~~
+                                        [smartphone hero]
+   [plant sensor A]  ~~~ packets ~~~ >
+   [plant sensor B]  ~~~ packets ~~~ >
+                [plinth / dark base]
+```
+
+Models:
+
+- `mobile_wifi_router`: chunky rectangular body, one or two antennas, cyan emissive status LEDs, and a port row (borrows the deferred Router vocabulary below).
+- `mobile_iot_plant_sensor` (two instances): soil or pot block, chunky plant stem and leaves (`MAT_plant_green`), a sensor puck with a probe into the soil, and an optional tiny solar panel. Each emits packets.
+- `mobile_signal_arc`: two or three thin concentric torus-segment arcs per device — never filled domes.
+- Packets reuse the existing FX vocabulary, animated along the arc paths into the phone with the established frames 1-48 loop cadence.
+
+Constraints:
+
+- The phone hero is untouched: screen stays replaceable, and `INT_mobile_phone` / `PIVOT_mobile_phone` are preserved unchanged.
+- Two IoT nodes plus one router maximum; every connection stays individually readable.
+- Export name stays `mobile_scene` (manifest version bumps to 0.2.0); existing interactive ids do not change, so `src/world/scenes.ts` needs no edits.
+
 
 ### Deferred supporting assets (post-launch)
 
@@ -578,6 +648,12 @@ Sprints 1-5 produce the minimum lovable experience assets. Sprint 6 is the launc
 
 - Assemble the detector, phone, and pool scenes with the signature sphere travelling between them.
 - Add reduced-motion and fallback poster states for every MLE scene.
+
+### Sprint 5.5: model iteration
+
+- Detector v2: replace the generic ring detector with a faithful NA62 model — the full sub-detector inventory in beam order with real relative proportions (see the §6 iteration subsection). Dimensions sourced from public CERN documents.
+- Mobile v2: connectivity hero — WiFi router and IoT plant sensor nodes with signal arcs and packet flow into the phone (see the §8 iteration subsection).
+- Re-export both GLBs (manifest version 0.2.0), refresh previews and posters, and re-verify hero framing on desktop and mobile.
 
 ### Sprint 6: optimisation and launch gate
 

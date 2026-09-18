@@ -34,8 +34,8 @@ const CAMERA_FIT_MARGIN = 1.12
 // Isometric-ish elevation shared across scenes so they read as one world.
 const CAMERA_ELEVATION = MathUtils.degToRad(32)
 const INITIAL_AZIMUTH = Math.PI / 4
-// One slow orbit per minute; subtle enough that scenes read without it.
-const AUTO_ROTATE_SPEED = (Math.PI * 2) / 60
+const SWAY_AMPLITUDE = MathUtils.degToRad(14)
+const SWAY_SPEED = (Math.PI * 2) / 22
 
 let webGLAvailable: boolean | null = null
 
@@ -159,12 +159,14 @@ function AnimatedScene({ scene, reducedMotion, onReady }: AnimatedSceneProps) {
     }
   }, [model, animations, scene.animationMode, onReady])
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     const fit = fitRef.current
     if (!fit || !(camera instanceof PerspectiveCamera)) return
     if (!reducedMotion) {
       mixerRef.current?.update(delta)
-      fit.azimuth += delta * AUTO_ROTATE_SPEED
+      fit.azimuth =
+        INITIAL_AZIMUTH +
+        SWAY_AMPLITUDE * Math.sin(state.clock.elapsedTime * SWAY_SPEED)
     }
     positionCamera(camera, fit)
   })
