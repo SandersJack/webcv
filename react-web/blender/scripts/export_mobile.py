@@ -21,7 +21,7 @@ def main() -> None:
         "glbFile": "blender/exports/models/mobile_scene.glb",
         "previewFile": "blender/exports/previews/mobile_desktop.png",
         "previewFileMobile": "blender/exports/previews/mobile_mobile.png",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "gridUnit": 1.0,
         "dimensions": dims,
         "triangleCount": tris,
@@ -29,16 +29,17 @@ def main() -> None:
         "loadingPriority": "next",
         "interactiveIds": ["INT_mobile_phone"],
         "description": (
-            "Low-poly voxel smartphone standing on an exhibit plinth: a stepped dark "
-            "device with a replaceable glass screen, abstract app interface cards "
-            "emerging from the display, and a small network of nodes whose cables "
-            "carry glowing packets into the phone. Represents connected mobile "
-            "experiences."
+            "Low-poly voxel smartphone standing on an exhibit plinth, its replaceable "
+            "glass screen showing a grid of app tiles including EE and BT: the phone "
+            "is the hub of a small connected world, with a home hub router and two "
+            "IoT plant sensors whose cyan signal arcs carry glowing packets into the "
+            "phone. Represents connected mobile experiences."
         ),
         "interactiveDescriptions": {
             "INT_mobile_phone": (
-                "The smartphone hero. Selecting it opens the mobile development "
-                "case-study content and the live interactive demonstration."
+                "The smartphone hub: apps such as EE and BT on screen, with packets "
+                "arriving from the home hub and the plant sensors. Selecting it opens "
+                "the mobile development case-study content."
             )
         },
         "publicityLevel": "public",

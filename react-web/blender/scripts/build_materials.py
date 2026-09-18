@@ -30,6 +30,10 @@ def main() -> None:
     C.make_material("MAT_plant_green", (0.09, 0.28, 0.09), metallic=0.0, roughness=0.72)
     C.make_material("MAT_safety_yellow", (0.85, 0.55, 0.02), metallic=0.0, roughness=0.5)
     C.make_material("MAT_marker_red", (0.5, 0.05, 0.05), metallic=0.0, roughness=0.55)
+    C.make_material("MAT_straw_gold", (0.62, 0.42, 0.08), metallic=0.7, roughness=0.35)
+    C.make_material("MAT_na62_green", (0.04, 0.32, 0.1), metallic=0.3, roughness=0.35)
+    C.make_material("MAT_ee_yellow", (0.85, 0.68, 0.0), metallic=0.0, roughness=0.5)
+    C.make_material("MAT_bt_blue", (0.07, 0.09, 0.5), metallic=0.0, roughness=0.5)
 
     C.save(C.MATERIALS_BLEND)
     print("materials:", sorted(m.name for m in C.bpy.data.materials))
