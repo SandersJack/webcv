@@ -15,6 +15,10 @@ vite.config.js
 vite.config.d.ts
 *.local
 
+# Blender
+*.blend1
+__pycache__/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

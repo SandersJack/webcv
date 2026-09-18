@@ -517,6 +517,8 @@ type AssetManifest = {
   loadingPriority: 'initial' | 'next' | 'deferred'
   mobileVariant?: string
   interactiveIds: string[]
+  description: string
+  interactiveDescriptions?: Record<string, string>
   publicityLevel: 'public' | 'review-required'
 }
 ```
