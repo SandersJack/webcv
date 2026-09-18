@@ -8,9 +8,8 @@
 
 ### 1. BT/myEE professional experience
 
-- **File:** `src/content/pages.ts`, `mobilePage.sections.experience` (TODO(content) marker at line 83).
-- **Needed:** Which BT/myEE details are publicly shareable: role title, dates, responsibilities, technologies, and any outcomes. The current body is placeholder copy ("Specifics are being prepared for publication").
-- **Why Jack:** Confidentiality and employer approval. Plan §4 scopes this section to publicly shareable details, and plan §12 bans confidential BT/myEE information from models, screenshots, source maps, and logs. Only Jack can decide what is cleared.
+- **Status:** Baseline closed 2026-09-18. Jack approved the role, stack, and duration: mobile developer at BT/EE for the past year, across Flutter, React Native, and native Swift/Kotlin. Now live in `mobilePage.sections.experience` and `workExperience` in `src/content/profile.ts`.
+- **Still open:** Deeper specifics (named features, outcomes, screenshots, or app-store references) still need employer approval before they are added. Plan §4 scopes this section to publicly shareable details, and plan §12 bans confidential BT/myEE information from models, screenshots, source maps, and logs.
 
 ### 2. Water polo playing history
 

@@ -80,9 +80,9 @@ export const mobilePage = {
     },
     experience: {
       title: 'Professional experience',
-      // TODO(content): Jack to confirm which BT/myEE details are publicly shareable (plan §4).
       body: [
-        'Professional mobile development experience, including work on large consumer apps. Specifics are being prepared for publication and will appear here once approved.',
+        'I am a mobile developer at BT/EE, where for the past year I have built and shipped features for a large consumer app.',
+        'The work spans Flutter and React Native, alongside native iOS and Android development in Swift and Kotlin.',
       ],
     },
     projects: {
