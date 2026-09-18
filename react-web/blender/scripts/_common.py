@@ -165,3 +165,109 @@ def shade_flat(obj: bpy.types.Object) -> None:
     if obj.type == 'MESH':
         for poly in obj.data.polygons:
             poly.use_smooth = False
+
+
+def join_objects(objs: list, name: str) -> bpy.types.Object:
+    bpy.ops.object.select_all(action='DESELECT')
+    for o in objs:
+        o.select_set(True)
+    bpy.context.view_layer.objects.active = objs[0]
+    bpy.ops.object.join()
+    objs[0].name = name
+    return objs[0]
+
+
+def dup(src, name, loc=(0.0, 0.0, 0.0), rot=None, scale=None, coll=None):
+    obj = bpy.data.objects.new(name, src.data)
+    (coll or bpy.context.scene.collection).objects.link(obj)
+    obj.location = loc
+    if rot is not None:
+        obj.rotation_euler = rot
+    if scale is not None:
+        obj.scale = scale
+    return obj
+
+
+def kit_obj(name: str) -> bpy.types.Object:
+    obj = bpy.data.objects.get(name)
+    if obj is None:
+        raise KeyError(f"kit object {name} not linked")
+    return obj
+
+
+def set_eevee(scene) -> None:
+    for engine in ("BLENDER_EEVEE_NEXT", "BLENDER_EEVEE", "CYCLES"):
+        try:
+            scene.render.engine = engine
+            print(f"render engine: {engine}")
+            return
+        except TypeError:
+            continue
+
+
+def make_anchor(name: str, loc, children: list, coll) -> bpy.types.Object:
+    # Plan section 5: INT_<id> root with a PIVOT_<id> child; children keep their
+    # world transforms so the root can move/animate the group as one.
+    root = bpy.data.objects.new(f"INT_{name}", None)
+    root.empty_display_size = 0.3
+    coll.objects.link(root)
+    root.location = loc
+    pivot = bpy.data.objects.new(f"PIVOT_{name}", None)
+    pivot.empty_display_size = 0.2
+    coll.objects.link(pivot)
+    pivot.parent = root
+    pivot.location = (0.0, 0.0, 0.0)
+    bpy.context.view_layer.update()  # matrix_world is stale until re-evaluated
+    root_inv = root.matrix_world.inverted()
+    for child in children:
+        child.parent = root
+        child.matrix_parent_inverse = root_inv
+    return root
+
+
+def export_collection_glb(coll_name: str, glb_path: str, exclude: tuple = ()) -> list:
+    coll = bpy.data.collections[coll_name]
+    objs = [o for o in coll.all_objects if o.name not in exclude and o.type in {'MESH', 'CURVE', 'EMPTY'}]
+    bpy.ops.object.select_all(action='DESELECT')
+    for obj in objs:
+        obj.select_set(True)
+    bpy.context.view_layer.objects.active = next((o for o in objs if o.type == 'MESH'), objs[0])
+    for obj in objs:
+        if obj.type == 'CURVE':
+            bpy.context.view_layer.objects.active = obj
+            bpy.ops.object.convert(target='MESH')
+    os.makedirs(os.path.dirname(glb_path), exist_ok=True)
+    bpy.ops.export_scene.gltf(
+        filepath=glb_path,
+        export_format='GLB',
+        use_selection=True,
+        export_apply=True,
+        export_cameras=False,
+        export_lights=False,
+        export_draco_mesh_compression_enable=True,
+    )
+    return objs
+
+
+def gather_stats(objs: list):
+    from mathutils import Vector
+
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    tris = 0
+    materials = set()
+    low = Vector((float("inf"),) * 3)
+    high = Vector((float("-inf"),) * 3)
+    for obj in objs:
+        if obj.type not in {'MESH', 'CURVE'}:
+            continue
+        evaluated = obj.evaluated_get(depsgraph)
+        mesh = evaluated.to_mesh()
+        tris += sum(len(p.vertices) - 2 for p in mesh.polygons)
+        materials.update(m.name for m in mesh.materials if m)
+        for corner in obj.bound_box:
+            world = obj.matrix_world @ Vector(corner)
+            low = Vector(map(min, low, world))
+            high = Vector(map(max, high, world))
+        evaluated.to_mesh_clear()
+    dims = [round(high[i] - low[i], 3) for i in range(3)]
+    return tris, len(materials), dims
