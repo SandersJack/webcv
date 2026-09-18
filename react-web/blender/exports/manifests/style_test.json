@@ -1,0 +1,45 @@
+{
+  "id": "style_test",
+  "scene": "detector",
+  "sourceFile": "blender/style_test.blend",
+  "glbFile": "blender/exports/models/style_test.glb",
+  "previewFile": "blender/exports/previews/style_test_desktop.png",
+  "previewFileMobile": "blender/exports/previews/style_test_mobile.png",
+  "version": "0.1.0",
+  "gridUnit": 1.0,
+  "dimensions": [
+    4.0,
+    4.0,
+    2.8
+  ],
+  "triangleCount": 468,
+  "materialCount": 5,
+  "loadingPriority": "initial",
+  "interactiveIds": [
+    "INT_detector_signature_particle"
+  ],
+  "description": "Voxel style-test diorama on an exhibit plinth: two faceted detector rings threaded on a beam pipe, a glowing cyan signature particle with a tapered trail, a blue data block, and a sign. Establishes the shared low-poly material and lighting language for the portfolio's 3D scenes.",
+  "interactiveDescriptions": {
+    "INT_detector_signature_particle": "The signature particle inside the beam pipe. Selecting it starts the journey through the detector scene."
+  },
+  "publicityLevel": "public",
+  "fileSizeBytes": 17092,
+  "exportedObjects": [
+    "FX_packet",
+    "FX_particle_trail",
+    "FX_signature_particle",
+    "HERO_beam_pipe",
+    "INT_detector_signature_particle",
+    "PIVOT_detector_signature_particle",
+    "PROP_data_block",
+    "PROP_detector_ring_00",
+    "PROP_detector_ring_01",
+    "PROP_packet_rail",
+    "PROP_plinth",
+    "PROP_plinth_label",
+    "PROP_ring_support_00",
+    "PROP_ring_support_01",
+    "PROP_sign",
+    "PROP_trim_block"
+  ]
+}
