@@ -1,1 +1,0 @@
-export { FloorLabel } from './FloorLabel';
