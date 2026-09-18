@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ButtonLink } from '../../components/ButtonLink'
 import { mobilePage } from '../../content/pages'
 import { profile } from '../../content/profile'
+import { LazyWorldCanvas } from '../../world/LazyWorldCanvas'
 
 export function MobileDevelopmentPage() {
   const { intro, experience, projects, demo } = mobilePage.sections
@@ -11,10 +12,13 @@ export function MobileDevelopmentPage() {
   return (
     <>
       <section className="page-hero">
-        <div className="container flow">
-          <p className="page-hero__eyebrow">{mobilePage.eyebrow}</p>
-          <h1>{mobilePage.heading}</h1>
-          <p className="page-hero__lede">{mobilePage.lede}</p>
+        <div className="container split split--two split--hero">
+          <div className="flow">
+            <p className="page-hero__eyebrow">{mobilePage.eyebrow}</p>
+            <h1>{mobilePage.heading}</h1>
+            <p className="page-hero__lede">{mobilePage.lede}</p>
+          </div>
+          <LazyWorldCanvas sceneId="mobile_scene" />
         </div>
       </section>
 
