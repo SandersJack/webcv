@@ -1,4 +1,5 @@
 import { waterPoloPage } from '../../content/pages'
+import { LazyWorldCanvas } from '../../world/LazyWorldCanvas'
 
 export function WaterPoloPage() {
   const { intro, history, demands, tactical } = waterPoloPage.sections
@@ -6,10 +7,13 @@ export function WaterPoloPage() {
   return (
     <>
       <section className="page-hero">
-        <div className="container flow">
-          <p className="page-hero__eyebrow">{waterPoloPage.eyebrow}</p>
-          <h1>{waterPoloPage.heading}</h1>
-          <p className="page-hero__lede">{waterPoloPage.lede}</p>
+        <div className="container split split--two split--hero">
+          <div className="flow">
+            <p className="page-hero__eyebrow">{waterPoloPage.eyebrow}</p>
+            <h1>{waterPoloPage.heading}</h1>
+            <p className="page-hero__lede">{waterPoloPage.lede}</p>
+          </div>
+          <LazyWorldCanvas sceneId="waterpolo_scene" />
         </div>
       </section>
 

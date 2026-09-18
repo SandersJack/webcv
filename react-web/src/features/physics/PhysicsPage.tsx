@@ -4,6 +4,7 @@ import { ButtonLink } from '../../components/ButtonLink'
 import { homePage, physicsPage } from '../../content/pages'
 import { publications } from '../../content/profile'
 import { getProject, type Project } from '../../content/projects'
+import { LazyWorldCanvas } from '../../world/LazyWorldCanvas'
 
 const builtProjectIds = ['flexible-na62-framework', 'slim-mc']
 
@@ -17,10 +18,13 @@ export function PhysicsPage() {
   return (
     <>
       <section className="page-hero">
-        <div className="container flow">
-          <p className="page-hero__eyebrow">{physicsPage.eyebrow}</p>
-          <h1>{physicsPage.heading}</h1>
-          <p className="page-hero__lede">{physicsPage.lede}</p>
+        <div className="container split split--two split--hero">
+          <div className="flow">
+            <p className="page-hero__eyebrow">{physicsPage.eyebrow}</p>
+            <h1>{physicsPage.heading}</h1>
+            <p className="page-hero__lede">{physicsPage.lede}</p>
+          </div>
+          <LazyWorldCanvas sceneId="detector_scene" />
         </div>
       </section>
 
