@@ -10,14 +10,14 @@ export const homePage = {
   lede: 'I study rare particle decays at CERN, build software that makes detectors and data usable, and play water polo — this site tells that story as one journey.',
   paths: [
     {
-      to: '/physics',
-      label: 'Explore physics',
-      description: 'NA62, kaon tagging, and the search for dark photons.',
-    },
-    {
       to: '/mobile-development',
       label: 'Explore mobile development',
       description: 'Turning real user needs into reliable connected software.',
+    },
+    {
+      to: '/physics',
+      label: 'Explore physics',
+      description: 'NA62, kaon tagging, and the search for dark photons.',
     },
     {
       to: '/water-polo',
