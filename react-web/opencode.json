@@ -3,5 +3,22 @@
   "instructions": [
     "docs/FRONTEND_DESIGN_SKILLS.md",
     "docs/FRONTEND_STANDARDS.md"
-  ]
+  ],
+  "mcp": {
+    "blender": {
+      "type": "local",
+      "command": [
+        "/Users/jack/.local/bin/uvx",
+        "--python",
+        "3.11",
+        "mcp-for-blender"
+      ],
+      "enabled": true,
+      "environment": {
+        "UV_PYTHON_PREFERENCE": "only-managed",
+        "BLENDER_HOST": "localhost",
+        "BLENDER_PORT": "9876"
+      }
+    }
+  }
 }

@@ -26,8 +26,10 @@ def main() -> None:
     C.make_material("MAT_mobile_warm", (0.72, 0.28, 0.05), metallic=0.0, roughness=0.55)
     C.make_material("MAT_water_deep", (0.008, 0.05, 0.16), metallic=0.0, roughness=0.32)
     C.make_material("MAT_water_light", (0.1, 0.32, 0.62), metallic=0.0, roughness=0.28)
+    C.make_material("MAT_water_surface", (0.1, 0.32, 0.62), metallic=0.0, roughness=0.18, alpha=0.6)
     C.make_material("MAT_plant_green", (0.09, 0.28, 0.09), metallic=0.0, roughness=0.72)
     C.make_material("MAT_safety_yellow", (0.85, 0.55, 0.02), metallic=0.0, roughness=0.5)
+    C.make_material("MAT_marker_red", (0.5, 0.05, 0.05), metallic=0.0, roughness=0.55)
 
     C.save(C.MATERIALS_BLEND)
     print("materials:", sorted(m.name for m in C.bpy.data.materials))
