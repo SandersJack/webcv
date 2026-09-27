@@ -26,6 +26,7 @@ describe('worldScenes registry', () => {
     const scene = worldScenes[id]
     expect(scene.id).toBe(id)
     expect(scene.glbUrl).toBe(`/models/${id}.glb`)
+    expect(scene.mobileGlbUrl).toBe(`/models/${id}_mobile.glb`)
     expect(scene.posterUrl).toBe(`/models/posters/${id}.png`)
   })
 

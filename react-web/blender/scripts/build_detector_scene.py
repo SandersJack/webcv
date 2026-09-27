@@ -9,6 +9,7 @@ import bpy
 DETECTOR_BLEND = os.path.join(C.BLENDER_ROOT, "detector", "detector_scene.blend")
 DESKTOP_RES = (1600, 900)
 MOBILE_RES = (430, 932)
+LOW = os.environ.get("WEBCV_DETAIL") == "low"
 
 BEAM_Z = 2.4
 BASE_TOP_Z = 0.45
@@ -29,7 +30,7 @@ MUV3_X = 7.15
 
 def local_cylinder(name, radius, depth, location, rotation=(0.0, math.pi / 2, 0.0), vertices=12, open_ended=False):
     bpy.ops.mesh.primitive_cylinder_add(
-        vertices=vertices,
+        vertices=8 if LOW else vertices,
         radius=radius,
         depth=depth,
         end_fill_type="NOTHING" if open_ended else "TRIFAN",
@@ -65,7 +66,7 @@ def build_base(base):
 def build_beam_pipe(hero):
     segments = [
         local_cylinder(f"seg_{i}", 0.09, 1.75, (x, 0.0, BEAM_Z), vertices=8)
-        for i, x in enumerate((-4.75, -3.0, -1.25, 0.5, 2.25, 4.0, 5.75))
+        for i, x in enumerate((-4.75, -3.0, -1.25, 0.5, 2.25, 4.0, 5.75) if not LOW else (-4.75, -1.25, 2.25, 5.75))
     ]
     pipe = C.join_objects(segments, "HERO_beam_pipe")
     C.assign_material(pipe, "MAT_light_metal")
@@ -113,8 +114,8 @@ def build_lav_rings(hero):
     rings = []
     for i, x in enumerate(LAV_XS):
         bpy.ops.mesh.primitive_torus_add(
-            major_segments=12,
-            minor_segments=4,
+            major_segments=8 if LOW else 12,
+            minor_segments=3 if LOW else 4,
             major_radius=1.1 + i * 0.18,
             minor_radius=0.09,
             location=(x, 0.0, BEAM_Z),
@@ -150,7 +151,7 @@ def build_straw_chamber(index, x, hero):
             rotation=(math.pi / 2, 0.0, 0.0),
             vertices=6,
         )
-        for j in range(7)
+        for j in range(5 if LOW else 7)
     ]
     straw_obj = C.join_objects(straws, f"straw_grid_{index}")
     C.assign_material(straw_obj, "MAT_straw_gold")
@@ -228,7 +229,8 @@ def build_support_frame(props):
         )
     ]
     legs = []
-    for i, x in enumerate((-5.0, -3.6, -2.1, -0.55, 1.0, 2.6, 4.35, 5.9)):
+    leg_xs = (-5.0, -3.6, -2.1, -0.55, 1.0, 2.6, 4.35, 5.9) if not LOW else (-5.0, -2.1, 1.0, 4.35)
+    for i, x in enumerate(leg_xs):
         for j, y in enumerate((-1.55, 1.55)):
             legs.append(C.add_box(f"leg_{i}_{j}", (0.14, 0.14, BEAM_Z - 1.1 - BASE_TOP_Z), location=(x, y, BASE_TOP_Z + 0.1)))
     frame = C.join_objects(rails + feet + legs, "PROP_support_frame")
@@ -307,6 +309,9 @@ def main() -> None:
     scene.camera = cam
 
     C.set_eevee(scene)
+    if LOW:
+        return
+
     scene.render.image_settings.file_format = 'PNG'
     scene.render.film_transparent = False
     scene.render.resolution_percentage = 100

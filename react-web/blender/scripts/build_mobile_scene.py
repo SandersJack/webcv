@@ -10,6 +10,7 @@ import kit_parts as K
 MOBILE_BLEND = os.path.join(C.BLENDER_ROOT, "mobile", "mobile_scene.blend")
 DESKTOP_RES = (1600, 900)
 MOBILE_RES = (430, 932)
+LOW = os.environ.get("WEBCV_DETAIL") == "low"
 
 PLINTH_TOP_Z = 0.45
 PHONE_POS = (0.3, 0.42, 1.78)
@@ -106,13 +107,13 @@ def build_home_hub(props):
     body = C.add_box("hub_body", (0.6, 0.2, 0.85), location=HUB_POS)
     foot = C.add_box("hub_foot", (0.4, 0.3, 0.06), location=(HUB_POS[0], HUB_POS[1], PLINTH_TOP_Z))
     strip = C.add_box(
-        "hub_strip",
+        "PROP_hub_strip",
         (0.44, 0.03, 0.06),
         location=(HUB_POS[0], HUB_POS[1] - 0.11, PLINTH_TOP_Z + 0.55),
         base_origin=False,
     )
     led = C.add_box(
-        "hub_led",
+        "PROP_hub_led",
         (0.06, 0.03, 0.06),
         location=(HUB_POS[0] + 0.18, HUB_POS[1] - 0.11, PLINTH_TOP_Z + 0.72),
         base_origin=False,
@@ -145,7 +146,7 @@ def build_plant_sensor(tag, pos, props):
         f"puck_{tag}", (0.16, 0.16, 0.08), location=(pos[0] + 0.12, pos[1] - 0.1, pos[2] + 0.5), base_origin=False
     )
     dot = C.add_box(
-        f"puck_dot_{tag}", (0.05, 0.05, 0.03), location=(pos[0] + 0.12, pos[1] - 0.1, pos[2] + 0.58), base_origin=False
+        f"PROP_puck_dot_{tag}", (0.05, 0.05, 0.03), location=(pos[0] + 0.12, pos[1] - 0.1, pos[2] + 0.58), base_origin=False
     )
     sensor = C.join_objects([probe, puck], f"PROP_iot_sensor_{tag}")
     C.assign_material(sensor, "MAT_dark_metal")
@@ -161,10 +162,10 @@ def build_signal_arcs(fx):
         ("plant_b", (PLANT_B_POS[0], PLANT_B_POS[1], PLINTH_TOP_Z + 0.75)),
     ]
     for tag, (cx, cy, cz) in devices:
-        for j, radius in enumerate((0.3, 0.48, 0.66)):
+        for j, radius in enumerate((0.3, 0.48, 0.66) if not LOW else (0.36, 0.6)):
             points = []
-            for k in range(9):
-                angle = math.radians(35 + k * 13.75)
+            for k in range(5 if LOW else 9):
+                angle = math.radians(35 + k * (27.5 if LOW else 13.75))
                 points.append((cx + radius * math.cos(angle), cy, cz + radius * math.sin(angle)))
             arc = K.make_tube_curve(f"FX_signal_arc_{tag}_{j}", 0.018, points, [1.0] * len(points))
             C.assign_material(arc, "MAT_cyan_emissive")
@@ -217,6 +218,9 @@ def main() -> None:
     scene.camera = cam
 
     C.set_eevee(scene)
+    if LOW:
+        return
+
     scene.render.image_settings.file_format = 'PNG'
     scene.render.film_transparent = False
     scene.render.resolution_percentage = 100

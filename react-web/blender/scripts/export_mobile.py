@@ -24,6 +24,7 @@ def main() -> None:
         "version": "0.2.0",
         "gridUnit": 1.0,
         "dimensions": dims,
+        "mobileVariant": "blender/exports/models/mobile_scene_mobile.glb",
         "triangleCount": tris,
         "materialCount": mat_count,
         "loadingPriority": "next",
