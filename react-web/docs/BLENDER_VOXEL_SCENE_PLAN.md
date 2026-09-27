@@ -597,6 +597,17 @@ type AssetManifest = {
 
 Set exact budgets after the first detector prototype, then enforce them in CI or an asset validation script.
 
+### Enforced budgets (sprint 6)
+
+`npm run validate:assets` (scripts/validate-assets.mjs, wired into `npm test`) enforces, per scene manifest:
+
+- 12,000 triangles and 250 KB (256,000 bytes) per full scene; low-detail mobile variants must be smaller than their full scene.
+- Manifest schema complete per §13, including `description` (40+ characters) and `publicityLevel: public`.
+- Object naming per §12 with no Blender `.001` suffixes; every `INT_<id>` has its `PIVOT_<id>`; `interactiveDescriptions` keys match `interactiveIds`.
+- `glbFile`, `previewFile`, `previewFileMobile`, and `mobileVariant` all exist on disk; `fileSizeBytes` matches the actual GLB size.
+
+Variants are built by the same scripts with `WEBCV_DETAIL=low` (reduced segment counts, beads, tiles, arcs) and exported as `<id>_mobile.glb` via `blender/scripts/export_variant.py`; the web canvas loads them below the 48rem breakpoint. The EE and BT app tiles on the phone screen are approved branding (the owner's own work); the NA62 model uses no CERN logo or restricted imagery.
+
 Initial guidance:
 
 - Hero asset should favour silhouette and composition over detail.

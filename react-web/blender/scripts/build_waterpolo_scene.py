@@ -10,6 +10,7 @@ from mathutils import Vector
 WATERPOLO_BLEND = os.path.join(C.BLENDER_ROOT, "waterpolo", "waterpolo_scene.blend")
 DESKTOP_RES = (1600, 900)
 MOBILE_RES = (430, 932)
+LOW = os.environ.get("WEBCV_DETAIL") == "low"
 
 DECK_TOP_Z = 0.3
 WATER_Z = 0.2
@@ -126,11 +127,12 @@ def build_tiles(props):
     props.objects.link(tiles)
 
     spots = []
-    for i in range(9):
+    tile_step = 2 if LOW else 1
+    for i in range(0, 9, tile_step):
         y = -1.24 + i * 0.31
         spots.append((-2.97, y))
         spots.append((2.97, y))
-    for i in range(15):
+    for i in range(0, 15, tile_step):
         x = -2.17 + i * 0.31
         spots.append((x, -1.42))
         spots.append((x, 1.42))
@@ -145,14 +147,15 @@ def build_tiles(props):
 def build_lane_ropes(props):
     for i, y in enumerate((-1.1, 1.1)):
         bpy.ops.mesh.primitive_cylinder_add(
-            vertices=8, radius=0.025, depth=5.9, location=(0.0, y, WATER_Z + 0.005), rotation=(0.0, math.pi / 2, 0.0)
+            vertices=6 if LOW else 8, radius=0.025, depth=5.9, location=(0.0, y, WATER_Z + 0.005), rotation=(0.0, math.pi / 2, 0.0)
         )
         line = bpy.context.active_object
         line.name = f"rope_line_{i}"
         C.assign_material(line, "MAT_rubber")
         beads = [line]
-        for j in range(10):
-            x = -2.7 + j * 0.6
+        bead_count = 6 if LOW else 10
+        for j in range(bead_count):
+            x = -2.7 + j * (5.4 / (bead_count - 1))
             bead = C.add_box(f"bead_{i}_{j}", (0.09, 0.09, 0.09), location=(x, y, WATER_Z), base_origin=False)
             C.assign_material(bead, "MAT_off_white" if j % 2 == 0 else "MAT_water_light")
             beads.append(bead)
@@ -199,7 +202,7 @@ def build_goal(tag, x_goal_line, props):
 
 
 def build_ball(fx):
-    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2, radius=0.16, location=BALL_POS)
+    bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=1 if LOW else 2, radius=0.16, location=BALL_POS)
     ball = bpy.context.active_object
     ball.name = "ball_body"
     C.assign_material(ball, "MAT_safety_yellow")
@@ -236,7 +239,7 @@ def build_ball(fx):
 
 
 def build_bubbles(fx):
-    for i, (x, y) in enumerate(((0.6, 0.5), (0.45, 0.7), (0.75, 0.62))):
+    for i, (x, y) in enumerate(((0.6, 0.5), (0.45, 0.7), (0.75, 0.62)) if not LOW else ((0.6, 0.5), (0.75, 0.62))):
         bpy.ops.mesh.primitive_ico_sphere_add(
             subdivisions=1, radius=0.03 + 0.01 * i, location=(x, y, WATER_Z - 0.015)
         )
@@ -286,6 +289,9 @@ def main() -> None:
     scene.camera = cam
 
     C.set_eevee(scene)
+    if LOW:
+        return
+
     scene.render.image_settings.file_format = 'PNG'
     scene.render.film_transparent = False
     scene.render.resolution_percentage = 100

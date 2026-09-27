@@ -12,6 +12,7 @@
     5.4,
     4.4
   ],
+  "mobileVariant": "blender/exports/models/detector_scene_mobile.glb",
   "triangleCount": 2448,
   "materialCount": 8,
   "loadingPriority": "initial",

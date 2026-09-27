@@ -21,6 +21,7 @@ import {
 } from 'three'
 
 import { usePrefersReducedMotion } from '../lib/usePrefersReducedMotion'
+import { useSmallScreen } from '../lib/useSmallScreen'
 import { worldScenes, type WorldScene, type WorldSceneId } from './scenes'
 import { WorldPoster } from './WorldPoster'
 
@@ -112,12 +113,13 @@ function positionCamera(camera: PerspectiveCamera, fit: CameraFit): void {
 
 type AnimatedSceneProps = {
   scene: WorldScene
+  glbUrl: string
   reducedMotion: boolean
   onReady: () => void
 }
 
-function AnimatedScene({ scene, reducedMotion, onReady }: AnimatedSceneProps) {
-  const { scene: model, animations } = useGLTF(scene.glbUrl)
+function AnimatedScene({ scene, glbUrl, reducedMotion, onReady }: AnimatedSceneProps) {
+  const { scene: model, animations } = useGLTF(glbUrl)
   const camera = useThree((state) => state.camera)
   const size = useThree((state) => state.size)
   const mixerRef = useRef<AnimationMixer | null>(null)
@@ -181,8 +183,11 @@ type WorldCanvasProps = {
 export function WorldCanvas({ sceneId }: WorldCanvasProps) {
   const scene = worldScenes[sceneId]
   const reducedMotion = usePrefersReducedMotion()
-  const [ready, setReady] = useState(false)
-  const handleReady = useCallback(() => setReady(true), [])
+  const smallScreen = useSmallScreen()
+  const glbUrl = smallScreen ? scene.mobileGlbUrl : scene.glbUrl
+  const [readyUrl, setReadyUrl] = useState<string | null>(null)
+  const handleReady = useCallback(() => setReadyUrl(glbUrl), [glbUrl])
+  const ready = readyUrl === glbUrl
 
   if (!isWebGLAvailable()) {
     return (
@@ -212,7 +217,9 @@ export function WorldCanvas({ sceneId }: WorldCanvasProps) {
           <directionalLight position={[5.5, 8, 4.5]} intensity={2.4} />
           <Suspense fallback={null}>
             <AnimatedScene
+              key={glbUrl}
               scene={scene}
+              glbUrl={glbUrl}
               reducedMotion={reducedMotion}
               onReady={handleReady}
             />

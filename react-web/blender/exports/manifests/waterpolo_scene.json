@@ -12,6 +12,7 @@
     4.0,
     1.305
   ],
+  "mobileVariant": "blender/exports/models/waterpolo_scene_mobile.glb",
   "triangleCount": 2240,
   "materialCount": 9,
   "loadingPriority": "deferred",
