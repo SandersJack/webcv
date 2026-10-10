@@ -11,14 +11,12 @@ export function MobileDevelopmentPage() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container split split--two split--hero">
-          <div className="flow">
-            <p className="page-hero__eyebrow">{mobilePage.eyebrow}</p>
-            <h1>{mobilePage.heading}</h1>
-            <p className="page-hero__lede">{mobilePage.lede}</p>
-          </div>
-          <LazyWorldCanvas sceneId="mobile_scene" />
+      <section className="page-hero page-hero--fullbleed">
+        <LazyWorldCanvas sceneId="mobile_scene" />
+        <div className="world-hero__overlay flow">
+          <p className="page-hero__eyebrow">{mobilePage.eyebrow}</p>
+          <h1>{mobilePage.heading}</h1>
+          <p className="page-hero__lede">{mobilePage.lede}</p>
         </div>
       </section>
 
