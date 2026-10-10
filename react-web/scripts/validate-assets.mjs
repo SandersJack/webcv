@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const manifestDir = join(root, 'blender', 'exports', 'manifests')
 
-const MAX_TRIANGLES = 12000
-const MAX_BYTES = 256000
+const MAX_TRIANGLES = 15000
+const MAX_BYTES = 200000
 const NAME_PREFIX = /^(SCN|ENV|HERO|PROP|FX|INT|PIVOT|COLL)_/
 const BLENDER_SUFFIX = /\.\d+$/
 const LOADING_PRIORITIES = new Set(['initial', 'next', 'deferred'])

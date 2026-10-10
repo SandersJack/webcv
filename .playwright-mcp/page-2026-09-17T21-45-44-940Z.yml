@@ -1,0 +1,68 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "Jack Sanders" [ref=e6] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary" [ref=e7]:
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Physics" [ref=e10] [cursor=pointer]:
+              - /url: /physics
+          - listitem [ref=e11]:
+            - link "Mobile development" [ref=e12] [cursor=pointer]:
+              - /url: /mobile-development
+          - listitem [ref=e13]:
+            - link "Water polo" [ref=e14] [cursor=pointer]:
+              - /url: /water-polo
+          - listitem [ref=e15]:
+            - link "Projects" [ref=e16] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=e17]:
+            - link "About" [ref=e18] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e19]:
+            - link "Contact" [ref=e20] [cursor=pointer]:
+              - /url: /contact
+  - main [active] [ref=e21]:
+    - generic [ref=e23]:
+      - paragraph [ref=e24]: Jack Sanders
+      - heading "Physicist. Engineer. Developer." [level=1] [ref=e25]
+      - paragraph [ref=e26]: I study rare particle decays at CERN, build software that makes detectors and data usable, and play water polo — this site tells that story as one journey.
+      - paragraph [ref=e27]: Scroll or swipe to explore. Use the section links to jump directly.
+      - generic [ref=e28]:
+        - link "View projects" [ref=e29] [cursor=pointer]:
+          - /url: /projects
+        - link "Get in touch" [ref=e30] [cursor=pointer]:
+          - /url: /contact
+    - generic [ref=e33]:
+      - link [ref=e34] [cursor=pointer]:
+        - /url: /physics
+        - heading "Explore physics" [level=2] [ref=e35]
+        - paragraph [ref=e36]: NA62, kaon tagging, and the search for dark photons.
+      - link [ref=e37] [cursor=pointer]:
+        - /url: /mobile-development
+        - heading "Explore mobile development" [level=2] [ref=e38]
+        - paragraph [ref=e39]: Turning real user needs into reliable connected software.
+      - link [ref=e40] [cursor=pointer]:
+        - /url: /water-polo
+        - heading "Explore water polo" [level=2] [ref=e41]
+        - paragraph [ref=e42]: Discipline, anticipation, and team performance in the pool.
+  - contentinfo [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - paragraph [ref=e46]: Jack Sanders
+        - paragraph [ref=e47]: Physicist. Engineer. Developer.
+      - navigation "Footer" [ref=e48]:
+        - list [ref=e49]:
+          - listitem [ref=e50]:
+            - link "Email" [ref=e51] [cursor=pointer]:
+              - /url: mailto:sandersjack141@gmail.com
+          - listitem [ref=e52]:
+            - link "GitHub" [ref=e53] [cursor=pointer]:
+              - /url: https://github.com/SandersJack
+          - listitem [ref=e54]:
+            - link "LinkedIn" [ref=e55] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/jackdsanders/
+      - paragraph [ref=e56]: © 2026 Jack Sanders. Built with React, Three.js, and stubborn attention to accessibility.

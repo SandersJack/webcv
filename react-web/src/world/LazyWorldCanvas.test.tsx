@@ -10,18 +10,15 @@ const sceneIds: WorldSceneId[] = [
   'waterpolo_scene',
 ]
 
-describe('LazyWorldCanvas poster fallback', () => {
+describe('LazyWorldCanvas loader fallback', () => {
   it.each(sceneIds)(
-    '%s renders the poster image and accessible description while the canvas loads',
+    '%s renders the loader and accessible description while the canvas loads',
     (sceneId) => {
       const scene = worldScenes[sceneId]
       render(<LazyWorldCanvas sceneId={sceneId} />)
 
-      const poster = screen.getByRole('img', { name: scene.description })
-      expect(poster).toHaveAttribute('src', scene.posterUrl)
-      // Explicit dimensions reserve the aspect ratio (no layout shift).
-      expect(poster).toHaveAttribute('width', '1600')
-      expect(poster).toHaveAttribute('height', '900')
+      const loader = screen.getByLabelText('Loading 3D scene')
+      expect(loader).toBeInTheDocument()
 
       expect(
         screen.getByRole('heading', { name: 'Scene description' }),

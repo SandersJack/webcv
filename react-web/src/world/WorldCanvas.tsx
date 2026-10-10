@@ -1,11 +1,9 @@
 import {
-  Component,
   Suspense,
   useCallback,
   useEffect,
   useRef,
   useState,
-  type ReactNode,
 } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
@@ -23,7 +21,7 @@ import {
 import { usePrefersReducedMotion } from '../lib/usePrefersReducedMotion'
 import { useSmallScreen } from '../lib/useSmallScreen'
 import { worldScenes, type WorldScene, type WorldSceneId } from './scenes'
-import { WorldPoster } from './WorldPoster'
+import { WorldErrorBoundary } from './WorldErrorBoundary'
 
 // Decoder is vendored in public/draco (Apache-2.0, Google) so the app never
 // fetches decoders from a third-party CDN. Shared by every world canvas.
@@ -50,31 +48,6 @@ function isWebGLAvailable(): boolean {
     webGLAvailable = false
   }
   return webGLAvailable
-}
-
-type WorldErrorBoundaryProps = {
-  fallback: ReactNode
-  children: ReactNode
-}
-
-type WorldErrorBoundaryState = {
-  hasError: boolean
-}
-
-/** GLB or canvas failures degrade to the poster, never a broken hero. */
-class WorldErrorBoundary extends Component<
-  WorldErrorBoundaryProps,
-  WorldErrorBoundaryState
-> {
-  override state: WorldErrorBoundaryState = { hasError: false }
-
-  static getDerivedStateFromError(): WorldErrorBoundaryState {
-    return { hasError: true }
-  }
-
-  override render() {
-    return this.state.hasError ? this.props.fallback : this.props.children
-  }
 }
 
 type CameraFit = {
@@ -164,11 +137,13 @@ function AnimatedScene({ scene, glbUrl, reducedMotion, onReady }: AnimatedSceneP
   useFrame((state, delta) => {
     const fit = fitRef.current
     if (!fit || !(camera instanceof PerspectiveCamera)) return
-    if (!reducedMotion) {
+    if (!reducedMotion && scene.sway) {
       mixerRef.current?.update(delta)
       fit.azimuth =
         INITIAL_AZIMUTH +
         SWAY_AMPLITUDE * Math.sin(state.clock.elapsedTime * SWAY_SPEED)
+    } else if (!reducedMotion) {
+      mixerRef.current?.update(delta)
     }
     positionCamera(camera, fit)
   })
@@ -191,8 +166,10 @@ export function WorldCanvas({ sceneId }: WorldCanvasProps) {
 
   if (!isWebGLAvailable()) {
     return (
-      <div className="world-hero__stage">
-        <WorldPoster scene={scene} />
+      <div className="world-hero__stage world-hero__stage--loading">
+        <div className="world-hero__loader" aria-label="Loading 3D scene">
+          <span className="visually-hidden">Loading</span>
+        </div>
       </div>
     )
   }
@@ -200,13 +177,17 @@ export function WorldCanvas({ sceneId }: WorldCanvasProps) {
   return (
     <WorldErrorBoundary
       fallback={
-        <div className="world-hero__stage">
-          <WorldPoster scene={scene} />
+        <div className="world-hero__stage world-hero__stage--error">
+          <p>Scene unavailable</p>
         </div>
       }
     >
-      <div className="world-hero__stage">
-        {!ready && <WorldPoster scene={scene} />}
+      <div className={`world-hero__stage${ready ? ' world-hero__stage--ready' : ''}`}>
+        {!ready && (
+          <div className="world-hero__loader" aria-label="Loading 3D scene">
+            <span className="visually-hidden">Loading</span>
+          </div>
+        )}
         <Canvas
           camera={{ fov: 35, near: 0.1, far: 100 }}
           dpr={[1, 2]}

@@ -10,11 +10,11 @@
   "dimensions": [
     7.9,
     4.0,
-    1.305
+    1.38
   ],
   "mobileVariant": "blender/exports/models/waterpolo_scene_mobile.glb",
-  "triangleCount": 2240,
-  "materialCount": 9,
+  "triangleCount": 13180,
+  "materialCount": 20,
   "loadingPriority": "deferred",
   "interactiveIds": [
     "INT_waterpolo_ball"
@@ -24,11 +24,12 @@
     "INT_waterpolo_ball": "The water polo ball - the signature particle in its final form, changed in material, scale, and context. Buoyancy and throw pivots support the ball interaction."
   },
   "publicityLevel": "public",
-  "fileSizeBytes": 59684,
+  "fileSizeBytes": 155512,
   "exportedObjects": [
     "FX_bubble_00",
     "FX_bubble_01",
     "FX_bubble_02",
+    "FX_player_foam",
     "FX_waterpolo_ball",
     "INT_waterpolo_ball",
     "PIVOT_ball_buoyancy",
@@ -47,7 +48,24 @@
     "PROP_line_5m_00",
     "PROP_line_5m_01",
     "PROP_officials_table",
+    "PROP_player_blue_07",
+    "PROP_player_blue_08",
+    "PROP_player_blue_09",
+    "PROP_player_blue_10",
+    "PROP_player_blue_11",
+    "PROP_player_blue_12",
+    "PROP_player_blue_13",
+    "PROP_player_white_00",
+    "PROP_player_white_01",
+    "PROP_player_white_01_arm",
+    "PROP_player_white_02",
+    "PROP_player_white_03",
+    "PROP_player_white_04",
+    "PROP_player_white_05",
+    "PROP_player_white_06",
     "PROP_pool_deck",
+    "PROP_pool_floor",
+    "PROP_pool_floor_lines",
     "PROP_pool_tiles",
     "PROP_pool_walls",
     "PROP_reentry_marker_00",
@@ -105,6 +123,7 @@
     "PROP_tile_47",
     "PROP_water",
     "PROP_water_surface",
+    "PROP_waterline_band",
     "PROP_waterpolo_goal_00",
     "PROP_waterpolo_goal_01"
   ]

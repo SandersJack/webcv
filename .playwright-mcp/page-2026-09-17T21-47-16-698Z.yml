@@ -1,0 +1,107 @@
+- generic [ref=f2e2]:
+  - link "Skip to content" [ref=f2e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f2e4]:
+    - generic [ref=f2e5]:
+      - link "Jack Sanders" [ref=f2e6] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary" [ref=f2e7]:
+        - list [ref=f2e8]:
+          - listitem [ref=f2e9]:
+            - link "Physics" [ref=f2e10] [cursor=pointer]:
+              - /url: /physics
+          - listitem [ref=f2e11]:
+            - link "Mobile development" [ref=f2e12] [cursor=pointer]:
+              - /url: /mobile-development
+          - listitem [ref=f2e13]:
+            - link "Water polo" [ref=f2e14] [cursor=pointer]:
+              - /url: /water-polo
+          - listitem [ref=f2e15]:
+            - link "Projects" [ref=f2e16] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=f2e17]:
+            - link "About" [ref=f2e18] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f2e19]:
+            - link "Contact" [ref=f2e20] [cursor=pointer]:
+              - /url: /contact
+  - main [active] [ref=f2e21]:
+    - generic [ref=f2e23]:
+      - paragraph [ref=f2e24]: Physics PhD — NA62, CERN
+      - heading "Tagging kaons and hunting dark photons" [level=1] [ref=f2e25]
+      - paragraph [ref=f2e26]: "In plain terms: I help build the detectors and software that let physicists pick out one rare decay from billions of particle collisions — and I use that data to search for new physics."
+    - generic [ref=f2e28]:
+      - heading "The research, in plain language" [level=2] [ref=f2e29]
+      - paragraph [ref=f2e30]: The NA62 experiment at CERN measures some of the rarest decays in physics, including K⁺→π⁺νν̄ — a decay so sensitive to new particles that measuring it precisely tests the Standard Model itself.
+      - paragraph [ref=f2e31]: "My doctoral work has two threads: the detector work that makes clean kaon identification possible, and the software and analysis that turn detector signals into physics — including the search for dark photons."
+    - generic [ref=f2e33]:
+      - heading "My contribution to NA62" [level=2] [ref=f2e34]
+      - paragraph [ref=f2e35]: I led the refactoring of the NA62 simulation and reconstruction framework, replacing a hard-coded detector description with a flexible, configuration-driven design now used across the collaboration and integral to the HIKE proposal.
+      - paragraph [ref=f2e36]: I developed the compression of the experiment’s Monte Carlo output, cutting file sizes three-fold to relieve the experiment’s storage pressure.
+      - paragraph [ref=f2e37]: During a six-month long-term attachment at CERN I helped install the new CEDAR-H kaon tagger, then served as detector expert for the CEDAR/KTAG and as an expert for the PC farm.
+    - generic [ref=f2e39]:
+      - heading "How the work gets done" [level=2] [ref=f2e40]
+      - paragraph [ref=f2e41]: "Detector physics: Cherenkov tagging with the CEDAR-H, from test-beam validation to installation and commissioning in the NA62 beamline."
+      - paragraph [ref=f2e42]: "Simulation: large-scale Geant4-based Monte Carlo in C++, with validation techniques such as Geantino scans of detector volumes."
+      - paragraph [ref=f2e43]: "Data: compression, reconstruction, and analysis pipelines in C++ and Python."
+    - generic [ref=f2e45]:
+      - heading "What I built" [level=2] [ref=f2e46]
+      - generic [ref=f2e47]:
+        - link [ref=f2e48] [cursor=pointer]:
+          - /url: /projects/flexible-na62-framework
+          - heading "Flexible NA62 Framework" [level=3] [ref=f2e49]
+          - paragraph [ref=f2e50]: Generalised the NA62 Monte Carlo framework so new detectors can be designed and placed freely from a configuration file.
+        - link [ref=f2e51] [cursor=pointer]:
+          - /url: /projects/slim-mc
+          - heading "Slim MC" [level=3] [ref=f2e52]
+          - paragraph [ref=f2e53]: Compressed NA62 Monte Carlo output to a third of its original size using smaller data types and custom compression.
+    - generic [ref=f2e55]:
+      - heading "Publications" [level=2] [ref=f2e56]
+      - generic [ref=f2e57]:
+        - article [ref=f2e58]:
+          - heading "A new hydrogen-filled Cherenkov detector for kaon tagging at the NA62 experiment at CERN" [level=3] [ref=f2e59]
+          - paragraph [ref=f2e60]:
+            - generic [ref=f2e61]: JINST · 2024 · Main author
+          - paragraph [ref=f2e62]: The precision measurement of K⁺→π⁺νν̄ at NA62 requires kaon identification with time resolution better than 100 ps, at least 95% efficiency, and pion misidentification below 10⁻⁴. A new CEDAR using hydrogen (CEDAR-H) as its radiator gas was developed to reduce material in the beamline, validated in a 2022 test beam, and approved for NA62 data taking from 2023.
+          - paragraph [ref=f2e63]:
+            - link "2024 JINST 19 C05026" [ref=f2e64] [cursor=pointer]:
+              - /url: https://iopscience.iop.org/article/10.1088/1748-0221/19/05/C05026
+        - article [ref=f2e65]:
+          - heading "Development of a new CEDAR for kaon identification at the NA62 experiment at CERN" [level=3] [ref=f2e66]
+          - paragraph [ref=f2e67]:
+            - generic [ref=f2e68]: JINST · 2024 · Corresponding author
+          - paragraph [ref=f2e69]: The CEDAR-H detector minimises material in the beam path by using hydrogen gas as the radiator medium. It was shown to satisfy the kaon tagging requirements in a test beam before installation and commissioning, with performance measured using NA62 data collected in 2023.
+          - paragraph [ref=f2e70]:
+            - link "2024 JINST 19 P05005" [ref=f2e71] [cursor=pointer]:
+              - /url: https://iopscience.iop.org/article/10.1088/1748-0221/19/05/P05005
+        - article [ref=f2e72]:
+          - heading "Neutron spectroscopy with a high-pressure nitrogen-filled spherical proportional counter" [level=3] [ref=f2e73]
+          - paragraph [ref=f2e74]:
+            - generic [ref=f2e75]: NIM · 2023 · Author
+          - paragraph [ref=f2e76]: First neutron measurements with a nitrogen-filled spherical proportional counter at operating pressures up to 1.8 bar, enhancing its prospects as a neutron spectrometer for challenging environments including underground laboratories and industrial and medical settings.
+          - paragraph [ref=f2e77]:
+            - link "j.nima.2023.168124" [ref=f2e78] [cursor=pointer]:
+              - /url: https://www.sciencedirect.com/science/article/pii/S0168900223001146
+      - paragraph [ref=f2e79]: Simplifications on this site are artistic and educational. Detector renderings are illustrative, not engineering drawings, and collaboration work is credited to the collaboration.
+    - generic [ref=f2e82]:
+      - link "View projects" [ref=f2e83] [cursor=pointer]:
+        - /url: /projects
+      - link "Get in touch" [ref=f2e84] [cursor=pointer]:
+        - /url: /contact
+  - contentinfo [ref=f2e85]:
+    - generic [ref=f2e86]:
+      - generic [ref=f2e87]:
+        - paragraph [ref=f2e88]: Jack Sanders
+        - paragraph [ref=f2e89]: Physicist. Engineer. Developer.
+      - navigation "Footer" [ref=f2e90]:
+        - list [ref=f2e91]:
+          - listitem [ref=f2e92]:
+            - link "Email" [ref=f2e93] [cursor=pointer]:
+              - /url: mailto:sandersjack141@gmail.com
+          - listitem [ref=f2e94]:
+            - link "GitHub" [ref=f2e95] [cursor=pointer]:
+              - /url: https://github.com/SandersJack
+          - listitem [ref=f2e96]:
+            - link "LinkedIn" [ref=f2e97] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/jackdsanders/
+      - paragraph [ref=f2e98]: © 2026 Jack Sanders. Built with React, Three.js, and stubborn attention to accessibility.

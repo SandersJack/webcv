@@ -17,14 +17,12 @@ export function PhysicsPage() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container split split--two split--hero">
-          <div className="flow">
-            <p className="page-hero__eyebrow">{physicsPage.eyebrow}</p>
-            <h1>{physicsPage.heading}</h1>
-            <p className="page-hero__lede">{physicsPage.lede}</p>
-          </div>
-          <LazyWorldCanvas sceneId="detector_scene" />
+      <section className="page-hero page-hero--fullbleed">
+        <LazyWorldCanvas sceneId="detector_scene" />
+        <div className="world-hero__overlay flow">
+          <p className="page-hero__eyebrow">{physicsPage.eyebrow}</p>
+          <h1>{physicsPage.heading}</h1>
+          <p className="page-hero__lede">{physicsPage.lede}</p>
         </div>
       </section>
 

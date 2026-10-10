@@ -6,14 +6,12 @@ export function WaterPoloPage() {
 
   return (
     <>
-      <section className="page-hero">
-        <div className="container split split--two split--hero">
-          <div className="flow">
-            <p className="page-hero__eyebrow">{waterPoloPage.eyebrow}</p>
-            <h1>{waterPoloPage.heading}</h1>
-            <p className="page-hero__lede">{waterPoloPage.lede}</p>
-          </div>
-          <LazyWorldCanvas sceneId="waterpolo_scene" />
+      <section className="page-hero page-hero--fullbleed">
+        <LazyWorldCanvas sceneId="waterpolo_scene" />
+        <div className="world-hero__overlay flow">
+          <p className="page-hero__eyebrow">{waterPoloPage.eyebrow}</p>
+          <h1>{waterPoloPage.heading}</h1>
+          <p className="page-hero__lede">{waterPoloPage.lede}</p>
         </div>
       </section>
 
