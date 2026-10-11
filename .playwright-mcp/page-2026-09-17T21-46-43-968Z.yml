@@ -1,0 +1,49 @@
+- generic [ref=f1e2]:
+  - link "Skip to content" [ref=f1e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - link "Jack Sanders" [ref=f1e6] [cursor=pointer]:
+        - /url: /
+      - button "Menu" [ref=f1e7] [cursor=pointer]
+  - main [active] [ref=f1e8]:
+    - generic [ref=f1e10]:
+      - paragraph [ref=f1e11]: Jack Sanders
+      - heading "Physicist. Engineer. Developer." [level=1] [ref=f1e12]
+      - paragraph [ref=f1e13]: I study rare particle decays at CERN, build software that makes detectors and data usable, and play water polo — this site tells that story as one journey.
+      - paragraph [ref=f1e14]: Scroll or swipe to explore. Use the section links to jump directly.
+      - generic [ref=f1e15]:
+        - link "View projects" [ref=f1e16] [cursor=pointer]:
+          - /url: /projects
+        - link "Get in touch" [ref=f1e17] [cursor=pointer]:
+          - /url: /contact
+    - generic [ref=f1e20]:
+      - link [ref=f1e21] [cursor=pointer]:
+        - /url: /physics
+        - heading "Explore physics" [level=2] [ref=f1e22]
+        - paragraph [ref=f1e23]: NA62, kaon tagging, and the search for dark photons.
+      - link [ref=f1e24] [cursor=pointer]:
+        - /url: /mobile-development
+        - heading "Explore mobile development" [level=2] [ref=f1e25]
+        - paragraph [ref=f1e26]: Turning real user needs into reliable connected software.
+      - link [ref=f1e27] [cursor=pointer]:
+        - /url: /water-polo
+        - heading "Explore water polo" [level=2] [ref=f1e28]
+        - paragraph [ref=f1e29]: Discipline, anticipation, and team performance in the pool.
+  - contentinfo [ref=f1e30]:
+    - generic [ref=f1e31]:
+      - generic [ref=f1e32]:
+        - paragraph [ref=f1e33]: Jack Sanders
+        - paragraph [ref=f1e34]: Physicist. Engineer. Developer.
+      - navigation "Footer" [ref=f1e35]:
+        - list [ref=f1e36]:
+          - listitem [ref=f1e37]:
+            - link "Email" [ref=f1e38] [cursor=pointer]:
+              - /url: mailto:sandersjack141@gmail.com
+          - listitem [ref=f1e39]:
+            - link "GitHub" [ref=f1e40] [cursor=pointer]:
+              - /url: https://github.com/SandersJack
+          - listitem [ref=f1e41]:
+            - link "LinkedIn" [ref=f1e42] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/jackdsanders/
+      - paragraph [ref=f1e43]: © 2026 Jack Sanders. Built with React, Three.js, and stubborn attention to accessibility.

@@ -1,0 +1,91 @@
+/*
+ * Design tokens, Jack Sanders portfolio
+ * Source: docs/PRODUCTION_IMPLEMENTATION_PLAN.md §6 (Visual system)
+ * All color combinations target WCAG 2.2 AA on --color-bg.
+ */
+
+:root {
+  /* Surfaces, warm-shifted from pure black so the site reads as lived-in, not
+     clinical. Tones echo the brick/cream of the campus photograph. */
+  --color-bg: #0c0a08;
+  --color-surface: #141210;
+  --color-surface-raised: #1c1a17;
+  --color-border: #2a2622;
+
+  /* Text */
+  --color-text: #f2efe9;
+  --color-text-muted: #a9a599;
+
+  /* Domain accents */
+  --color-science: #6fd3e7;
+  --color-science-strong: #8fe3f5;
+  --color-water: #4f8fdd;
+  --color-water-strong: #7fb3ec;
+  --color-mobile: #c9995c;
+  --color-mobile-strong: #e0b67e;
+
+  /* Campus, pulled from the graduation photograph (brick tower, gown green,
+     sky). Used sparingly for homepage hero and section accents. */
+  --color-campus: #2d5016;
+  --color-campus-strong: #4a7a2a;
+  --color-brick: #b85c38;
+
+  /* Status */
+  --color-success: #5fb98a;
+  --color-warning: #d9a84e;
+  --color-error: #e07a6e;
+
+  /* Focus, deliberately distinct from every accent */
+  --color-focus: #ffd166;
+
+  /* Typography */
+  --font-body:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-display: var(--font-body);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --text-3xl: clamp(1.875rem, 1.4rem + 2.4vw, 2.75rem);
+  --text-4xl: clamp(2.25rem, 1.6rem + 3.5vw, 3.75rem);
+
+  --line-tight: 1.2;
+  --line-body: 1.6;
+  --measure: 65ch;
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Shape */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* Elevation */
+  --shadow-raised: 0 8px 24px rgb(0 0 0 / 0.45);
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --motion-med: 300ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+
+  /* Layout */
+  --container-max: 72rem;
+  --container-pad: var(--space-5);
+  --header-height: 4rem;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px var(--color-bg), 0 0 0 6px var(--color-focus);
+}

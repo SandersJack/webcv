@@ -1,0 +1,110 @@
+import {
+  SiCplusplus,
+  SiDocker,
+  SiFastapi,
+  SiFirebase,
+  SiJavascript,
+  SiKotlin,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiSupabase,
+  SiSwift,
+  SiTypescript,
+  SiFlutter,
+  SiMysql,
+  SiLinux,
+  SiDart,
+  SiVite,
+  SiTailwindcss,
+  SiSelenium,
+  SiC,
+} from 'react-icons/si'
+import {
+  FiCode,
+  FiAperture,
+  FiDroplet,
+  FiServer,
+  FiCpu,
+  FiDatabase,
+  FiUsers,
+  FiTarget,
+  FiMessageSquare,
+  FiHeart,
+  FiTrendingUp,
+  FiFileText,
+  FiMonitor,
+  FiActivity,
+  FiAward,
+  FiCompass,
+  FiLayers,
+} from 'react-icons/fi'
+
+export type Skill = {
+  name: string
+  icon: React.ComponentType<{ className?: string }>
+  gold?: boolean
+}
+
+export const toolsAndPlatforms: Skill[] = [
+  { name: 'Flutter', icon: SiFlutter, gold: true },
+  { name: 'Dart', icon: SiDart , gold: true},
+  { name: 'React', icon: SiReact },
+  { name: 'React Native', icon: SiReact, gold: true },
+  { name: 'Expo', icon: SiReact },
+  { name: 'Python', icon: SiPython, gold: true },
+  { name: 'TypeScript', icon: SiTypescript, gold: true },
+  { name: 'JavaScript', icon: SiJavascript },
+  { name: 'C++', icon: SiCplusplus, gold: true },
+  { name: 'C', icon: SiC, gold: true },
+  { name: 'Swift', icon: SiSwift },
+  { name: 'Kotlin', icon: SiKotlin },
+  { name: 'Firebase', icon: SiFirebase },
+  { name: 'Docker', icon: SiDocker, gold: true },
+  { name: 'Linux', icon: SiLinux, gold: true },
+  { name: 'SQL', icon: SiMysql },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'TimescaleDB', icon: FiDatabase },
+  { name: 'Supabase', icon: SiSupabase },
+  { name: 'FastAPI', icon: SiFastapi },
+  { name: 'SQLAlchemy', icon: SiPython },
+  { name: 'Alembic', icon: SiPython },
+  { name: 'Pydantic', icon: SiFastapi },
+  { name: 'MQTT', icon: FiServer },
+  { name: 'Mosquitto', icon: FiServer },
+  { name: 'Vite', icon: SiVite },
+  { name: 'TailwindCSS', icon: SiTailwindcss },
+  { name: 'Selenium', icon: SiSelenium },
+  { name: 'BLoC', icon: SiFlutter },
+  { name: 'ESP32', icon: FiCpu },
+  { name: 'PlatformIO', icon: FiCpu },
+  { name: 'Geant4', icon: FiLayers, gold: true},
+  { name: 'REST APIs', icon: FiServer },
+]
+
+export const skills: Skill[] = [
+  ...toolsAndPlatforms,
+  { name: 'Monte Carlo', icon: FiTarget },
+  { name: 'Data analysis', icon: FiTrendingUp },
+  { name: 'Scientific writing', icon: FiFileText },
+  { name: 'Presenting', icon: FiMonitor },
+  { name: 'CERN', icon: FiAperture },
+  { name: 'NA62', icon: FiAperture },
+  { name: 'HIKE', icon: FiAperture },
+  { name: 'Particle physics', icon: FiActivity },
+  { name: 'University of Birmingham', icon: FiAward },
+  { name: 'Teamwork', icon: FiUsers },
+  { name: 'Leadership', icon: FiAward },
+  { name: 'Communication', icon: FiMessageSquare },
+  { name: 'Coaching', icon: FiCompass },
+  { name: 'Fitness', icon: FiHeart },
+  { name: 'Strategy', icon: FiTarget },
+]
+
+export type PathIcon = React.ComponentType<{ className?: string }>
+
+export const pathIcons: Record<string, PathIcon> = {
+  '/software-development': FiCode,
+  '/physics': FiAperture,
+  '/water-polo': FiDroplet,
+}

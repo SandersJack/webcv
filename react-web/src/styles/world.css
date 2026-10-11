@@ -1,0 +1,112 @@
+/* World hero embeds, Blender voxel scenes in page heroes */
+
+.world-hero {
+  /* Let the grid column shrink on narrow viewports. */
+  min-inline-size: 0;
+}
+
+.world-hero__stage {
+  position: relative;
+  block-size: clamp(20rem, 55vh, 34rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.world-hero__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.world-hero__loader::before {
+  content: '';
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  opacity: 0.3;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.15; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-hero__loader::before {
+    animation: none;
+    opacity: 0.2;
+  }
+}
+
+.world-hero__stage--ready .world-hero__loader {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.world-hero__stage--error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+}
+
+/* Hero split: text and canvas side by side, vertically centred, on wide
+   viewports; stacked with the canvas below the lede on narrow ones. */
+@media (min-width: 48.01rem) {
+  .split--hero {
+    align-items: center;
+  }
+}
+
+/* Full-bleed hero (water polo): the canvas spans the whole viewport with no
+   card chrome, and the heading block sits on a gradient scrim in the
+   lower-left corner. Scoped to .page-hero--fullbleed so the boxed
+   .split--hero heroes on other pages are unaffected. No motion is introduced
+   here; the canvas itself already honours prefers-reduced-motion. */
+.page-hero--fullbleed {
+  position: relative;
+  padding-block: 0;
+  margin-block-start: calc(-1 * var(--header-height));
+}
+
+.page-hero--fullbleed .world-hero__stage {
+  block-size: clamp(20rem, 50vh, 28rem);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.page-hero--fullbleed .world-hero__overlay {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 1;
+  padding-block: var(--space-8) var(--space-6);
+  padding-inline: max(
+    var(--space-6),
+    calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+  );
+  background: linear-gradient(
+    to top,
+    var(--color-bg) 0%,
+    color-mix(in srgb, var(--color-bg) 55%, transparent) 45%,
+    transparent 100%
+  );
+}
+
+.page-hero--fullbleed .world-hero__overlay > * {
+  max-inline-size: var(--measure);
+}
+
+@media (min-width: 48.01rem) {
+  .page-hero--fullbleed .world-hero__stage {
+    block-size: clamp(24rem, 60vh, 36rem);
+  }
+}

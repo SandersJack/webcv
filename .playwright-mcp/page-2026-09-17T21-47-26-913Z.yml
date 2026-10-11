@@ -1,0 +1,71 @@
+- generic [ref=f3e2]:
+  - link "Skip to content" [ref=f3e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f3e4]:
+    - generic [ref=f3e5]:
+      - link "Jack Sanders" [ref=f3e6] [cursor=pointer]:
+        - /url: /
+      - navigation "Primary" [ref=f3e7]:
+        - list [ref=f3e8]:
+          - listitem [ref=f3e9]:
+            - link "Physics" [ref=f3e10] [cursor=pointer]:
+              - /url: /physics
+          - listitem [ref=f3e11]:
+            - link "Mobile development" [ref=f3e12] [cursor=pointer]:
+              - /url: /mobile-development
+          - listitem [ref=f3e13]:
+            - link "Water polo" [ref=f3e14] [cursor=pointer]:
+              - /url: /water-polo
+          - listitem [ref=f3e15]:
+            - link "Projects" [ref=f3e16] [cursor=pointer]:
+              - /url: /projects
+          - listitem [ref=f3e17]:
+            - link "About" [ref=f3e18] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f3e19]:
+            - link "Contact" [ref=f3e20] [cursor=pointer]:
+              - /url: /contact
+  - main [active] [ref=f3e21]:
+    - generic [ref=f3e23]:
+      - heading "Jack Sanders" [level=1] [ref=f3e24]
+      - paragraph [ref=f3e25]: Physicist. Engineer. Developer.
+      - list [ref=f3e26]:
+        - listitem [ref=f3e27]:
+          - link "Email" [ref=f3e28] [cursor=pointer]:
+            - /url: mailto:sandersjack141@gmail.com
+        - listitem [ref=f3e29]:
+          - link "GitHub" [ref=f3e30] [cursor=pointer]:
+            - /url: https://github.com/SandersJack
+        - listitem [ref=f3e31]:
+          - link "LinkedIn" [ref=f3e32] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/jackdsanders/
+    - generic [ref=f3e34]:
+      - heading "Send a message" [level=2] [ref=f3e35]
+      - generic [ref=f3e36]:
+        - generic [ref=f3e37]:
+          - generic [ref=f3e38]: Name
+          - textbox "Name" [ref=f3e39]
+        - generic [ref=f3e40]:
+          - generic [ref=f3e41]: Email
+          - textbox "Email" [ref=f3e42]
+        - generic [ref=f3e43]:
+          - generic [ref=f3e44]: Message
+          - textbox "Message" [ref=f3e45]
+        - button "Send message" [ref=f3e46] [cursor=pointer]
+  - contentinfo [ref=f3e47]:
+    - generic [ref=f3e48]:
+      - generic [ref=f3e49]:
+        - paragraph [ref=f3e50]: Jack Sanders
+        - paragraph [ref=f3e51]: Physicist. Engineer. Developer.
+      - navigation "Footer" [ref=f3e52]:
+        - list [ref=f3e53]:
+          - listitem [ref=f3e54]:
+            - link "Email" [ref=f3e55] [cursor=pointer]:
+              - /url: mailto:sandersjack141@gmail.com
+          - listitem [ref=f3e56]:
+            - link "GitHub" [ref=f3e57] [cursor=pointer]:
+              - /url: https://github.com/SandersJack
+          - listitem [ref=f3e58]:
+            - link "LinkedIn" [ref=f3e59] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/jackdsanders/
+      - paragraph [ref=f3e60]: © 2026 Jack Sanders. Built with React, Three.js, and stubborn attention to accessibility.
