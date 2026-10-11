@@ -242,6 +242,7 @@ textarea.field__control {
 /* Status messages */
 
 .status {
+  margin-top: 1rem;
   border-radius: var(--radius-md);
   padding: var(--space-4);
   border: 1px solid var(--color-border);
