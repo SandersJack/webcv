@@ -1,15 +1,16 @@
 /*
- * Design tokens — Jack Sanders portfolio
+ * Design tokens, Jack Sanders portfolio
  * Source: docs/PRODUCTION_IMPLEMENTATION_PLAN.md §6 (Visual system)
  * All color combinations target WCAG 2.2 AA on --color-bg.
  */
 
 :root {
-  /* Surfaces */
-  --color-bg: #08090a;
-  --color-surface: #101318;
-  --color-surface-raised: #171b22;
-  --color-border: #262c36;
+  /* Surfaces, warm-shifted from pure black so the site reads as lived-in, not
+     clinical. Tones echo the brick/cream of the campus photograph. */
+  --color-bg: #0c0a08;
+  --color-surface: #141210;
+  --color-surface-raised: #1c1a17;
+  --color-border: #2a2622;
 
   /* Text */
   --color-text: #f2efe9;
@@ -23,12 +24,18 @@
   --color-mobile: #c9995c;
   --color-mobile-strong: #e0b67e;
 
+  /* Campus, pulled from the graduation photograph (brick tower, gown green,
+     sky). Used sparingly for homepage hero and section accents. */
+  --color-campus: #2d5016;
+  --color-campus-strong: #4a7a2a;
+  --color-brick: #b85c38;
+
   /* Status */
   --color-success: #5fb98a;
   --color-warning: #d9a84e;
   --color-error: #e07a6e;
 
-  /* Focus — deliberately distinct from every accent */
+  /* Focus, deliberately distinct from every accent */
   --color-focus: #ffd166;
 
   /* Typography */

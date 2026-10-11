@@ -6,24 +6,24 @@ export type RouteMetadata = {
 }
 
 /**
- * Unique title and description per route (plan §11 — SEO, metadata, sharing).
+ * Unique title and description per route (plan §11, SEO, metadata, sharing).
  * Order matters: the first matching pattern wins.
  */
 export const routeMetadata: RouteMetadata[] = [
   {
     pattern: '/',
-    title: 'Jack Sanders — Physicist, Engineer, Developer',
+    title: 'Jack Sanders, Physicist, Engineer, Developer',
     description:
       'The interactive portfolio of Jack Sanders: particle physics PhD researcher, software developer, and water polo player.',
   },
   {
     pattern: '/physics',
-    title: 'Physics — NA62 and the search for dark photons',
+    title: 'Physics, NA62 and the search for dark photons',
     description:
       "Jack Sanders' particle physics research: the NA62 experiment at CERN, the CEDAR-H kaon tagger, detector software, and analysis work.",
   },
   {
-    pattern: '/mobile-development',
+    pattern: '/software-development',
     title: 'Mobile development',
     description:
       'Mobile development at BT/EE and beyond: Jack Sanders builds reliable consumer app experiences across Flutter, React Native, Swift, and Kotlin.',

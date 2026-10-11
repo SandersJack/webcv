@@ -1,4 +1,4 @@
-/* World hero embeds — Blender voxel scenes in page heroes */
+/* World hero embeds, Blender voxel scenes in page heroes */
 
 .world-hero {
   /* Let the grid column shrink on narrow viewports. */
@@ -73,10 +73,11 @@
 .page-hero--fullbleed {
   position: relative;
   padding-block: 0;
+  margin-block-start: calc(-1 * var(--header-height));
 }
 
 .page-hero--fullbleed .world-hero__stage {
-  block-size: clamp(24rem, 62vh, 34rem);
+  block-size: clamp(20rem, 50vh, 28rem);
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -106,6 +107,6 @@
 
 @media (min-width: 48.01rem) {
   .page-hero--fullbleed .world-hero__stage {
-    block-size: clamp(30rem, 75vh, 46rem);
+    block-size: clamp(24rem, 60vh, 36rem);
   }
 }

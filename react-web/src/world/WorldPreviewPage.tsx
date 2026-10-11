@@ -9,7 +9,7 @@ useGLTF.setDecoderPath('/draco/')
 
 // Mirrors blender/exports/manifests; the whitelist keeps the dev route from
 // resolving arbitrary paths.
-const KNOWN_MODELS = new Set(['detector_scene', 'mobile_scene', 'style_test', 'waterpolo_scene'])
+const KNOWN_MODELS = new Set(['detector_scene', 'mobile_scene', 'software_scene', 'style_test', 'waterpolo_scene'])
 const DEFAULT_MODEL = 'detector_scene'
 
 function SceneModel({ model }: { model: string }) {

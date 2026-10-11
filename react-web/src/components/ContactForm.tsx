@@ -30,13 +30,13 @@ function statusView(status: FormStatus): StatusView | null {
     case 'success':
       return {
         className: 'status status--success',
-        content: "Message sent — thank you. I'll reply as soon as I can.",
+        content: "Message sent, thank you. I'll reply as soon as I can.",
       }
     case 'rate-limited':
       return {
         className: 'status status--error',
         content:
-          'This form is rate limited. Please wait a few minutes and try again — your message has been kept.',
+          'This form is rate limited. Please wait a few minutes and try again, your message has been kept.',
       }
     case 'server':
       return {
@@ -44,7 +44,7 @@ function statusView(status: FormStatus): StatusView | null {
         content: (
           <>
             The message could not be sent. Please try again, or email{' '}
-            <a href={`mailto:${profile.email}`}>{profile.email}</a> directly —
+            <a href={`mailto:${profile.email}`}>{profile.email}</a> directly and
             your message has been kept.
           </>
         ),
@@ -53,7 +53,7 @@ function statusView(status: FormStatus): StatusView | null {
       return {
         className: 'status status--error',
         content:
-          'You appear to be offline. Check your connection and try again — your message has been kept.',
+          'You appear to be offline. Check your connection and try again, your message has been kept.',
       }
   }
 }

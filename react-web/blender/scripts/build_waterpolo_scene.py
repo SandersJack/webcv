@@ -287,6 +287,15 @@ def main() -> None:
 
     cam = bpy.data.objects.get("CAM_hero")
     scene.camera = cam
+    
+    cam.location = Vector((7.0, -7.0, 5.5))
+    pivot = bpy.data.objects.get("PIVOT_cam_target")
+    if pivot:
+        pivot.location = Vector((0.0, 0.0, 1.5))
+        from mathutils import Quaternion
+        rot_quat = (pivot.location - cam.location).to_track_quat('-Z', 'Y')
+        cam.rotation_euler = rot_quat.to_euler()
+    cam.data.lens = 35
 
     C.set_eevee(scene)
     if LOW:
