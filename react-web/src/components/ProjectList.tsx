@@ -8,7 +8,7 @@ type ProjectListProps = {
 
 export function ProjectList({ projects }: ProjectListProps) {
   if (projects.length === 0) {
-    return <p>No public projects to show yet — please check back soon.</p>
+    return <p>No public projects to show yet, please check back soon.</p>
   }
 
   return (

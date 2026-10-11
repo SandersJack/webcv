@@ -1,5 +1,5 @@
 /**
- * Project case-study model (plan §4 — projects and case studies).
+ * Project case-study model (plan §4, projects and case studies).
  * Every entry is backed by the live portfolio; `publicityLevel` guards
  * against publishing details that have not been approved.
  */
@@ -26,11 +26,104 @@ export type Project = {
   limitations: string
   technologies: string[]
   links: ProjectLink[]
-  relatedPath: 'physics' | 'mobile' | 'water' | null
+  relatedPath: 'physics' | 'software' | 'water' | null
   publicityLevel: 'public' | 'review-required'
 }
 
 export const projects: Project[] = [
+  {
+    id: 'polostat',
+    title: 'PoloStat',
+    category: 'software',
+    summary:
+      'Full-stack water polo statistics platform: Flutter iOS app, Python FastAPI backend, web admin dashboard, and automated scrapers covering British and European leagues.',
+    status: 'in-progress',
+    year: '2025',
+    role: 'Sole developer',
+    team: 'Personal project',
+    problem:
+      'British water polo lacks a centralised, public way to follow league standings, match results, and player statistics across clubs.',
+    approach: [
+      'Flutter iOS app using clean architecture with BLoC state management and go_router navigation.',
+      'Python FastAPI backend with SQLAlchemy ORM, Pydantic models, and Firebase Cloud Messaging for push notifications.',
+      'React + TypeScript admin dashboard built with Vite and TailwindCSS, deployed behind Nginx.',
+      'Automated Python scrapers using Selenium to pull live scores and fixtures from European water polo sources.',
+      'Supabase for authentication, PostgreSQL database, and avatar storage with row-level security.',
+      'Docker Compose orchestration with Watchtower for zero-downtime deployments from Docker Hub.',
+    ],
+    result: 'A working platform covering multiple British water polo leagues, with an admin dashboard for content management, automated scraping, and push notifications for game reminders.',
+    limitations: 'Still in development. iOS app is distributed via TestFlight invite only; some features like advanced analytics, cross-league search, and social features are planned.',
+    technologies: [
+      'Flutter',
+      'Dart',
+      'Python',
+      'FastAPI',
+      'SQLAlchemy',
+      'Pydantic',
+      'React',
+      'TypeScript',
+      'Vite',
+      'TailwindCSS',
+      'Supabase',
+      'PostgreSQL',
+      'Firebase',
+      'Selenium',
+      'Docker',
+      'BLoC',
+    ],
+    links: [
+      { label: 'Request access', href: '#' },
+    ],
+    relatedPath: 'software',
+    publicityLevel: 'public',
+  },
+  {
+    id: 'plantpulse',
+    title: 'PlantPulse',
+    category: 'software',
+    summary:
+      'Full-stack IoT plant monitoring platform: ESP32 sensor nodes, MQTT ingestion, FastAPI backend, TimescaleDB, and React Native app with BLE provisioning.',
+    status: 'in-progress',
+    year: '2025',
+    role: 'Sole developer',
+    team: 'Personal project',
+    problem:
+      'Plant owners want to monitor soil moisture, light, and temperature remotely, but off-the-shelf solutions are expensive or locked into proprietary ecosystems.',
+    approach: [
+      'React Native (Expo) mobile app for iOS and Android with QR-based device pairing and BLE WiFi provisioning.',
+      'ESP32-C3 firmware in C++ (PlatformIO) with deep sleep, capacitive soil moisture, BME280, and BH1750 sensors running on real hardware.',
+      'FastAPI backend with separate MQTT consumer worker using aiomqtt for telemetry ingestion.',
+      'TimescaleDB hypertable for time-series sensor data with continuous aggregates and retention policies.',
+      'Mosquitto MQTT broker with per-device credentials, topic ACLs, and Last Will & Testament for offline detection.',
+      'Firebase Cloud Messaging for push notifications (low moisture, low battery, device offline).',
+      'Docker Compose development stack with mock sensor fleet for testing without hardware.',
+      'Alembic database migrations with idempotent upserts for QoS 1 redelivery tolerance.',
+    ],
+    result: 'A working platform with live telemetry from real ESP32 sensors, device provisioning via QR scan and BLE, historical charts, and push notifications for plant care alerts.',
+    limitations: 'Production deployment requires HTTPS, TLS MQTT, and a real email provider. Currently uses development JWT secrets and plain MQTT for local testing.',
+    technologies: [
+      'React Native',
+      'Expo',
+      'TypeScript',
+      'Python',
+      'FastAPI',
+      'SQLAlchemy',
+      'Alembic',
+      'aiomqtt',
+      'TimescaleDB',
+      'PostgreSQL',
+      'Mosquitto',
+      'MQTT',
+      'Firebase',
+      'Docker',
+      'ESP32',
+      'PlatformIO',
+      'C++',
+    ],
+    links: [],
+    relatedPath: 'software',
+    publicityLevel: 'public',
+  },
   {
     id: 'flexible-na62-framework',
     title: 'Flexible NA62 Framework',
@@ -72,7 +165,7 @@ export const projects: Project[] = [
     role: 'Developer',
     team: 'NA62 collaboration software team',
     problem:
-      'NA62 analysis requires large volumes of simulation — around a petabyte of Monte Carlo output — but as a small experiment, storage is limited and most of it is reserved for collected data.',
+      'NA62 analysis requires large volumes of simulation, around a petabyte of Monte Carlo output, but as a small experiment, storage is limited and most of it is reserved for collected data.',
     approach: [
       'Reduced data types where physics precision allowed: doubles to floats, ints to shorts.',
       'Implemented custom compression algorithms tuned to the simulation output.',
@@ -98,7 +191,7 @@ export const projects: Project[] = [
     team: 'NA62 collaboration',
     problem:
       'The search for dark photons is a key part of the NA62 physics programme beyond its flagship kaon measurements.',
-    approach: ['Analysis in progress — details will be published when approved.'],
+    approach: ['Analysis in progress, details will be published when approved.'],
     result: 'Work in progress; results are not yet public.',
     limitations:
       'Analysis details are restricted until approved for release by the collaboration.',
@@ -256,7 +349,7 @@ export const projects: Project[] = [
     title: 'This Site',
     category: 'web',
     summary:
-      'The portfolio you are reading — rebuilt as an accessible React app with an interactive 3D world.',
+      'The portfolio you are reading, rebuilt as an accessible React app with an interactive 3D world.',
     status: 'in-progress',
     year: '2026',
     role: 'Sole developer',
@@ -268,7 +361,7 @@ export const projects: Project[] = [
       'Static assets served through NGINX in Docker behind a reverse proxy.',
     ],
     result: 'In development; the original static site remains live until cutover.',
-    limitations: 'The 3D world ships progressively — HTML content first.',
+    limitations: 'The 3D world ships progressively, HTML content first.',
     technologies: ['React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'NGINX'],
     links: [{ label: 'Original site source', href: 'https://github.com/SandersJack/webcv' }],
     relatedPath: null,

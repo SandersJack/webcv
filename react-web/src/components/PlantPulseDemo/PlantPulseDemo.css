@@ -1,0 +1,109 @@
+/* Screenshot Gallery - Infinite auto-scroll carousel
+ *
+ * The track holds two identical sets of slides side-by-side.
+ * CSS animates translateX from 0 to -50%, which lands exactly
+ * on the start of the second set — visually identical to 0 —
+ * so the loop is seamless.
+ *
+ * Spacing uses margin-right on items (not gap on the container)
+ * so each item's "width + spacing" is a single unit, making the
+ * 50% offset align perfectly.
+ */
+.screenshot-gallery {
+  position: relative;
+  padding: var(--space-4) 0;
+  overflow: hidden;
+}
+
+.screenshot-gallery__track {
+  overflow: hidden;
+  padding: var(--space-2) var(--container-pad);
+  max-width: 100%;
+}
+
+.screenshot-gallery__set {
+  display: flex;
+  width: max-content;
+  animation: screenshot-gallery-scroll 50s linear infinite;
+  will-change: transform;
+}
+
+.screenshot-gallery:hover .screenshot-gallery__set {
+  animation-play-state: paused;
+}
+
+@keyframes screenshot-gallery-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screenshot-gallery__set {
+    animation: none;
+  }
+
+  .screenshot-gallery__track {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .screenshot-gallery__item {
+    flex: 0 0 auto;
+  }
+}
+
+.screenshot-gallery__item {
+  flex: 0 0 280px;
+  max-width: 280px;
+  margin: 0;
+  margin-right: var(--space-4);
+}
+
+.screenshot-gallery--landscape .screenshot-gallery__item {
+  flex: 0 0 480px;
+  max-width: 480px;
+}
+
+.screenshot-gallery__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-raised);
+  background: var(--color-surface);
+}
+
+.screenshot-gallery__label {
+  text-align: center;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Fade edges to hint at scrollable content */
+.screenshot-gallery::before,
+.screenshot-gallery::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.screenshot-gallery::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.screenshot-gallery::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}

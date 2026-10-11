@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+blender/*
+!blender/exports
+docs
+*.md
+.vscode
+.idea
+.DS_Store
+.playwright-mcp
+.omo
+.codegraph
+*.tsbuildinfo

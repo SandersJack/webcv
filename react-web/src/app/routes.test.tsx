@@ -13,11 +13,11 @@ function expectedTitleFor(pathname: string): string {
 }
 
 const cases = [
-  { route: '/', heading: 'Physicist. Engineer. Developer.' },
+  { route: '/', heading: 'PhD particle physicist turned software engineer.' },
   { route: '/physics', heading: 'Tagging kaons and hunting dark photons' },
   {
-    route: '/mobile-development',
-    heading: 'Software that survives contact with real users',
+    route: '/software-development',
+    heading: 'Building products used by millions',
   },
   {
     route: '/water-polo',
@@ -30,7 +30,7 @@ const cases = [
   },
   {
     route: '/about',
-    heading: 'One thread through physics, software, and water',
+    heading: 'One thread through software, physics, and water',
   },
   { route: '/contact', heading: 'Jack Sanders' },
   { route: '/no-such-page', heading: 'Page not found' },

@@ -7,7 +7,7 @@ import { Header } from './Header'
 
 const navLabels = [
   'Physics',
-  'Mobile development',
+  'Software development',
   'Water polo',
   'Projects',
   'About',

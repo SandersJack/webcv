@@ -52,7 +52,7 @@ describe('ContactForm', () => {
 
     expect(
       await screen.findByText(
-        "Message sent — thank you. I'll reply as soon as I can.",
+        "Message sent, thank you. I'll reply as soon as I can.",
       ),
     ).toBeInTheDocument()
     expect(screen.getByLabelText('Name')).toHaveValue('')

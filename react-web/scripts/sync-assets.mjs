@@ -19,7 +19,7 @@ console.log(
 
 // Hero posters: the desktop preview of each MLE scene, copied under the scene
 // id so the registry can reference /models/posters/<id>.png.
-const MLE_SCENE_IDS = ['detector_scene', 'mobile_scene', 'waterpolo_scene']
+const MLE_SCENE_IDS = ['detector_scene', 'mobile_scene', 'software_scene', 'waterpolo_scene']
 const manifestDir = join(root, 'blender', 'exports', 'manifests')
 const posterDest = join(dest, 'posters')
 mkdirSync(posterDest, { recursive: true })

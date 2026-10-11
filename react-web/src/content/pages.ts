@@ -1,18 +1,18 @@
 /**
  * Page-level copy. Every factual claim traces to the live portfolio or the
  * approved plan; slots marked TODO(content) await Jack's verified input
- * (plan §10 — content workflow).
+ * (plan §10, content workflow).
  */
 
 export const homePage = {
   eyebrow: 'Jack Sanders',
-  heading: 'Physicist. Engineer. Developer.',
-  lede: 'I study rare particle decays at CERN, build software that makes detectors and data usable, and play water polo — this site tells that story as one journey.',
+  heading: 'PhD particle physicist turned software engineer.',
+  lede: 'I build the WiFi control apps used by BT and EE customers. Outside of work, I study rare particle decays at CERN and play water polo. This site showcases some of my academic, personal and professional projects.',
   paths: [
     {
-      to: '/mobile-development',
-      label: 'Explore mobile development',
-      description: 'Turning real user needs into reliable connected software.',
+      to: '/software-development',
+      label: 'Explore software development',
+      description: 'Flutter and React Native apps for BT and EE broadband customers.',
     },
     {
       to: '/physics',
@@ -27,22 +27,25 @@ export const homePage = {
   ],
   primaryActions: [
     { to: '/projects', label: 'View projects' },
-    { to: '/contact', label: 'Get in touch' },
+    { to: '/contact', label: 'Contact me' },
   ],
-  instruction:
-    'Scroll or swipe to explore. Use the section links to jump directly.',
+  proofPoints: [
+    { value: 'PhD', label: 'Particle physics, CERN' },
+    { value: 'BT', label: 'Flutter + React Native' },
+    { value: 'Wales', label: 'Water polo' },
+  ],
 }
 
 export const physicsPage = {
-  eyebrow: 'Physics PhD — NA62, CERN',
+  eyebrow: 'Physics PhD, NA62, CERN',
   heading: 'Tagging kaons and hunting dark photons',
-  lede: 'In plain terms: I help build the detectors and software that let physicists pick out one rare decay from billions of particle collisions — and I use that data to search for new physics.',
+  lede: 'In plain terms: I help build the detectors and software that let physicists pick out one rare decay from billions of particle collisions, and I use that data to search for new physics.',
   sections: {
     research: {
       title: 'The research, in plain language',
       body: [
-        'The NA62 experiment at CERN measures some of the rarest decays in physics, including K⁺→π⁺νν̄ — a decay so sensitive to new particles that measuring it precisely tests the Standard Model itself.',
-        'My doctoral work has two threads: the detector work that makes clean kaon identification possible, and the software and analysis that turn detector signals into physics — including the search for dark photons.',
+        'The NA62 experiment at CERN measures some of the rarest decays in physics, including K⁺→π⁺νν̄, a decay so sensitive to new particles that measuring it precisely tests the Standard Model itself.',
+        'My doctoral work has two threads: the detector work that makes clean kaon identification possible, and the software and analysis that turn detector signals into physics, including the search for dark photons.',
       ],
     },
     contribution: {
@@ -66,36 +69,16 @@ export const physicsPage = {
   },
 }
 
-export const mobilePage = {
-  eyebrow: 'Mobile & software development',
-  heading: 'Software that survives contact with real users',
-  lede: 'The same instincts that make good analysis code — clear state, honest error handling, measured performance — make good products.',
+export const softwarePage = {
+  eyebrow: 'Software development',
+  heading: 'Building products used by millions',
+  lede: 'I build and ship Flutter and React Native apps for the BT and EE consumer brands, focusing on broadband and home wifi. The same instincts that make good analysis code, clear state, honest error handling, measured performance, make good products.',
   sections: {
-    intro: {
-      title: 'How I build',
+    approach: {
+      title: 'How I work',
       body: [
-        'I care about the whole path from a user’s need to a reliable release: platform choices made deliberately, state kept minimal and explicit, networking that fails gracefully, and testing that checks behaviour rather than implementation.',
+        'I care about the whole path from a problem to a reliable release: platform choices made deliberately, state kept minimal and explicit, networking that fails gracefully, and testing that checks behaviour rather than implementation.',
         'Accessibility and release quality are part of the definition of done, not polish added later.',
-      ],
-    },
-    experience: {
-      title: 'Professional experience',
-      body: [
-        'I am a mobile developer at BT/EE, where for the past year I have built and shipped features for a large consumer app.',
-        'The work spans Flutter and React Native, alongside native iOS and Android development in Swift and Kotlin.',
-      ],
-    },
-    projects: {
-      title: 'Selected projects',
-      body: [
-        'My public work spans connected devices, dashboards, and web apps — see the projects page for full case studies.',
-      ],
-    },
-    demo: {
-      title: 'A live demonstration',
-      // TODO(content): the shared physics trajectory demo arrives with Phase 3/4 (plan §4).
-      body: [
-        'A physics trajectory simulation, presented as a mobile app interface, is in development. One implementation will serve both this page and the physics page — a small demonstration of building once and reusing well.',
       ],
     },
   },
@@ -104,19 +87,24 @@ export const mobilePage = {
 export const waterPoloPage = {
   eyebrow: 'Water polo',
   heading: 'The other place I think in three dimensions',
-  lede: 'Water polo is a serious part of who I am — a sport that demands decision-making under pressure, spatial awareness, fitness, communication, and trust.',
+  lede: 'Water polo is a serious part of who I am, a sport that demands decision-making under pressure, spatial awareness, fitness, communication, and trust.',
   sections: {
     intro: {
-      title: 'Why it matters',
+      title: 'What it taught me',
       body: [
         'Water polo rewards the same skills as good research and good engineering: reading a system quickly, committing to a decision with incomplete information, and trusting the people around you to do their job.',
       ],
     },
     history: {
-      title: 'Playing history',
-      // TODO(content): Jack to supply confirmed role/position, teams, and competitions (plan §4).
+      title: 'Where I\'ve played',
       body: [
-        'Confirmed details of my playing history — position, teams, and competitions — are being finalised and will appear here soon.',
+        'I have played for Welsh Wanderers, the University of Birmingham, Sandwell, and represented Wales at the national level.',
+      ],
+      clubs: [
+        { team: 'Welsh national team', period: 'International' },
+        { team: 'Welsh Wanderers', period: 'Club' },
+        { team: 'University of Birmingham', period: 'University' },
+        { team: 'Sandwell', period: 'Club' },
       ],
     },
     demands: {
@@ -128,11 +116,10 @@ export const waterPoloPage = {
         'Communication and trust: six other players need to know your intention before you act.',
       ],
     },
-    tactical: {
-      title: 'Tactical view',
-      // TODO(content): interactive tactical formation arrives with the water polo world (Phase 6).
+    game: {
+      title: 'The game',
       body: [
-        'A labelled top-down formation with an accessible text description is planned alongside the interactive water polo scene.',
+        'A water polo pitch is 25 by 20 metres with goals at each end. Six outfield players and a goalkeeper work in a arc formation, passing and driving to create shooting lanes. The game is as much about movement without the ball as it is about possession, every pass is a commitment, every drive a gamble.',
       ],
     },
   },
@@ -141,19 +128,19 @@ export const waterPoloPage = {
 export const projectsPage = {
   eyebrow: 'Projects',
   heading: 'Case studies, not trophies',
-  lede: 'Real projects with a stated problem, approach, outcome, and honest limitations — from CERN simulation frameworks to self-hosted web apps.',
+  lede: 'Real projects with a stated problem, approach, outcome, and honest limitations, from CERN simulation frameworks to self-hosted web apps.',
 }
 
 export const aboutPage = {
   eyebrow: 'About',
-  heading: 'One thread through physics, software, and water',
-  lede: 'I observe systems, model them, build tools around them, and work with people to make the results useful.',
+  heading: 'One thread through software, physics, and water',
+  lede: 'I build mobile apps that millions of broadband customers use, observe particle systems at CERN, and play water polo.',
   sections: {
     bio: {
       title: 'Biography',
       body: [
-        'I am an experimental particle physics PhD researcher at the University of Birmingham, working in the NA62 collaboration at CERN on software development and the search for dark photons.',
-        'Alongside research I build things: simulation frameworks used across an international collaboration, self-hosted web apps, embedded sensors, and dashboards. I enjoy learning new languages and solving problems with them.',
+        'I am a software engineer at BT, building mobile apps for the BT and EE consumer brands, focusing on broadband and home wifi. I work with Flutter and React Native, and build developer tools in Python.',
+        'Previously I was an experimental particle physics PhD researcher at the University of Birmingham, working in the NA62 collaboration at CERN on software development and the search for dark photons.',
         'Away from a keyboard, I play water polo.',
       ],
     },
@@ -163,7 +150,7 @@ export const aboutPage = {
     focus: {
       title: 'Current focus',
       body: [
-        'Completing my doctoral analysis, and building this site — an accessible React application with an interactive 3D world layered on top.',
+        'Working hard to gain connections in the industry while making projects that I enjoy!',
       ],
     },
   },

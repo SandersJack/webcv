@@ -1,7 +1,7 @@
 /**
  * Verified profile facts, sourced from the live portfolio (portfolio.jack-sanders.uk).
  * Add nothing here that is not backed by the existing public site or an
- * approved source — see docs/PRODUCTION_IMPLEMENTATION_PLAN.md §10.
+ * approved source, see docs/PRODUCTION_IMPLEMENTATION_PLAN.md §10.
  */
 
 export type Publication = {
@@ -26,7 +26,7 @@ export const profile = {
   fullName: 'Jack Dylan Sanders',
   tagline: 'Physicist. Engineer. Developer.',
   positioning:
-    'PhD researcher in experimental particle physics, working on software development and the search for dark photons at the NA62 experiment at CERN.',
+    'Software engineer at BT building mobile apps for the BT and EE consumer brands, and PhD researcher in experimental particle physics at the University of Birmingham.',
   email: 'sandersjack141@gmail.com',
   links: {
     github: 'https://github.com/SandersJack',
@@ -61,7 +61,7 @@ export const education: Experience[] = [
     role: 'Experimental Particle Physics PhD',
     period: 'Graduation year: 2025',
     description:
-      'Software developer and researcher in the NA62 collaboration. Led the refactoring of the NA62 framework — the C++ codebase for Monte Carlo simulation of the NA62 detector and reconstruction of NA62 data — making it flexible enough for users to design and implement new detectors, work that was used extensively for the HIKE proposal. Spent six months at CERN on a long-term attachment, helping install the new CEDAR-H detector, acting as detector expert for the CEDAR/KTAG, and as an expert for the PC farm.',
+      'Software developer and researcher in the NA62 collaboration. Led the refactoring of the NA62 framework, the C++ codebase for Monte Carlo simulation of the NA62 detector and reconstruction of NA62 data, making it flexible enough for users to design and implement new detectors, work that was used extensively for the HIKE proposal. Spent six months at CERN on a long-term attachment, helping install the new CEDAR-H detector, acting as detector expert for the CEDAR/KTAG, and as an expert for the PC farm.',
   },
   {
     organisation: 'University of Birmingham',
@@ -74,11 +74,11 @@ export const education: Experience[] = [
 
 export const workExperience: Experience[] = [
   {
-    organisation: 'BT/EE',
-    role: 'Mobile Developer',
-    period: '2025–present',
+    organisation: 'EE & BT',
+    role: 'Software Engineer',
+    period: 'Sept 2025–present',
     description:
-      'Mobile developer on a large consumer app, working across Flutter and React Native with native iOS and Android development in Swift and Kotlin.',
+      'Building mobile apps for the BT and EE consumer brands, focusing on broadband and home wifi. Working with Flutter and React Native apps, and building developer tools in Python.',
   },
   {
     organisation: 'University of Birmingham',

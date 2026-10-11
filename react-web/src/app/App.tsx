@@ -1,6 +1,7 @@
 import { useEffect, useRef, type RefObject } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
 
+import { ErrorBoundary } from '../components/ErrorBoundary'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { SkipLink } from '../components/SkipLink'
@@ -47,7 +48,9 @@ export function App() {
         ref={mainRef}
         className="site-main"
       >
-        <AppRoutes />
+        <ErrorBoundary>
+          <AppRoutes />
+        </ErrorBoundary>
       </main>
       <Footer />
     </>
