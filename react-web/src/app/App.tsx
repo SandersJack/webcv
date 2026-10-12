@@ -4,6 +4,7 @@ import { matchPath, useLocation } from 'react-router-dom'
 import { ErrorBoundary } from '../components/ErrorBoundary'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
+import { trackPageView } from '../lib/firebase'
 import { SkipLink } from '../components/SkipLink'
 
 import { AppRoutes } from './routes'
@@ -22,10 +23,13 @@ function useRouteMetadata(mainRef: RefObject<HTMLElement | null>) {
     )
     const metadata = matched ?? notFoundMetadata
 
-    document.title = `${metadata.title}${siteTitleSuffix}`
+    const title = `${metadata.title}${siteTitleSuffix}`
+    document.title = title
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', metadata.description)
+
+    trackPageView(location.pathname, title)
 
     // Move focus and scroll to the top on navigation so keyboard and screen
     // reader users land at the start of the new page (design skills §5).
