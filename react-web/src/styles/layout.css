@@ -210,6 +210,195 @@
   block-size: auto;
 }
 
+/* AI-enhanced section — electrically pulsing glow card */
+
+.ai-enhanced-section {
+  padding-block: var(--space-4);
+}
+
+.ai-enhanced-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  background: var(--color-bg);
+  border: 1px solid #d96248;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 0 20px color-mix(in srgb, #d96248 18%, transparent),
+    0 0 40px color-mix(in srgb, #3d8b4a 10%, transparent);
+  animation: ai-border-pulse 3s ease-in-out infinite;
+}
+
+.ai-enhanced__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    color-mix(in srgb, #d96248 24%, transparent) 0%,
+    transparent 60%
+  );
+  opacity: 0.7;
+  animation: ai-glow-shift 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.ai-enhanced__glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at 70% 40%,
+    color-mix(in srgb, #3d8b4a 22%, transparent) 0%,
+    transparent 55%
+  );
+  opacity: 0.6;
+  animation: ai-glow-shift 4s ease-in-out infinite reverse;
+}
+
+.ai-enhanced__content {
+  position: relative;
+  z-index: 1;
+}
+
+.ai-enhanced__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  border: 1px solid #d96248;
+  background: color-mix(in srgb, #d96248 12%, transparent);
+  color: #f08268;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ai-enhanced__pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5ec46e;
+  box-shadow: 0 0 8px #3d8b4a, 0 0 16px #3d8b4a;
+  animation: ai-dot-pulse 2s ease-in-out infinite;
+}
+
+.ai-enhanced__title {
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.ai-enhanced__lede {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+  max-inline-size: 55ch;
+  margin: 0;
+}
+
+.ai-enhanced__capabilities {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  margin-block-start: var(--space-4);
+}
+
+.ai-enhanced__capability {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border: 1px solid color-mix(in srgb, #d96248 30%, transparent);
+  transition: border-color var(--motion-fast) var(--ease-standard),
+              box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.ai-enhanced__capability:hover {
+  border-color: #3d8b4a;
+  box-shadow: 0 0 12px color-mix(in srgb, #3d8b4a 25%, transparent);
+}
+
+.ai-enhanced__capability strong {
+  display: block;
+  color: #5ec46e;
+  font-size: var(--text-base);
+  margin-block-end: var(--space-1);
+}
+
+.ai-enhanced__capability p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* Animations */
+
+@keyframes ai-border-pulse {
+  0%, 100% {
+    border-color: #d96248;
+    box-shadow:
+      0 0 20px color-mix(in srgb, #d96248 18%, transparent),
+      0 0 40px color-mix(in srgb, #3d8b4a 10%, transparent);
+  }
+  50% {
+    border-color: #5ec46e;
+    box-shadow:
+      0 0 30px color-mix(in srgb, #5ec46e 30%, transparent),
+      0 0 60px color-mix(in srgb, #d96248 15%, transparent),
+      0 0 80px color-mix(in srgb, #3d8b4a 8%, transparent);
+  }
+}
+
+@keyframes ai-glow-shift {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1) translateX(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02) translateX(2%);
+  }
+}
+
+@keyframes ai-dot-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px #3d8b4a, 0 0 16px #3d8b4a;
+  }
+  50% {
+    opacity: 0.4;
+    box-shadow: 0 0 4px #3d8b4a, 0 0 8px #3d8b4a;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-enhanced-card,
+  .ai-enhanced__glow,
+  .ai-enhanced__glow::before,
+  .ai-enhanced__pulse-dot {
+    animation: none;
+  }
+
+  .ai-enhanced-card {
+    box-shadow:
+      0 0 20px color-mix(in srgb, #d96248 18%, transparent),
+      0 0 40px color-mix(in srgb, #3d8b4a 10%, transparent);
+  }
+
+  .ai-enhanced__glow {
+    opacity: 0.5;
+  }
+
+  .ai-enhanced__pulse-dot {
+    box-shadow: 0 0 8px #3d8b4a, 0 0 16px #3d8b4a;
+  }
+}
+
 /* Path card icons (homepage Explore section) */
 
 .path-card__icon {

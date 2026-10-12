@@ -256,6 +256,86 @@ nav a {
     display: none;
 }
 
+#ai-enhanced {
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.ai-glow {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 10px 60px rgba(102, 126, 234, 0.7), 0 0 80px rgba(118, 75, 162, 0.5);
+    }
+}
+
+.ai-glow h2 {
+    border: none;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ai-tagline {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+.ai-capabilities {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.ai-cap {
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 25px 20px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.ai-cap:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.ai-cap i {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.ai-cap h4 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.ai-cap p {
+    font-size: 0.95em;
+    opacity: 0.9;
+    margin: 0;
+}
+
 
 @media (max-width: 670px) {
     .welcome-content {
@@ -284,5 +364,28 @@ nav a {
 
     .pub-item:hover .abstract {
         display: none;
+    }
+    
+    .ai-glow {
+        padding: 30px 20px;
+    }
+    
+    .ai-glow h2 {
+        font-size: 2em;
+    }
+    
+    .ai-tagline {
+        font-size: 1.1em;
+    }
+    
+    .ai-capabilities {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .ai-cap {
+        max-width: 100%;
+        width: 100%;
     }
 }

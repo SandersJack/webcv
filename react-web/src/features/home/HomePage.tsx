@@ -45,6 +45,39 @@ export function HomePage() {
         </div>
       </section>
 
+      <section className="section ai-enhanced-section">
+        <div className="container">
+          <div className="ai-enhanced-card">
+            <div className="ai-enhanced__glow"></div>
+            <div className="ai-enhanced__content flow">
+              <div className="ai-enhanced__badge">
+                <span className="ai-enhanced__pulse-dot"></span>
+                <span>AI-Enhanced Development</span>
+              </div>
+              <h2 className="ai-enhanced__title">Shipping at the speed of thought</h2>
+              <p className="ai-enhanced__lede">
+                I leverage AI to amplify my capabilities. Turning ideas into production-ready code faster, 
+                with deeper analysis and more robust solutions than ever before.
+              </p>
+              <div className="ai-enhanced__capabilities">
+                <div className="ai-enhanced__capability">
+                  <strong>Scalable Architecture</strong>
+                  <p>Designing systems that grow gracefully from prototype to production</p>
+                </div>
+                <div className="ai-enhanced__capability">
+                  <strong>Rapid Prototyping</strong>
+                  <p>From concept to working code in hours, not weeks</p>
+                </div>
+                <div className="ai-enhanced__capability">
+                  <strong>Production-Ready</strong>
+                  <p>Battle-tested code with proper error handling, testing, and monitoring</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <div className="grid-cards">
